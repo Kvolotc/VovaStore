@@ -1,0 +1,43 @@
+package store.service.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import store.persistence.entity.User;
+import store.persistence.repository.UserDao;
+import store.service.UserService;
+
+@Service
+public class UserServiceImpl implements  UserService {
+
+	@Autowired
+	private UserDao userDao;
+	
+	@Override
+	public void save(User entity) {
+		userDao.save(entity);
+	}
+
+	@Override
+	public User update(User entity) {
+		return userDao.update(entity);
+	}
+
+	@Override
+	public void delete(User entity) {
+		userDao.delete(entity);
+	}
+
+	@Override
+	public User findById(Integer id) {
+		return userDao.findById(id);
+	}
+
+	@Override
+	public List<User> findAll() {
+		return userDao.findAll();
+	}
+
+}
