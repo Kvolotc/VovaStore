@@ -11,4 +11,9 @@ public class RegistrationController {
 	public String home() {
 		return "registration";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String dfs() {
+		return "login";
+	}
 }

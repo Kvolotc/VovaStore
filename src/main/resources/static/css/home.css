@@ -1,53 +1,62 @@
-.menu{
+body {
+	background-image:
+		url(http://p.vitalmtb.com/photos/stories/2014/08/03/max_SLorence_GiantPmbrtn_517_965280.jpg?1407107321);
+}
+
+.menu {
 	padding: 10px 0;
 }
 
 .navbar-default .navbar-nav  li a {
-	color : #8d8c8c;
+	color: #8d8c8c;
 	font-size: 15px;
 	text-transform: uppercase;
 }
 
-.navbar-right{    
-	right: 50px;
-}
-.navbar-right li{
+.navbar-right li {
 	float: none;
 }
-.navbar-right li a{
-	padding: 0; 	
+
+.navbar-right li a {
+	padding: 0;
 }
 
-@media only screen and (max-width: 991px){
+@media ( min-width : 768px) {
+	.container-fluid>.navbar-collapse, .container-fluid>.navbar-header,
+		.container>.navbar-collapse, .container>.navbar-header {
+		margin-right: 0;
+		margin-left: -55px;
+	}
+}
 
-	.navbar-right{
+@media only screen and (max-width: 991px ) {
+	.navbar-right {
 		display: block !important;
 		position: relative;
 		top: -35px;
 	}
-
+	.navbar-right li a {
+		top: -17px;
+	}
 }
 
-@media only screen and (max-width: 767px){
-
- .navbar-nav > li > a {
+@media only screen and (max-width: 768px) {
+	.navbar-nav>li>a {
 		transition: all .5s;
 	}
-	.navbar-default .navbar-nav > li.active-link > a {
-		border-top:    0;
-	
+	.navbar-default .navbar-nav>li.active-link>a {
+		border-top: 0;
 	}
-	.navbar-right{
+	.navbar-right {
 		display: block !important;
 		position: relative;
 		right: -15px;
 		top: 0;
 	}
-	.navbar-form {
-		margin-left: -145px;
+	.navbar-right li a {
+		top: 0px;
 	}
-	.menu{
+	.menu {
 		padding: 0;
 	}
-
 }

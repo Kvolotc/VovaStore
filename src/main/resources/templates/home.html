@@ -1,83 +1,99 @@
 <!DOCTYPE html>
-<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js""></script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 <link rel="stylesheet" th:href="@{/css/home.css}">
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<header>
-    <nav class="navbar navbar-default menu">
-  <div class="container">
-      
-          <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
- 
-    </div>
- 
- 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active-link"><a href="/"><span class="glyphicon glyphicon-home"></span> головна</a></li>
-          <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">велосипеди <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-            <li><a href="/books">крос-кантрі</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/authors">шосейні</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/genres">двохпідвіси</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">запчастини<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/books">рама</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/authors">вилка</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/genres">обід</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/genres">шина</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/genres">тормоза</a></li>
-          </ul>
-        </li>
-        <li><a href="#">контакти <span class="sr-only"></span></a></li>
-        
-      </ul>
-      <form class="navbar-form navbar-left">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Пошук"/>
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="button">Search</button>
-          </span>
-          
-        </div>
-        <!-- Single button -->
-      </form>
-        
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/login">логін</a></li>
-        <li><a href="/registration">реєстрація</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  
-  </div><!-- /.container-fluid -->
-        
-             
-</nav>
+<body ng-app="myApp" ng-controller="homeCntrl">
+	
+		<nav class="navbar navbar-default menu">
+			<div class="container">
 
-</header>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+
+				</div>
+
+
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active-link"><a href="/"><span
+								class="glyphicon glyphicon-home"></span> головна</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">велосипеди <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/books">крос-кантрі</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/authors">шосейні</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/genres">двохпідвіси</a></li>
+							</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">запчастини<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/books">рама</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/authors">вилка</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/genres">обід</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/genres">шина</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/genres">тормоза</a></li>
+							</ul></li>
+						<li><a href="#">контакти <span class="sr-only"></span></a></li>
+
+					</ul>
+					<form class="navbar-form navbar-left">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Пошук" /> <span
+								class="input-group-btn">
+								<button class="btn btn-primary" type="button">Search</button>
+							</span>
+
+						</div>
+						<!-- Single button -->
+					</form>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/login">логін</a></li>
+						<li><a href="/registration">реєстрація</a></li>
+					</ul>
+				</div>
+
+			</div>
+
+		</nav>
+
+	
 
 </body>
 </html>
