@@ -2,28 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<link rel="stylesheet" th:href="@{/css/home.css}">
+<link rel="stylesheet" th:href="@{/css/registration.css}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.min.js"></script>
+<script th:src="@{/js/navigate.js}"></script>
+<script th:src="@{/js/controller/homeCntrl.js}"></script>
+<script th:src="@{/js/controller/loginCntrl.js}"></script>
+<script th:src="@{/js/controller/registrationCntrl.js}"></script>
+<script th:src="@{/js/controller/bikesCntrl.js}"></script>
+
+
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js""></script>
+	
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-<link rel="stylesheet" th:href="@{/css/home.css}">
-
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body ng-app="myApp" ng-controller="homeCntrl">
+<body ng-app="myApp" ng-controller="home">
+
 	
 		<nav class="navbar navbar-default menu">
 			<div class="container">
@@ -38,7 +45,7 @@
 					</button>
 
 				</div>
-
+				
 
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
@@ -49,7 +56,7 @@
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">велосипеди <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="/books">крос-кантрі</a></li>
+								<li><a href="/tires">крос-кантрі</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="/authors">шосейні</a></li>
 								<li role="separator" class="divider"></li>
@@ -84,15 +91,21 @@
 					</form>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/login">логін</a></li>
-						<li><a href="/registration">реєстрація</a></li>
+						<li><a class ="login" href="/login"> <span
+								class="glyphicon glyphicon-log-in"></span> логін</a></li>
+						<li><a class ="registration" href="/registration"> <span
+								class="glyphicon glyphicon-user"></span> реєстрація</a></li>
 					</ul>
 				</div>
 
 			</div>
 
 		</nav>
+		
+		<div ng-view ></div>
 
+	<h1>{{hello}}</h1>
+	
 	
 
 </body>

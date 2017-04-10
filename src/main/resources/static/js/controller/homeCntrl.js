@@ -1,8 +1,6 @@
-angular.module('myApp',[])
-.controller('home', function($scope, $http, $routeParams) {
-	var id = $routeParams.id;
-	var name = $routeParams.name;
-	
+myApp
+.controller('home', function($scope) {
+
 	$scope.hello = 'Hello World';
 
 });	

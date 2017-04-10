@@ -33,8 +33,17 @@ body {
 	.navbar-right {
 		display: block !important;
 		position: relative;
-		top: -35px;
+		top: -17px;
 	}
+	
+	.login {
+	right: 100px;
+	}
+	
+	.registration{
+	margin-top: -19px;
+	}
+	
 	.navbar-right li a {
 		top: -17px;
 	}

@@ -1,4 +1,4 @@
-package store.web.controler;
+package store.web.controller;
 
 import java.util.List;
 
@@ -18,8 +18,7 @@ import store.service.TireService;
 
 
 @Controller
-@RequestMapping("/tire")
-public class TireControler {
+public class TireController {
 	
 //	private static Logger logger = LoggerFactory.getLogger(TireControler.class);
 	
@@ -43,7 +42,7 @@ public class TireControler {
 		
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/tires")
 	@ResponseBody
 	public List<Tire> showAll() {
 		return tireService.findAll();

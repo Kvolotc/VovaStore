@@ -1,6 +1,6 @@
-angular.module('myApp', [ 'ngRoute']).
+var myApp = angular.module('myApp', [ "ngRoute" ])
 
-config(function($routeProvider, $locationProvider) {
+.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 	
 	.when('/registration', {
@@ -13,10 +13,18 @@ config(function($routeProvider, $locationProvider) {
 		controller : 'login'
 	})
 	
+	.when('/tires', {
+		templateUrl : 'view/bikes.html',
+		controller : 'bikes'
+	})
+	
 	.otherwise({
 		redirectTo : '/'
 	})
 	
-	$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode({
+		  enabled: true,
+		  requireBase: false
+		});
 
 });
