@@ -9,7 +9,5 @@ public interface GenericProductService<T,ID> extends GenericService<T, ID> {
 	public List<T> sortProductByToMaxPrice();
 	
 	public List<T> findBetweenPrice(Integer min , Integer max);
-	
-	public List<T> findByType(String type);
 
 }

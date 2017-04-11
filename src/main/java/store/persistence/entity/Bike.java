@@ -1,6 +1,10 @@
 package store.persistence.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -8,7 +12,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bikes")
-public class Bike extends Product {
+public class Bike {
+	
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name="price")
+	private Double price;
 	
 	@ManyToOne
 	@JoinColumn(name = "brake_id", referencedColumnName = "id")
@@ -18,8 +30,8 @@ public class Bike extends Product {
 	@JoinColumn(name = "fork_id", referencedColumnName = "id")
 	private Fork fork;
 	
-	@OneToOne
-	@JoinColumn(name = "frame_id", referencedColumnName = "id")
+	@OneToOne()
+	@JoinColumn(name = "frame_id", referencedColumnName = "id", unique=true)
 	private Frame frame;
 	
 	@ManyToOne
@@ -29,6 +41,9 @@ public class Bike extends Product {
 	@ManyToOne
 	@JoinColumn(name = "tire_id", referencedColumnName = "id")
 	private Tire tire;
+	
+	@Column(name = "image_name")
+	private String imageName;
 
 	public Brake getBrake() {
 		return brake;
@@ -68,6 +83,22 @@ public class Bike extends Product {
 
 	public void setTire(Tire tire) {
 		this.tire = tire;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 		
 }

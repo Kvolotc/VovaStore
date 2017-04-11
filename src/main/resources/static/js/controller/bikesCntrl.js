@@ -1,12 +1,12 @@
 myApp
 .controller('bikes', function($scope, $http, $routeParams) {
 
-	$scope.tires = [];
+	$scope.bikes = [];
 	
 	$http({
-		method : "GET", url : '/tires'
+		method : "GET", url : '/bikes'
 	}).then(function (response) {
-		$scope.tires = response.data;
+		$scope.bikes = response.data;
 	}, function myError(response) {
 		
 	});

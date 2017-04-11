@@ -1,0 +1,18 @@
+
+.thumbnail a>img, .thumbnail>img {
+	float: left;
+	
+}
+
+.media-body, .media-left, .media-right {
+	padding-left: 7px;
+	text-transform: uppercase;
+	font-size: 15px
+	color: #8d8c8c;
+	
+}
+
+.buttons {
+	margin-top: -10px;
+	padding: 7px;
+}

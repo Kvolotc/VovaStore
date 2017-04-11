@@ -42,11 +42,5 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 	public List<T> findBetweenPrice(Integer min, Integer max) {
 		return entityManager.createQuery("FROM"+entity.getSimpleName()+"e BETWEEN"+min+"AND"+max,entity).getResultList();
 	}
-	
-	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-	@Override
-	public List<T> findByType(String type) {
-		return entityManager.createQuery("FROM"+entity.getSimpleName()+"e WHERE f.type = "+type,entity).getResultList();
-	}
 
 }

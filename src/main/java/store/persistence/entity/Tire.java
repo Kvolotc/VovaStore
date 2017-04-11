@@ -4,8 +4,11 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tires")
@@ -17,7 +20,8 @@ public class Tire extends Product {
 	@Column(name = "width")
 	private double width;
 	
-	@OneToMany(mappedBy = "tire")
+	@JsonIgnore
+	@OneToMany(mappedBy = "tire", fetch = FetchType.LAZY)
 	private Collection<Bike> bikes;
 
 	public int getDiameter() {

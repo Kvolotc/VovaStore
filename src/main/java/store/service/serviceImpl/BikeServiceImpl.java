@@ -55,9 +55,4 @@ public class BikeServiceImpl implements BikeService{
 		return bikeDao.findBetweenPrice(min, max);
 	}
 
-	@Override
-	public List<Bike> findByType(String type) {
-		return bikeDao.findByType(type);
-	}
-
 }

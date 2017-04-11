@@ -54,11 +54,6 @@ public class TireServiceImpl implements TireService {
 	public List<Tire> findBetweenPrice(Integer min, Integer max) {
 		return tireDao.findBetweenPrice(min, max);
 	}
-
-	@Override
-	public List<Tire> findByType(String type) {
-		return tireDao.findByType(type);
-	}
 	
 	public List<Tire> findbyDiameter(Integer diameter) {
 		return tireDao.findbyDiameter(diameter);

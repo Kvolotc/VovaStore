@@ -54,11 +54,6 @@ public class FrameServiceImpl implements FrameService {
 	public List<Frame> findBetweenPrice(Integer min, Integer max) {
 		return frameDao.findBetweenPrice(min, max);
 	}
-
-	@Override
-	public List<Frame> findByType(String type) {
-		return frameDao.findByType(type);
-	}
 	
 	public List<Frame> findBySize(String size) {
 		return frameDao.findBySize(size);

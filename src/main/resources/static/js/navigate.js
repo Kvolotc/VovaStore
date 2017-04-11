@@ -13,7 +13,7 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 		controller : 'login'
 	})
 	
-	.when('/tires', {
+	.when('/bikes', {
 		templateUrl : 'view/bikes.html',
 		controller : 'bikes'
 	})

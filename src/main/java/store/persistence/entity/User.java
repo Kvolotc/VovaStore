@@ -1,5 +1,7 @@
 package store.persistence.entity;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import store.persistence.entity.enums.Gender;
 import store.persistence.entity.enums.Role;
 
@@ -17,25 +21,26 @@ import store.persistence.entity.enums.Role;
 
 @Entity
 @Table(name = "users")
-public class User<T> {
+public class User {
 	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "name")
+	@Column(name = "first_name")
 	@Size(max = 20)
-	private String name;
+	private String firstName;
 	
-	@Column(name = "second_name")
+	@Column(name = "lasT_name")
 	@Size(max = 20)
-	private String secondName;
+	private String lastName;
 	
-	@Column(name = "age")
-	private int age;
+	@Column(name = "date")
+	private Timestamp date;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(name = "gender")
 	private Gender gender;
 	
 	@Column(name = "email", unique = true)
@@ -56,31 +61,7 @@ public class User<T> {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSecondName() {
-		return secondName;
-	}
-
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
+	
 	public Gender getGender() {
 		return gender;
 	}
@@ -112,5 +93,30 @@ public class User<T> {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
 	
 }

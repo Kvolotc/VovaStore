@@ -42,10 +42,13 @@ public class TireController {
 		
 	}
 	
-	@GetMapping("/tires")
+	@RequestMapping(value = "/tires", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Tire> showAll() {
-		return tireService.findAll();
+		
+		List<Tire> tiries= tireService.findAll();
+		System.out.println(tiries.get(2).getBikes());
+		return tiries;
 	}
 	
 

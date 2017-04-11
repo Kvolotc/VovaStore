@@ -55,9 +55,4 @@ public class BrakeServiceImpl implements BrakeService {
 		return brakeDao.findBetweenPrice(min, max);
 	}
 
-	@Override
-	public List<Brake> findByType(String type) {
-		return brakeDao.findByType(type);
-	}
-
 }

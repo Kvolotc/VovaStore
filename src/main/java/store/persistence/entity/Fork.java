@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "forks")
 public class Fork extends Product{
@@ -15,6 +17,7 @@ public class Fork extends Product{
 	@Column(name = "course")
 	private String course;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fork")
 	private Collection<Bike> bikes;
 

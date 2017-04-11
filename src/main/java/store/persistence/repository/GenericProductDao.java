@@ -5,7 +5,7 @@ import java.util.List;
 import store.persistence.entity.Product;
 
 
-public interface GenericProductDao<T, ID> extends GenericDao<T,ID> {
+public interface GenericProductDao<T, ID> extends GenericDao<T, ID> {
 
 	public List<T> sortProductByToMinPrice();
 	
@@ -13,6 +13,5 @@ public interface GenericProductDao<T, ID> extends GenericDao<T,ID> {
 	
 	public List<T> findBetweenPrice(Integer min , Integer max);
 	
-	public List<T> findByType(String type);
 	
 }

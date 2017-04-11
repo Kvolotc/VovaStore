@@ -55,11 +55,6 @@ public class ForkServiceImpl implements ForkService{
 		return forkDao.findBetweenCourse(min, max);
 	}
 
-	@Override
-	public List<Fork> findByType(String type) {
-		return forkDao.findByType(type);
-	}
-	
     public List<Fork> findByCourse(Integer course) {
 		return forkDao.findByCourse(course);	   
     }

@@ -4,24 +4,28 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "rims")
 public class Rim extends Product{
 
 	@Column(name = "diameter")
-	private int diameter;
+	private double diameter;
 	
-	@OneToMany(mappedBy = "rim")
+	@JsonIgnore
+	@OneToMany(mappedBy = "rim",fetch = FetchType.LAZY)
 	private Collection<Bike> bikes;
 
-	public int getDiameter() {
+	public double getDiameter() {
 		return diameter;
 	}
 
-	public void setDiameter(int diameter) {
+	public void setDiameter(double diameter) {
 		this.diameter = diameter;
 	}
 
