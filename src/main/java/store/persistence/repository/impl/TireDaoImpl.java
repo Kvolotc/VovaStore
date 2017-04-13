@@ -25,7 +25,8 @@ public class TireDaoImpl extends GenericProductDaoImpl<Tire, Integer> implements
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	@Override
 	public List<Tire> findbyDiameter(Integer diameter) {
-		return entityManager.createQuery("FROM Tire t WHERE t.diameter = "+diameter,Tire.class).getResultList();
+		return entityManager.createQuery("FROM Tire t WHERE t.diameter = :diameter",Tire.class)
+				.setParameter("diameter", diameter).getResultList();
 	}
 
 }

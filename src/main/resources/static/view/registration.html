@@ -1,80 +1,87 @@
 
-	<div class="col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 container" id="registration">
+	
+	
+	<div class="col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 container" id="registration">
 		<div class="panel panel-default">
 			<div class="panel-heading">Registration</div>
 			<div class="panel-body">
-				<form id="registration-form" method="POST" class="form-horizontal"
-					action="#">
+				<form id="registration-form" class="form-horizontal">
 
 					<div class="form-group">
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 							<input type="text" class="form-control col-md-6" name="firstName"
-								maxlength="20" placeholder="First name"
-								ng-model="user.firstName" required />
+								 placeholder="First name"
+								ng-model="user.firstName"  />
 						</div>
 						
 					</div>
 
-					<div class="form-group">
+					<div class="form-group ">
 
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 							<input type="text" class="form-control" name="lastName"
-								maxlength="20" placeholder="Last name"
-								ng-model="user.lastName" required />
+								 placeholder="Last name"
+								ng-model="user.lastName" />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group ">
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<select name="gender" ng-model="user.gender" class="form-control">
-								<option  ng-repeat="gender in genders" >{{gender}}</option>
-							</select>
+							<select name="gender" id="gender" ng-model="user.gender" class="form-control" >					
+							<option ng-repeat = "gender in genders">{{gender}}</option>					
+							</select>				
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group ">
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="date" class="form-control" name="birtday"
-							min="1920-01-01" max="2010-12-31"
-							ng-model = "user.date" required />
+							<input type="date" class="form-control" name="birtday"						
+							ng-model = "user.date"  />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group ">
 
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="email" class="form-control" name="email"
+							<input type="text" class="form-control" name="email"
+							id = "email"
 								placeholder="Email"
-								ng-model = "user.eMail" required />
-						</div>
+								ng-model = "user.eMail"
+								ng-change="mail.to=user.eMail"  />
+						</div>						
+			
 					</div>
-
 
 					<div class="form-group">
 
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="password" class="form-control" name="password"
-								minlength="4" maxlength="16" placeholder="Password"
-								ng-model = "user.password" required />
+							<input type="password" class="form-control" name="password" id="password"
+								placeholder="Password"
+								ng-model = "user.password"  />
 						</div>
+						
 					</div>
 
-					<div class="form-group">
+					<div class="form-group ">
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 							<input type="password" class="form-control"
-								name="confirm password" minlength="4" maxlength="16"
-								placeholder="Confirm password" required />
+								name="confirmPassword" 
+								ng-model = "confPassword"
+								placeholder="Confirm password"  />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group ">
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<button type="button" ng-click="registration()" class="btn btn-success">Register</button>
+							<a type="submit"
+							id = "submitButton"
+							href="/newUser"
+							   class="btn btn-success" ng-click="registration()" >Register</a>
 						</div>
 					</div>			
-				</form>
+			</form>
 				
 			</div>
 		</div>
 	</div>
-	
+

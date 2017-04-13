@@ -26,7 +26,8 @@ public class FrameDaoImpl extends GenericProductDaoImpl<Frame, Integer> implemen
 	@Override
 	public List<Frame> findBySize(String size) {
 
-		return entityManager.createQuery("FROM Frame f WHERE f.size = "+size,Frame.class).getResultList();
+		return entityManager.createQuery("FROM Frame f WHERE f.size = :size",Frame.class)
+				.setParameter("size", size).getResultList();
 	}
 
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)

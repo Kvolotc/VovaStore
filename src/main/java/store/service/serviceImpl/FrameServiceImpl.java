@@ -55,14 +55,17 @@ public class FrameServiceImpl implements FrameService {
 		return frameDao.findBetweenPrice(min, max);
 	}
 	
+	@Override
 	public List<Frame> findBySize(String size) {
 		return frameDao.findBySize(size);
 	}
 	
+	@Override
 	public List<Frame> findWithSnubber() {
 		return frameDao.findWithSnubber();
 	}
 	
+	@Override
 	public List<Frame> findWithOutSnubber() {
 		return frameDao.findWithOutSnubber();
 	}

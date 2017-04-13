@@ -10,5 +10,5 @@ public interface ForkService extends GenericProductService<Fork, Integer>{
 	
 	public List<Fork> findBetweenCourse(Integer min, Integer max);
 	
-	
+
 }

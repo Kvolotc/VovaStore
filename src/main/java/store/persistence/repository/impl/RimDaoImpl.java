@@ -25,7 +25,8 @@ public class RimDaoImpl extends GenericProductDaoImpl<Rim, Integer> implements R
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	@Override
 	public List<Rim> findbyDiameter(Integer diameter) {
-		return entityManager.createQuery("FROM Rim r WHERE r.diameter = "+diameter,Rim.class).getResultList();
+		return entityManager.createQuery("FROM Rim r WHERE r.diameter = :diameter",Rim.class)
+				.setParameter("diameter", diameter).getResultList();
 	}
 
 }

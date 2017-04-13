@@ -55,6 +55,7 @@ public class RimServiceImpl implements RimService {
 		return rimDao.findBetweenPrice(min, max);
 	}
 
+	@Override
 	public List<Rim> findbyDiameter(Integer diameter) {
 		return rimDao.findbyDiameter(diameter);
 	}

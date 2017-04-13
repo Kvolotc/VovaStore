@@ -18,6 +18,15 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 		controller : 'bikes'
 	})
 	
+	.when('/newUser', {
+		templateUrl : 'view/newUser.html',
+		controller : 'registration'
+	})
+	
+	.when('/popup', {
+		templateUrl : 'view/popup.html',
+	})
+	
 	.otherwise({
 		redirectTo : '/'
 	})

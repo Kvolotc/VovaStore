@@ -54,11 +54,13 @@ public class ForkServiceImpl implements ForkService{
 	public List<Fork> findBetweenPrice(Integer min, Integer max) {
 		return forkDao.findBetweenCourse(min, max);
 	}
-
+	
+	@Override
     public List<Fork> findByCourse(Integer course) {
 		return forkDao.findByCourse(course);	   
+		
     }
-	
+	@Override
 	public List<Fork> findBetweenCourse(Integer min, Integer max) {
 		return forkDao.findBetweenCourse(min, max);	
 	}
