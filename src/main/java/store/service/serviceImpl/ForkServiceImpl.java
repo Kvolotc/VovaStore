@@ -16,8 +16,10 @@ public class ForkServiceImpl implements ForkService{
 	private ForkDao forkDao;
 	
 	@Override
-	public void save(Fork entity) {
+	public Fork save(Fork entity) {
 		forkDao.save(entity);
+		
+		return entity;
 	}
 
 	@Override

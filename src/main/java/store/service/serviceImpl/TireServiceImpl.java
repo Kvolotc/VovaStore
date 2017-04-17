@@ -16,8 +16,10 @@ public class TireServiceImpl implements TireService {
 	private TireDao tireDao;
 	
 	@Override
-	public void save(Tire entity) {
+	public  Tire save(Tire entity) {
 		tireDao.save(entity);
+		
+		return entity;
 	}
 
 	@Override

@@ -16,8 +16,10 @@ public class RimServiceImpl implements RimService {
 	private RimDao rimDao;
 	
 	@Override
-	public void save(Rim entity) {
+	public Rim save(Rim entity) {
 		rimDao.save(entity);
+		
+		return entity;
 	}
 
 	@Override

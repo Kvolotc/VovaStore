@@ -4,6 +4,8 @@ import store.persistence.entity.User;
 
 public interface UserDao extends GenericDao<User,Integer > {
 	
-	User findByEmail(String email);
+	public User findByEmail(String email);
+	public User findByToken(String token);
+	
 
 }

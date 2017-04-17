@@ -20,8 +20,10 @@ public class MailSenderController {
     @RequestMapping(value="/mailsender", method = RequestMethod.POST)
     public void sendMail(@RequestBody MailSender mailSender){
     	
+    	System.out.println("MailSENDER == "+mailSender);
+    	
     	try {
-			service.end(mailSender);
+			service.send(mailSender);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

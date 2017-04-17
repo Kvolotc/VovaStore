@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Candal);
+
+body{
+	font-family:Candal;
+	background-image:url('http://www.ernstlawgroup.com/wp-content/uploads/2013/11/bike-crash.jpg');
+	background-size:120%;
+	margin:0;
+	
+}
+
+
+.text{
+  color:red;
+	opacity:0.5;
+	font-size:4rem;
+	margin:auto;
+	text-align:center;
+	}
+	
+	
+	#sub{
+		font-size:100px;
+		color:red;
+		margin-top:-100px;
+		opacity:1;
+	}
+}

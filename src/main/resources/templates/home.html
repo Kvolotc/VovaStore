@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
+<title>Insert title here</title>
+<base href="/" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -11,7 +14,9 @@
 <link rel="stylesheet" th:href="@{/css/home.css}">
 <link rel="stylesheet" th:href="@{/css/registration.css}">
 <link rel="stylesheet" th:href="@{/css/bikes.css}">
-<link rel="stylesheet" th:href="@{/css/success.css}"> 
+<link rel="stylesheet" th:href="@{/css/login.css}">
+<link rel="stylesheet" th:href="@{/css/forgotPassword.css}">
+
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
@@ -32,12 +37,11 @@
 <script th:src="@{/js/controller/loginCntrl.js}"></script>
 <script th:src="@{/js/controller/registrationCntrl.js}"></script>
 <script th:src="@{/js/controller/bikesCntrl.js}"></script>
+<script th:src="@{/js/controller/forgotPasswordCntrl.js}"></script>
 
 
 
 
-
-<title>Insert title here</title>
 </head>
 <body ng-app="myApp" ng-controller="home">
 
@@ -115,13 +119,12 @@
 		</div>
 
 	</nav>
+		<h1>LOcation = {{location.path()}}</h1>
 
 	<div ng-view></div>
 
-	<a href="/newUser"><h1>Go to New user</h1></a>
-	<a href="/popup"><h1>Go to Popupr</h1></a>
 
-	<h1>{{hello}}</h1>
+	
 
 
 

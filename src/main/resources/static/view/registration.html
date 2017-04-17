@@ -1,87 +1,136 @@
 
-	
-	
-	<div class="col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 container" id="registration">
-		<div class="panel panel-default">
-			<div class="panel-heading">Registration</div>
-			<div class="panel-body">
-				<form id="registration-form" class="form-horizontal">
 
-					<div class="form-group">
-						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="text" class="form-control col-md-6" name="firstName"
-								 placeholder="First name"
-								ng-model="user.firstName"  />
-						</div>
-						
+
+<div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 container"
+	id="registration">
+	<div class="panel panel-default">
+		<div class="panel-heading">Registration</div>
+		<div class="panel-body">
+			<form id="registration-form" class="form-horizontal">
+
+				<div class="form-group">
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<input type="text" class="form-control col-md-6" name="firstName"
+							placeholder="First name" ng-model="user.firstName" />
 					</div>
 
-					<div class="form-group ">
+				</div>
 
-						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="text" class="form-control" name="lastName"
-								 placeholder="Last name"
-								ng-model="user.lastName" />
-						</div>
+				<div class="form-group ">
+
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<input type="text" class="form-control" name="lastName"
+							placeholder="Last name" ng-model="user.lastName" />
+					</div>
+				</div>
+
+				<div class="form-group ">
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<select name="gender" id="gender" ng-model="user.gender"
+							class="form-control">
+							<option ng-repeat="gender in genders">{{gender}}</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group ">
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<input type="date" class="form-control" name="birtday"
+							ng-model="user.date" />
+					</div>
+				</div>
+
+				<div class="form-group ">
+
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<input type="text" class="form-control" name="email" id="email"
+							placeholder="Email" ng-model="user.eMail"
+							ng-change="mail.to=user.eMail" />
 					</div>
 
-					<div class="form-group ">
-						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<select name="gender" id="gender" ng-model="user.gender" class="form-control" >					
-							<option ng-repeat = "gender in genders">{{gender}}</option>					
-							</select>				
-						</div>
+				</div>
+
+				<div class="form-group">
+
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<input type="password" class="form-control" name="password"
+							id="password" placeholder="Password" ng-model="user.password" />
 					</div>
 
-					<div class="form-group ">
-						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="date" class="form-control" name="birtday"						
-							ng-model = "user.date"  />
-						</div>
+				</div>
+
+				<div class="form-group ">
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<input type="password" class="form-control" name="confirmPassword"
+							ng-model="confPassword" placeholder="Confirm password" />
 					</div>
+				</div>
 
-					<div class="form-group ">
-
-						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="text" class="form-control" name="email"
-							id = "email"
-								placeholder="Email"
-								ng-model = "user.eMail"
-								ng-change="mail.to=user.eMail"  />
-						</div>						
-			
+				<div class="form-group ">
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<button type="submit" id="submitButton" class="btn btn-success">Register</button>
 					</div>
-
-					<div class="form-group">
-
-						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="password" class="form-control" name="password" id="password"
-								placeholder="Password"
-								ng-model = "user.password"  />
-						</div>
-						
-					</div>
-
-					<div class="form-group ">
-						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<input type="password" class="form-control"
-								name="confirmPassword" 
-								ng-model = "confPassword"
-								placeholder="Confirm password"  />
-						</div>
-					</div>
-
-					<div class="form-group ">
-						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<a type="submit"
-							id = "submitButton"
-							href="/newUser"
-							   class="btn btn-success" ng-click="registration()" >Register</a>
-						</div>
-					</div>			
+				</div>
 			</form>
-				
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<div data-target="#successModal" data-toggle="modal"></div>
+<div class="modal fade" tabindex="-1" id="successModal"
+	data-keyboard="false" data-backdrop="static">
+
+	<div class="modal-dialog modal-md ">
+
+
+		<div
+			class="col-sm-8 col-sm-offset-2  col-xs-8 col-xs-offset-2 container">
+			<div class="text-center panel panel-default secses">
+				<div class="panel-heading">Congratulations, you have
+					successfully registered</div>
+				<div class="panel-body">
+
+
+					<span style="font-size: 9em;" class="glyphicon glyphicon-ok-circle"></span>
+					<br>
+					<h4>In your email was send mail</h4>
+				</div>
+
+
+				<div class="form-group ">
+
+					<div
+						class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group">
+						<a type="button" href="/" class="btn btn-success"
+							ng-click="hideModal()">Home page</a>
+					</div>
+
+				</div>
+
 			</div>
 		</div>
 	</div>
+</div>
+
+
+
+
+
+
+
 

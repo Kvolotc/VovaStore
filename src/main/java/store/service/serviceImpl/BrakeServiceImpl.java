@@ -16,8 +16,10 @@ public class BrakeServiceImpl implements BrakeService {
 	private BrakeDao brakeDao;
 	
 	@Override
-	public void save(Brake entity) {
+	public Brake save(Brake entity) {
 		brakeDao.save(entity);
+		
+		return entity;
 	}
 
 	@Override

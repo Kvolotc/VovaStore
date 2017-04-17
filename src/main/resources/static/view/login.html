@@ -1,48 +1,57 @@
 
 
-	<div
-		class="col-sm-4 col-sm-offset-4  col-xs-4 col-xs-offset-4 container" id="login">
-		<div class="panel panel-default">
-			<div class="panel-heading">Log in</div>
-			<div class="panel-body">
-				<form id="login-form" class="form-horizontal">
 
 
-					<div class="form-group">
+<div
+	class="col-sm-4 col-sm-offset-4  col-xs-8 col-xs-offset-2 container"
+	id="login">
+	<div class="panel panel-default">
+		<div class="panel-heading">Log in</div>
+		<div class="panel-body">
+			<form id="login-form" class="form-horizontal">
 
-						<div
-							class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-envelope"></span></span> <input type="email"
-								class="form-control" name="email" placeholder="Email" required />
-						</div>
+
+				<div class="form-group" ng-class="{'has-error': isWarning == true}">
+
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<span class="glyphicon glyphicon-envelope loginGlyp"></span> <input
+							type="text" class="form-control" name="email" placeholder="Email"
+							ng-model="loginParam.eMail" />
+					</div>
+				</div>
+
+				<div class="form-group" ng-class="{'has-error': isWarning == true}">
+
+					<div
+						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
+						<span class="glyphicon glyphicon-lock passwordGlyp"></span> <input
+							type="password" class="form-control" name="password"
+							placeholder="Password" ng-model="loginParam.password" />
+					</div>
+				</div>
+
+
+				<div class="form-group ">
+
+					<div class="col-sm-2 col-sm-offset-2 col-xs-2 col-xs-offset-2 ">
+						<button type="submit" class="btn btn-success" ng-click="login()">Log
+							in</button>
 					</div>
 
-
-					<div class="form-group">
-
-						<div
-							class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-lock"></span></span> <input type="password"
-								class="form-control" name="password" minlength="4"
-								maxlength="16" placeholder="Password" required />
-						</div>
+					<div class="col-sm-4 col-sm-offset-1 col-xs-2 col-xs-offset-2">
+						<a type="button" class="btn btn-warning forgotPassword"
+						 href ="/forgotPassword"   > Forgot
+							password</a>
 					</div>
 
+				</div>
 
-					<div class="form-group ">
+				<div class="warning">{{message}}</div>
 
-						<div
-							class="col-sm-2 col-sm-offset-2 col-xs-2 col-xs-offset-2 input-group">
-							<button type="submit" class="btn btn-success">Log in</button>
-						</div>
-						
-					</div>
-
-				</form>
-			</div>
+			</form>
 		</div>
 	</div>
+</div>
 
 

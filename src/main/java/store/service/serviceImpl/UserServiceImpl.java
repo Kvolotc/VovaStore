@@ -1,8 +1,13 @@
 package store.service.serviceImpl;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import store.persistence.entity.User;
@@ -16,8 +21,16 @@ public class UserServiceImpl implements  UserService {
 	private UserDao userDao;
 	
 	@Override
-	public void save(User entity) {
+	public User save(User entity) {
+		
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+			
 		userDao.save(entity);
+		
+		return entity;
+	
 	}
 
 	@Override
@@ -44,6 +57,18 @@ public class UserServiceImpl implements  UserService {
 	public User findByEmail(String email) {
 		
 		return userDao.findByEmail(email);
+	}
+
+	@Override
+	public User findByToken(String token) {
+		
+		return userDao.findByToken(token);
+	}
+	
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		 String md5Hex = DigestUtils.md5Hex("dasdsad"+"dadadsd");
+		 System.out.println(md5Hex);
+		
 	}
 
 }

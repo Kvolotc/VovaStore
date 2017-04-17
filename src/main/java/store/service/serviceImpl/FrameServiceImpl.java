@@ -16,8 +16,10 @@ public class FrameServiceImpl implements FrameService {
 	private FrameDao frameDao;
 	
 	@Override
-	public void save(Frame entity) {
+	public Frame save(Frame entity) {
 		frameDao.save(entity);
+		
+		return entity;
 	}
 
 	@Override

@@ -25,5 +25,10 @@ public class MailSender {
 	public void setTo(String to) {
 		this.to = to;
 	}
-      
+	@Override
+	public String toString() {
+		return "MailSender [subject=" + subject + ", text=" + text + ", to=" + to + "]";
+	}
+    
+	
 }

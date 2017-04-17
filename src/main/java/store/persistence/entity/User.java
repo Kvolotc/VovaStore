@@ -46,12 +46,20 @@ public class User {
 	@Column(name = "email", unique = true)
 	private String eMail;
 	
+	@Column(name = "is_activated")
+	private boolean isActivated;
+	
+	@Column(name = "is_registered")
+	private boolean isRegistered;
+	
+	@Column(name = "is_logged")
+	private boolean isLogged;
+	
 	@Column(name = "role")
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
 	@Column(name = "password")
-	@Size(min = 4, max = 10)
 	private String password;
 
 	public int getId() {
@@ -117,6 +125,29 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
+	public boolean isActivated() {
+		return isActivated;
+	}
+
+	public void setActivated(boolean isActivated) {
+		this.isActivated = isActivated;
+	}
+
+	public boolean isRegistered() {
+		return isRegistered;
+	}
+
+	public void setRegistered(boolean isRegistered) {
+		this.isRegistered = isRegistered;
+	}
+
+	public boolean isLogged() {
+		return isLogged;
+	}
+
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
+	}
 	
 }

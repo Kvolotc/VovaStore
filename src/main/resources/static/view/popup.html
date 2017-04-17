@@ -2,7 +2,7 @@
 
 
 
-
+<div ng-controller = "popup">
 	<div class="container" id="registration">
 	<div class="btn btn-primary btn-sm" data-target="#loginModal" data-toggle="modal">Login</div>
 <div class="modal fade" tabindex="-1" id="loginModal"
@@ -87,8 +87,9 @@
 						<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 							<a type="submit"
 							id = "submitButton"
-							href="/"
-							   class="btn btn-success" >Register</a>
+							ng-click = "hideModal()"
+							href="/login"
+							   class="btn btn-success"   >Register</a>
 						</div>
 					</div>			
 			</form>
@@ -100,5 +101,6 @@
               
             </div>
         
+        </div>
         </div>
       

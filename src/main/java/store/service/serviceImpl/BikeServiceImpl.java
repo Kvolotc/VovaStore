@@ -16,8 +16,10 @@ public class BikeServiceImpl implements BikeService{
 	private BikeDao bikeDao;
 	
 	@Override
-	public void save(Bike entity) {
+	public Bike save(Bike entity) {
 		bikeDao.save(entity);
+		
+		return entity;
 	}
 
 	@Override

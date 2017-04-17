@@ -3,6 +3,12 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider
 	
+	.when('', {
+		templateUrl : 'home.html',
+		controller : 'home'
+	})
+
+	
 	.when('/registration', {
 		templateUrl : 'view/registration.html',
 		controller : 'registration'
@@ -22,18 +28,26 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 		templateUrl : 'view/newUser.html',
 		controller : 'registration'
 	})
-	
-	.when('/popup', {
-		templateUrl : 'view/popup.html',
+
+	.when('/actived/:name', {
+		templateUrl : 'view/activate.html',
+		controller : 'active'
 	})
-	
+
+	.when('/forgotPassword', {
+		templateUrl : 'view/forgotPassword.html',
+		controller : 'forgotPassword'
+	})
+
 	.otherwise({
 		redirectTo : '/'
 	})
+
 	
 	$locationProvider.html5Mode({
 		  enabled: true,
-		  requireBase: false
+		  requireBase: true
 		});
+	$locationProvider.hashPrefix('!');
 
 });

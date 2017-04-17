@@ -1,4 +1,4 @@
-myApp.controller('registration', function($scope, $http) {
+angular.module('myApp').controller('registration', function($scope, $http) {
 
 	$scope.user = {
 		firstName : $scope.firstName,
@@ -10,24 +10,25 @@ myApp.controller('registration', function($scope, $http) {
 		role : 'USER'
 	};
 
+
 	$scope.mail = {
 		to : $scope.to,
-		text : 'You are registration on my VovaStore thx :)',
+		text : '',
 		subject : 'Registration on VovaStore'
 	}
+	
+	$scope.link = '';
 
 	$scope.confPassword;
 
 	$scope.genders = [ 'Male', 'Female' ];
 
-	//	$scope.registration = function() {
-	//		
-	//		cobsole.log('444444444');
-	//		
-	//		$('#loginModal').modal('hide')
-	//		
-	//	}
 
+	$scope.hideModal = function() {
+		$("#successModal").modal("hide")
+	}
+	
+	
 	$(function() {
 
 		$.validator.setDefaults({
@@ -39,13 +40,25 @@ myApp.controller('registration', function($scope, $http) {
 				$(element).closest('.form-group').removeClass('has-error');
 			}
 		});
-
-
+		
+		
+		
+	    $.validator.addMethod(
+	            'regex',
+	            function(value, element){
+	                return this.optional(element) || /(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-\011\013\014\016-\177])*")@((?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)$)|\[(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\]$/i.test(value);
+	            },
+	            'Verify you have a valid email address.'
+	        );
+	    
+	    
 
 		jQuery.validator.addMethod('selectcheck', function(value) {
 
 			return (value == 'Female' || value == 'Male');
 		}, "Please select gender");
+		
+		
 
 		$(document).ready(function() {
 
@@ -54,8 +67,7 @@ myApp.controller('registration', function($scope, $http) {
 				rules : {
 					email : {
 						required : true,
-						email : true,
-						uniqueUsername : false,
+						regex: true,
 						remote : {
 							url : 'http://localhost:8080/email',
 							data : $scope.user.eMail,
@@ -103,17 +115,20 @@ myApp.controller('registration', function($scope, $http) {
 				messages : {
 					email : {
 						required : "Please enter an email address",
-						email : "Please enter <em>valid<em> an email address",
 						remote : 'This email allready used'
 					}
 				}
 
 			});
 		});
+		
+		
 
 		$("#submitButton").click(function() {
 
 			if ($("#registration-form").valid()) {
+				
+				$("#successModal").modal("show")
 
 				$http({
 					method : 'POST',
@@ -123,18 +138,27 @@ myApp.controller('registration', function($scope, $http) {
 					async : true,
 					data : $scope.user
 				}).then(function(response) {
-					console.log(response);
+					
+					$scope.link  = 'http://localhost:8080/actived/'+response.data;
+					
+					$scope.mail.text = $scope.user.firstName+' '+$scope.user.lastName+' you are registration on my VovaStore thx :). plz follow this link for activate in VovaStore <a href = " '+ $scope.link + ' "> Follow in</a>';
+					
+					$http({
+						method : 'POST',
+						url : '/mailsender',
+						async : true,
+						contentType : 'application/json',
+						dataType : 'json',
+						data : $scope.mail
+					});
+					
+					
 				}, function errorCallback(response) {
+					
+					console.log(response);
+					
 				});
-
-				$http({
-					method : 'POST',
-					url : '/mailsender',
-					async : true,
-					contentType : 'application/json',
-					dataType : 'json',
-					data : $scope.mail
-				});
+				
 
 				return true;
 

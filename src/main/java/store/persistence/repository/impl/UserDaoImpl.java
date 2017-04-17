@@ -21,16 +21,24 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		super(User.class);
 	}
 
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	@Override
 	public User findByEmail(String email) {
 		
-		return (User) entityManager.createNativeQuery("SELECT * from users where email = :email", User.class)
+		return (User) entityManager.createNativeQuery("SELECT * FROM users WHERE email = :email", User.class)
 		
 		.setParameter("email", email).getSingleResult();
 		
 
 		
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	@Override
+	public User findByToken(String token) {
+		
+		return (User) entityManager.createNativeQuery("SELECT * FROM users WHERE password = :token", User.class)
+				.setParameter("token", token).getSingleResult();
 	}
 
 }

@@ -6,6 +6,6 @@ import store.persistence.model.MailSender;
 
 public interface MailSenderService {
 	
-	public void end(MailSender mailSender)throws MessagingException;
+	public void send(MailSender mailSender)throws MessagingException;
 
 }

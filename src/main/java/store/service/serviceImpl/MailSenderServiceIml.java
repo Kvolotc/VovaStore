@@ -22,7 +22,7 @@ public class MailSenderServiceIml implements store.service.MailSenderService{
     private MimeMessageHelper helper;
     
 	@Override
-	public void end(MailSender mailSender) throws MessagingException {
+	public void send(MailSender mailSender) throws MessagingException {
 		
 	    message = javaMailSender.createMimeMessage();
         helper = new MimeMessageHelper(message, true); 
