@@ -22,7 +22,7 @@ angular.module('myApp').controller('login', function($scope, $http, $location) {
 
 			$http({
 				method : 'POST',
-				url : '/loginUser',
+				url : '/user/login',
 				contentType : 'application/json',
 				dataType : 'json',
 				async : true,

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import store.persistence.dto.FrameDTO;
+import store.persistence.dto.mapper.FrameMapper;
 import store.persistence.entity.Bike;
 import store.persistence.entity.Frame;
 import store.service.FrameService;
@@ -18,8 +20,9 @@ public class FrameController {
 	@Autowired
 	private FrameService service;
 	
-	@RequestMapping(value = "/frames", method = RequestMethod.GET)
-	public List<Frame> showAll() {
-		return service.findAll();
+	@RequestMapping(value = "/frame/all", method = RequestMethod.GET)
+	public List<FrameDTO> getAllFrames() {
+		
+		return FrameMapper.frameListToFrameDTOlist(service.findAll());
 	}
 }

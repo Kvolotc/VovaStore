@@ -57,4 +57,19 @@ public class BikeServiceImpl implements BikeService{
 		return bikeDao.findBetweenPrice(min, max);
 	}
 
+	@Override
+	public List<Bike> findMountainBikes() {
+		return bikeDao.findMountainBikes();
+	}
+
+	@Override
+	public List<Bike> findAllMountainBikes() {
+		return bikeDao.findAllMountainBikes();
+	}
+
+	@Override
+	public List<Bike> findRacingBikes() {
+		return bikeDao.findRacingBikes();
+	}
+
 }

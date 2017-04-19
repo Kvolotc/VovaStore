@@ -4,31 +4,43 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import store.persistence.entity.enums.brandEnum.TireBrand;
+import store.persistence.entity.enums.typeEnum.TireType;
 
 @Entity
 @Table(name = "tires")
 public class Tire extends Product {
 	
 	@Column(name = "diameter")
-	private int diameter;
+	private double diameter;
 	
 	@Column(name = "width")
 	private double width;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "type")
+	private TireType type;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "brand")
+	private TireBrand brand;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "tire", fetch = FetchType.LAZY)
 	private Collection<Bike> bikes;
 
-	public int getDiameter() {
+	public double getDiameter() {
 		return diameter;
 	}
 
-	public void setDiameter(int diameter) {
+	public void setDiameter(double diameter) {
 		this.diameter = diameter;
 	}
 
@@ -47,12 +59,21 @@ public class Tire extends Product {
 	public void setBikes(Collection<Bike> bikes) {
 		this.bikes = bikes;
 	}
-
-	@Override
-	public String toString() {
-		return "Tire [diameter=" + diameter + ", width=" + width + ", bikes=" + bikes + "]";
+	
+	public TireType getType() {
+		return type;
 	}
-	
-	
+
+	public void setType(TireType type) {
+		this.type = type;
+	}
+
+	public TireBrand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(TireBrand brand) {
+		this.brand = brand;
+	}
 
 }

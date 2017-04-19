@@ -62,7 +62,7 @@ var myApp = angular.module('myApp').controller(
 						
 						$http({
 							method : 'POST',
-							url : '/userForgotPassword',
+							url : '/user/ForgotPassword',
 							contentType : 'application/json',
 							dataType : 'json',
 							async : true,

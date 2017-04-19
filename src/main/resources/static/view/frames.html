@@ -1,0 +1,57 @@
+
+<div">
+
+	<div class="container">
+
+
+
+
+		<div class="row col-sm-12">
+
+			<div class="col-sm-4  col-xs-6" ng-repeat="frame in frames">
+
+				<div class="thumbnail frames">
+						<img ng-src="images/GT1.jpg"   width="330"  />
+
+					<div class="media-body">
+						<h5>Bike = {{frame.brand}}</h5>
+						<h5>Model = {{frame.model}}</h5>
+						<h5>Price = {{frame.price}}</h5>
+						<h5>Type = {{frame.type}}</h5>
+
+						<div ng-if="frame.existSnubber">
+							<h5>snubberDTO = {{frame.snubberDTO.brandSnubber}}</h5>
+							<h5>snubberDTO = {{frame.snubberDTO.courseSnubber}}</h5>
+							<h5>snubberDTO = {{frame.snubberDTO.typeSnubber}}</h5>
+						</div>
+
+						<div ng-if="!frame.existSnubber">
+							<h5>snubberDTO : -</h5>
+							<h5>snubberDTO : -</h5>
+							<h5>snubberDTO : -</h5>
+
+						</div>
+
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+

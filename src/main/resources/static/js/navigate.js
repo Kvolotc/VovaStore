@@ -2,13 +2,12 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider
-	
+
 	.when('', {
 		templateUrl : 'home.html',
 		controller : 'home'
 	})
 
-	
 	.when('/registration', {
 		templateUrl : 'view/registration.html',
 		controller : 'registration'
@@ -18,12 +17,22 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 		templateUrl : 'view/login.html',
 		controller : 'login'
 	})
-	
-	.when('/bikes', {
+
+	.when('/mountainBikes', {
 		templateUrl : 'view/bikes.html',
-		controller : 'bikes'
+		controller : 'mountainBike'
 	})
 	
+	.when('/allMountainBikes', {
+		templateUrl : 'view/bikes.html',
+		controller : 'allMountainBike'
+	})
+	
+	.when('/racingBikes', {
+		templateUrl : 'view/bikes.html',
+		controller : 'racingBike'
+	})
+
 	.when('/newUser', {
 		templateUrl : 'view/newUser.html',
 		controller : 'registration'
@@ -39,15 +48,19 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 		controller : 'forgotPassword'
 	})
 
+	.when('/frames', {
+		templateUrl : 'view/frames.html',
+		controller : 'frames'
+	})
+
 	.otherwise({
 		redirectTo : '/'
 	})
 
-	
 	$locationProvider.html5Mode({
-		  enabled: true,
-		  requireBase: true
-		});
+		enabled : true,
+		requireBase : true
+	});
 	$locationProvider.hashPrefix('!');
 
 });

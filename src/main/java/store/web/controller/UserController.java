@@ -35,11 +35,10 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	@RequestMapping(value = "/newUser", method = RequestMethod.POST, produces = MediaType.ALL_VALUE)
+	@RequestMapping(value = "/user/new", method = RequestMethod.POST, produces = MediaType.ALL_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> registrateUser(@RequestBody User user) {
 		
-		user.setRegistered(true);
 		String token = service.save(user).getPassword();
 
 		return new ResponseEntity<String>(new Gson().toJson(token), HttpStatus.OK);
@@ -93,7 +92,7 @@ public class UserController {
 
 	}
 	
-	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<User> loginUser(@RequestBody LoginParam loginParam) {
 		
@@ -126,7 +125,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value = "/userForgotPassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/ForgotPassword", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<User> forgotPassword(@RequestBody ForgotPasswordParam forgotPasswordParam) {
 		

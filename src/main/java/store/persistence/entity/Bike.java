@@ -100,5 +100,13 @@ public class Bike {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "Bike [id=" + id + ", price=" + price + ", brake=" + brake + ", fork=" + fork + ", frame=" + frame
+				+ ", rim=" + rim + ", tire=" + tire + ", imageName=" + imageName + "]";
+	}
+	
+	
 		
 }

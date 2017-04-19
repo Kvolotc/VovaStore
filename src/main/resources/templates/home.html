@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
 <title>Insert title here</title>
@@ -24,9 +26,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.min.js"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
-	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -36,8 +41,11 @@
 <script th:src="@{/js/controller/homeCntrl.js}"></script>
 <script th:src="@{/js/controller/loginCntrl.js}"></script>
 <script th:src="@{/js/controller/registrationCntrl.js}"></script>
-<script th:src="@{/js/controller/bikesCntrl.js}"></script>
+<script th:src="@{/js/controller/mountainBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/allMountainBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/racingBikeCntrl.js}"></script>
 <script th:src="@{/js/controller/forgotPasswordCntrl.js}"></script>
+<script th:src="@{/js/controller/frameCntrl.js}"></script>
 
 
 
@@ -46,8 +54,8 @@
 <body ng-app="myApp" ng-controller="home">
 
 
-	<nav class="navbar navbar-default menu">
-		<div class="container">
+	<nav class="navbar navbar-default menu ">
+		<div class="container col-sm-12">
 
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -64,44 +72,57 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active-link"><a href="/"><span
-							class="glyphicon glyphicon-home"></span> головна</a></li>
+					<li class="active-link "><a href="/"><span
+							class="glyphicon glyphicon-home  "></span> головна</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">велосипеди <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/bikes">крос-кантрі</a></li>
+							<li><a href="/mountainBikes">горні</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/authors">шосейні</a></li>
+							<li><a href="/allMountainBikes">двохпідвіси</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/genres">двохпідвіси</a></li>
+							<li><a href="/racingBikes">шосейні</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">запчастини<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/books">рама</a></li>
+							<li><a href="/frames">рами</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/authors">вилка</a></li>
+							<li><a href="/forks">вилки</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/genres">обід</a></li>
+							<li><a href="/rims">обіда</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/genres">шина</a></li>
+							<li><a href="/tires">шини</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/genres">тормоза</a></li>
+							<li><a href="/brakes">тормоза</a></li>
 						</ul></li>
 					<li><a href="#">контакти <span class="sr-only"></span></a></li>
 
 				</ul>
 				<form class="navbar-form navbar-left">
+					<div class="btn-group " >
+
+						<select class="form-control selectSearch" ng-model="searchObject">
+							<option ng-repeat="object in searchObjects">{{object}}</option>
+
+
+						</select>
+					</div>
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Пошук" /> <span
-							class="input-group-btn">
+
+						<input type="text" class="form-control" placeholder="Пошук"
+							ng-model="searchWord" /> <span class="input-group-btn">
+
+
 							<button class="btn btn-primary" type="button">Search</button>
+
 						</span>
 
 					</div>
 					<!-- Single button -->
+
 				</form>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -119,12 +140,12 @@
 		</div>
 
 	</nav>
-		<h1>LOcation = {{location.path()}}</h1>
+	<h1>LOcation = {{location.path()}}</h1>
 
 	<div ng-view></div>
 
 
-	
+
 
 
 

@@ -49,9 +49,6 @@ public class User {
 	@Column(name = "is_activated")
 	private boolean isActivated;
 	
-	@Column(name = "is_registered")
-	private boolean isRegistered;
-	
 	@Column(name = "is_logged")
 	private boolean isLogged;
 	
@@ -132,14 +129,6 @@ public class User {
 
 	public void setActivated(boolean isActivated) {
 		this.isActivated = isActivated;
-	}
-
-	public boolean isRegistered() {
-		return isRegistered;
-	}
-
-	public void setRegistered(boolean isRegistered) {
-		this.isRegistered = isRegistered;
 	}
 
 	public boolean isLogged() {

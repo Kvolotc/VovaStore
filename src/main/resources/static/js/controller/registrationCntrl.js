@@ -21,7 +21,7 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 
 	$scope.confPassword;
 
-	$scope.genders = [ 'Male', 'Female' ];
+	$scope.genders = [ 'MALE', 'FEMALE' ];
 
 
 	$scope.hideModal = function() {
@@ -55,10 +55,10 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 
 		jQuery.validator.addMethod('selectcheck', function(value) {
 
-			return (value == 'Female' || value == 'Male');
+			return (value == 'FEMALE' || value == 'MALE');
 		}, "Please select gender");
 		
-		
+	
 
 		$(document).ready(function() {
 
@@ -105,6 +105,8 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 
 					},
 					birtday : {
+						max:"2005-05-01",
+						min:"1920-12-31",
 						required : true,
 					},
 					gender : {
@@ -116,7 +118,11 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 					email : {
 						required : "Please enter an email address",
 						remote : 'This email allready used'
-					}
+					},
+					birtday: {
+					   max: "You can not register if you do not have at least 12 years",
+					   min:	"Wrong date" 
+				   }
 				}
 
 			});
@@ -132,7 +138,7 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 
 				$http({
 					method : 'POST',
-					url : '/newUser',
+					url : '/user/new',
 					contentType : 'application/json',
 					dataType : 'json',
 					async : true,

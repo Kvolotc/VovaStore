@@ -1,6 +1,8 @@
 package store.persistence.entity;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,14 +19,14 @@ public class Product {
 	@Column(name = "price")
 	private double price;
 	
-	@Column(name = "type")
-	private String type;
-	
 	@Column(name = "model")
 	private String model;
 	
-	@Column(name = "brand")
-	private String brand;
+	@Column(name = "created_on")
+	private int createdOn;
+	
+	@Column(name = "image_name")
+	private String imageName;
 
 	public int getId() {
 		return id;
@@ -42,22 +44,6 @@ public class Product {
 		this.price = price;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
 	public String getModel() {
 		return model;
 	}
@@ -66,10 +52,20 @@ public class Product {
 		this.model = model;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", price=" + price + ", type=" + type + ", brand=" + brand + "]";
+	public int getCreatedOn() {
+		return createdOn;
 	}
-	
+
+	public void setCreatedOn(int createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 	
 }
