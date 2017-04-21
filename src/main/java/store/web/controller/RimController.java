@@ -20,8 +20,9 @@ public class RimController {
 	@Autowired
 	private RimService service;
 	
-	@RequestMapping(value = "/rim/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/rims", method = RequestMethod.GET)
 	public List<RimDTO> getAllRims() {
+		
 		return RimMapper.rimListToRimDTOlist(service.findAll());
 	}
 }

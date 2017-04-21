@@ -19,7 +19,7 @@ public class ForkController {
 	@Autowired
 	private ForkService service;
 	
-	@RequestMapping(value = "/fork/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/forks", method = RequestMethod.GET)
 	public List<ForkDTO> getllForks() {
 		return ForkMapper.forkListToForkDTOlist(service.findAll());
 	}

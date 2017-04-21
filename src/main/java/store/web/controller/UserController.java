@@ -35,7 +35,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 
-	@RequestMapping(value = "/user/new", method = RequestMethod.POST, produces = MediaType.ALL_VALUE)
+	@RequestMapping(value = "/newUser", method = RequestMethod.POST, produces = MediaType.ALL_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> registrateUser(@RequestBody User user) {
 		
@@ -92,15 +92,17 @@ public class UserController {
 
 	}
 	
-	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<User> loginUser(@RequestBody LoginParam loginParam) {
-		
-		System.out.println(loginParam.geteMail()+"  "+loginParam.getPassword());
 		
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		User user = null;
+		
+		if(loginParam.geteMail() == null || loginParam.getPassword() == null) {
+			return new ResponseEntity<>(user,HttpStatus.BAD_REQUEST);
+		}		
 		
 		try {
 			
@@ -125,7 +127,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value = "/user/ForgotPassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/forgotPassword", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<User> forgotPassword(@RequestBody ForgotPasswordParam forgotPasswordParam) {
 		

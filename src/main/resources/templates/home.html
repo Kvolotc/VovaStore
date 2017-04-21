@@ -18,6 +18,7 @@
 <link rel="stylesheet" th:href="@{/css/bikes.css}">
 <link rel="stylesheet" th:href="@{/css/login.css}">
 <link rel="stylesheet" th:href="@{/css/forgotPassword.css}">
+<link rel="stylesheet" th:href="@{/css/product.css}">
 
 
 <script
@@ -41,11 +42,13 @@
 <script th:src="@{/js/controller/homeCntrl.js}"></script>
 <script th:src="@{/js/controller/loginCntrl.js}"></script>
 <script th:src="@{/js/controller/registrationCntrl.js}"></script>
-<script th:src="@{/js/controller/mountainBikeCntrl.js}"></script>
-<script th:src="@{/js/controller/allMountainBikeCntrl.js}"></script>
-<script th:src="@{/js/controller/racingBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/bikeCntrl.js}"></script>
 <script th:src="@{/js/controller/forgotPasswordCntrl.js}"></script>
 <script th:src="@{/js/controller/frameCntrl.js}"></script>
+<script th:src="@{/js/controller/forkCntrl.js}"></script>
+<script th:src="@{/js/controller/rimCntrl.js}"></script>
+<script th:src="@{/js/controller/tireCntrl.js}"></script>
+<script th:src="@{/js/controller/brakeCntrl.js}"></script>
 
 
 
@@ -74,29 +77,29 @@
 				<ul class="nav navbar-nav">
 					<li class="active-link "><a href="/"><span
 							class="glyphicon glyphicon-home  "></span> головна</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">велосипеди <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/mountainBikes">горні</a></li>
+							<li><a href="#!/mountainBikes">горні</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/allMountainBikes">двохпідвіси</a></li>
+							<li><a href="#!/allMountainBikes">двохпідвіси</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/racingBikes">шосейні</a></li>
+							<li><a href="#!/racingBikes">шосейні</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">запчастини<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/frames">рами</a></li>
+							<li><a href="#!/frames">рами</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/forks">вилки</a></li>
+							<li><a href="#!/forks">вилки</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/rims">обіда</a></li>
+							<li><a href="#!/rims">обіда</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/tires">шини</a></li>
+							<li><a href="#!/tires">шини</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/brakes">тормоза</a></li>
+							<li><a href="#!/brakes">тормоза</a></li>
 						</ul></li>
 					<li><a href="#">контакти <span class="sr-only"></span></a></li>
 
@@ -126,10 +129,10 @@
 				</form>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="login" href="/login"> <span
+					<li><a class="login" href="#!/login"> <span
 							class="glyphicon glyphicon-log-in"></span> логін
 					</a></li>
-					<li><a class="registration" href="/registration"> <span
+					<li><a class="registration" href="#!/registration"> <span
 							class="glyphicon glyphicon-user"></span> реєстрація
 					</a></li>
 				</ul>
@@ -140,7 +143,6 @@
 		</div>
 
 	</nav>
-	<h1>LOcation = {{location.path()}}</h1>
 
 	<div ng-view></div>
 

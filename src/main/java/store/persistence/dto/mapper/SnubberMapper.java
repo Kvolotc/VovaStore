@@ -2,8 +2,8 @@ package store.persistence.dto.mapper;
 
 import store.persistence.dto.SnubberDTO;
 import store.persistence.entity.Snubber;
-import store.persistence.entity.enums.brandEnum.SnuubberBrand;
-import store.persistence.entity.enums.typeEnum.SnubberType;
+import store.persistence.entity.enums.brandEnum.ForkBrand;
+import store.persistence.entity.enums.typeEnum.ForkType;
 
 public class SnubberMapper {
 	
@@ -11,9 +11,10 @@ public class SnubberMapper {
 		
 		Snubber snubber = new Snubber();
 		
-		snubber.setBrandSnubber(SnuubberBrand.valueOf(dto.getBrandSnubber()));
+		snubber.setModelSnubber(dto.getModelSnubber());
+		snubber.setBrandSnubber(ForkBrand.getEnumByValue(dto.getBrandSnubber()));
 		snubber.setCourseSnubber(dto.getCourseSnubber());
-		snubber.setTypeSnubber(SnubberType.getEnumByValue(dto.getTypeSnubber()));
+		snubber.setTypeSnubber(ForkType.getEnumByValue(dto.getTypeSnubber()));
 		
 		return snubber;
 	}
@@ -22,16 +23,17 @@ public class SnubberMapper {
 		
 		SnubberDTO dto = new SnubberDTO();
 		
+		dto.setModelSnubber(snubber.getModelSnubber());
+		dto.setBrandSnubber(snubber.getBrandSnubber().forkBrand);
 		dto.setBrandSnubber(snubber.getBrandSnubber().toString());
 		dto.setCourseSnubber(snubber.getCourseSnubber());
-		dto.setTypeSnubber(snubber.getTypeSnubber().snubberType);
+		dto.setTypeSnubber(snubber.getTypeSnubber().forkType);
 		
 		return dto;
 	}
 
 	private SnubberMapper() {
-
+		
 	}
-	
 	
 }

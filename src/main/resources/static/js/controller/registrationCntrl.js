@@ -69,7 +69,7 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 						required : true,
 						regex: true,
 						remote : {
-							url : 'http://localhost:8080/email',
+							url : '/email',
 							data : $scope.user.eMail,
 							type : "post",
 							async : true,
@@ -138,7 +138,7 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 
 				$http({
 					method : 'POST',
-					url : '/user/new',
+					url : '/newUser',
 					contentType : 'application/json',
 					dataType : 'json',
 					async : true,

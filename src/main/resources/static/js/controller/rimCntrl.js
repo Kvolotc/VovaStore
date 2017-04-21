@@ -1,14 +1,14 @@
 angular.module('myApp')
-.controller('frames', function($scope, $http, $routeParams) {
+.controller('rims', function($scope, $http, $routeParams) {
 
-	$scope.frames = [];
+	$scope.rims = [];
 	
 	$http({
 		method : "GET",
-		url : '/frames'
+		url : '/rims'
 	}).then(function (response) {
 		console.log(response);
-		$scope.frames = response.data;
+		$scope.rims = response.data;
 		console.log($scope.frames)
 		
 	}, function myError(response) {

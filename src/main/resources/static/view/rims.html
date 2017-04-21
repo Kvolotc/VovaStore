@@ -1,0 +1,33 @@
+
+	<div class="container">
+
+
+		<div class="row">
+			<div class="col-sm-4  col-xs-6" ng-repeat="rim in rims">
+
+				<div class="thumbnail product">
+					<img ng-src="images/rims/{{rim.imageName}}.jpg" 
+						 />
+
+					<div class="media-body">
+						<h5>Bike = {{rim.brand}}</h5>
+						<h5>Model = {{rim.model}}</h5>
+						<h5>Price = {{rim.price}}</h5>
+						<h5>Type = {{rim.type}}</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+	</div>

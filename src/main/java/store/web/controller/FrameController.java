@@ -20,7 +20,7 @@ public class FrameController {
 	@Autowired
 	private FrameService service;
 	
-	@RequestMapping(value = "/frame/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/frames", method = RequestMethod.GET)
 	public List<FrameDTO> getAllFrames() {
 		
 		return FrameMapper.frameListToFrameDTOlist(service.findAll());

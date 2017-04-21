@@ -21,28 +21,27 @@ public class BikeController {
 	@Autowired
 	private BikeService service;
 
-	@RequestMapping(value = "/bike/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/bikes", method = RequestMethod.GET)
 	public List<BikeDTO> getAllBikes() {
 		
 		
 		return BikeMapper.bikeListToBikeDTOlist(service.findAll());
 	}
 	
-	@RequestMapping(value = "/bike/mountain", method = RequestMethod.GET)
+	@RequestMapping(value = "/mountainBikes", method = RequestMethod.GET)
 	public List<BikeDTO> getMountainBikes() {
 		
 		
 		return BikeMapper.bikeListToBikeDTOlist(service.findMountainBikes());
 	}
 	
-	@RequestMapping(value = "/bike/allMountain", method = RequestMethod.GET)
+	@RequestMapping(value = "/allMountainBikes", method = RequestMethod.GET)
 	public List<BikeDTO> getAllMountainBikes() {
-		
 		
 		return BikeMapper.bikeListToBikeDTOlist(service.findAllMountainBikes());
 	}
 	
-	@RequestMapping(value = "/bike/racing", method = RequestMethod.GET)
+	@RequestMapping(value = "/racingBikes", method = RequestMethod.GET)
 	public List<BikeDTO> getRacingBikes() {
 		
 		

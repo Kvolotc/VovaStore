@@ -23,7 +23,7 @@ public class TireController {
 	private TireService service;
 	
 	
-	@RequestMapping(value = "/tire/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/tires", method = RequestMethod.GET)
 
 	public List<TireDTO> getAllTiries() {
 		

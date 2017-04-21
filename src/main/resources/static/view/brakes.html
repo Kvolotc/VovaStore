@@ -1,0 +1,38 @@
+
+
+	<div class="container">
+
+
+		<div class="row">
+			<div class="col-sm-4  col-xs-6" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/{{brake.imageName}}.jpg" 
+						 />
+
+					<div class="media-body">
+						<h5>Bike = {{brake.brand}}</h5>
+						<h5>Model = {{brake.model}}</h5>
+						<h5>Price = {{brake.price}}</h5>
+						<h5>Type = {{brake.type}}</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+
+
+

@@ -41,7 +41,10 @@ public class FrameMapper {
 		dto.setModel(frame.getModel());
 		dto.setPrice(frame.getPrice());
 		dto.setType(frame.getType().frameType);
-		dto.setSnubberDTO(SnubberMapper.SnubberToSnubberDTO(frame.getSnubber()));;
+		
+		if( frame.isExistSnubber() ) {
+			dto.setSnubberDTO(SnubberMapper.SnubberToSnubberDTO(frame.getSnubber()));
+		}
 		
 		return dto;
 		

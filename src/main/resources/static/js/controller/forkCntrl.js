@@ -1,14 +1,14 @@
 angular.module('myApp')
-.controller('frames', function($scope, $http, $routeParams) {
+.controller('forks', function($scope, $http, $routeParams) {
 
-	$scope.frames = [];
+	$scope.forks = [];
 	
 	$http({
 		method : "GET",
-		url : '/frames'
+		url : '/forks'
 	}).then(function (response) {
 		console.log(response);
-		$scope.frames = response.data;
+		$scope.forks = response.data;
 		console.log($scope.frames)
 		
 	}, function myError(response) {

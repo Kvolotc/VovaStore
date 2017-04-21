@@ -29,7 +29,7 @@ public class RimMapper {
 		
 		RimDTO dto = new RimDTO();
 		
-		dto.setImageName(dto.getImageName());
+		dto.setImageName(rim.getImageName());
 		dto.setCreatedOn(rim.getCreatedOn());
 		dto.setBrand(rim.getBrand().toString());
 		dto.setDiameter(rim.getDiameter());

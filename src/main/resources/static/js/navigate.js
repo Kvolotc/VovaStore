@@ -20,28 +20,23 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 
 	.when('/mountainBikes', {
 		templateUrl : 'view/bikes.html',
-		controller : 'mountainBike'
+		controller : 'bikes'
 	})
 	
 	.when('/allMountainBikes', {
 		templateUrl : 'view/bikes.html',
-		controller : 'allMountainBike'
+		controller : 'bikes'
 	})
 	
 	.when('/racingBikes', {
 		templateUrl : 'view/bikes.html',
-		controller : 'racingBike'
+		controller : 'bikes'
 	})
 
-	.when('/newUser', {
-		templateUrl : 'view/newUser.html',
-		controller : 'registration'
-	})
-
-	.when('/actived/:name', {
-		templateUrl : 'view/activate.html',
-		controller : 'active'
-	})
+//	.when('/actived/:name', {
+//		templateUrl : 'view/activate.html',
+//		controller : 'active'
+//	})
 
 	.when('/forgotPassword', {
 		templateUrl : 'view/forgotPassword.html',
@@ -52,15 +47,35 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 		templateUrl : 'view/frames.html',
 		controller : 'frames'
 	})
+	
+	.when('/forks', {
+		templateUrl : 'view/forks.html',
+		controller : 'forks'
+	})
+
+	.when('/rims', {
+		templateUrl : 'view/rims.html',
+		controller : 'rims'
+	})
+
+	.when('/tires', {
+		templateUrl : 'view/tires.html',
+		controller : 'tires'
+	})
+
+	.when('/brakes', {
+		templateUrl : 'view/brakes.html',
+		controller : 'brakes'
+	})
 
 	.otherwise({
 		redirectTo : '/'
 	})
 
-	$locationProvider.html5Mode({
-		enabled : true,
-		requireBase : true
-	});
-	$locationProvider.hashPrefix('!');
+//	$locationProvider.html5Mode({
+//		enabled : true,
+//		requireBase : true
+//	});
+//	$locationProvider.hashPrefix('!');
 
 });

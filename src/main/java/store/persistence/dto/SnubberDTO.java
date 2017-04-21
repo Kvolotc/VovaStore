@@ -8,6 +8,8 @@ public class SnubberDTO {
 	private String courseSnubber;
 	
 	private String typeSnubber;
+	
+	private String modelSnubber;
 
 	public String getBrandSnubber() {
 		return brandSnubber;
@@ -31,6 +33,14 @@ public class SnubberDTO {
 
 	public void setTypeSnubber(String typeSnubber) {
 		this.typeSnubber = typeSnubber;
+	}
+
+	public String getModelSnubber() {
+		return modelSnubber;
+	}
+
+	public void setModelSnubber(String modelSnubber) {
+		this.modelSnubber = modelSnubber;
 	}
 
 }

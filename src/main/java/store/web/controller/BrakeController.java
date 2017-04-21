@@ -17,7 +17,7 @@ public class BrakeController {
 	@Autowired
 	private BrakeService service;
 	
-	@RequestMapping(value = "/breake/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/brakes", method = RequestMethod.GET)
 	public List<BrakeDTO> getAllBrakes() {
 		
 		return BrakeMapper.brakeListToBrakeDTOlist(service.findAll());

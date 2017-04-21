@@ -6,8 +6,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-import store.persistence.entity.enums.brandEnum.SnuubberBrand;
-import store.persistence.entity.enums.typeEnum.SnubberType;
+import store.persistence.entity.enums.brandEnum.ForkBrand;
+import store.persistence.entity.enums.typeEnum.ForkType;
 
 
 @Embeddable
@@ -15,19 +15,22 @@ public class Snubber  {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "brand_snubber")
-	private SnuubberBrand brandSnubber;
+	private ForkBrand brandSnubber;
+	
+	@Column(name = "model_snubber")
+	private String modelSnubber;
 	
 	@Column(name = "course_snubber")
 	private String courseSnubber;
 	
 	@Enumerated(EnumType.STRING)
-	private SnubberType typeSnubber;
+	private ForkType typeSnubber;
 
-	public SnuubberBrand getBrandSnubber() {
+	public ForkBrand getBrandSnubber() {
 		return brandSnubber;
 	}
 
-	public void setBrandSnubber(SnuubberBrand brandSnubber) {
+	public void setBrandSnubber(ForkBrand brandSnubber) {
 		this.brandSnubber = brandSnubber;
 	}
 
@@ -39,12 +42,20 @@ public class Snubber  {
 		this.courseSnubber = courseSnubber;
 	}
 
-	public SnubberType getTypeSnubber() {
+	public ForkType getTypeSnubber() {
 		return typeSnubber;
 	}
 
-	public void setTypeSnubber(SnubberType typeSnubber) {
+	public void setTypeSnubber(ForkType typeSnubber) {
 		this.typeSnubber = typeSnubber;
+	}
+
+	public String getModelSnubber() {
+		return modelSnubber;
+	}
+
+	public void setModelSnubber(String modelSnubber) {
+		this.modelSnubber = modelSnubber;
 	}
 	
 }
