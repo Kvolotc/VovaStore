@@ -50,12 +50,12 @@ public class FrameMapper {
 		
 	}
 	
-	public static List<Frame> frameDTOListToFramelist(List<FrameDTO> dtos) {
+	public static List<Frame> frameDTOListToFrameList(List<FrameDTO> dtos) {
 		
 		return dtos.stream().map(dto -> frameDTOToFrame(dto)).collect(Collectors.toList());
 	}
 	
-	public static List<FrameDTO> frameListToFrameDTOlist(List<Frame> frames) {
+	public static List<FrameDTO> frameListToFrameDTOList(List<Frame> frames) {
 		
 		return frames.stream().map(frame -> frameToFrameDTO(frame)).collect(Collectors.toList());
 	}

@@ -1,0 +1,42 @@
+
+.thumbnail a>img, .thumbnail>img {
+	float: left;
+	
+}
+
+.media-body, .media-left, .media-right {
+	padding-left: 7px;
+	
+	font-size: 15px;
+	color: #8d8c8c;
+	
+}
+
+.buttons {
+	margin-top: -10px;
+	padding: 7px;
+}
+
+.bikes img {
+	height: 260px;
+	width: 40%;
+	padding: 15px 15px 0;
+	background-color: white;
+	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	-moz-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	-webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+}
+
+.bikesModal img {
+	height:240px;
+    width:65%;
+}
+
+button.close {
+    padding: 5px;
+}
+
+.media-body {
+font-size: 15px;
+color:black;
+}

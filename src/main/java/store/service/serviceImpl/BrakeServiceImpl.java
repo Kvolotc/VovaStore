@@ -57,4 +57,14 @@ public class BrakeServiceImpl implements BrakeService {
 		return brakeDao.findBetweenPrice(min, max);
 	}
 
+	@Override
+	public int findCountPages() {
+		return brakeDao.findCountPages();
+	}
+
+	@Override
+	public List<Brake> findProducts(int page) {
+		return brakeDao.findProducts(page);
+	}
+	
 }

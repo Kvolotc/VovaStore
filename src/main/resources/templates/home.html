@@ -12,6 +12,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.css">
 
 <link rel="stylesheet" th:href="@{/css/home.css}">
 <link rel="stylesheet" th:href="@{/css/registration.css}">
@@ -37,25 +38,31 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.js"></script>
+	<script th:src= "@{/js/ui-bootstrap-tpls-2.5.0.min.js}" ></script>
+	
 
 <script th:src="@{/js/navigate.js}"></script>
 <script th:src="@{/js/controller/homeCntrl.js}"></script>
 <script th:src="@{/js/controller/loginCntrl.js}"></script>
 <script th:src="@{/js/controller/registrationCntrl.js}"></script>
-<script th:src="@{/js/controller/bikeCntrl.js}"></script>
 <script th:src="@{/js/controller/forgotPasswordCntrl.js}"></script>
 <script th:src="@{/js/controller/frameCntrl.js}"></script>
 <script th:src="@{/js/controller/forkCntrl.js}"></script>
 <script th:src="@{/js/controller/rimCntrl.js}"></script>
 <script th:src="@{/js/controller/tireCntrl.js}"></script>
 <script th:src="@{/js/controller/brakeCntrl.js}"></script>
+<script th:src="@{/js/controller/allMountainBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/mountainBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/racingBikeCntrl.js}"></script>
+<script th:src="@{/js/factory/productFactory.js}"></script> 
+<script th:src="@{/js/service/productService.js}"></script> 
 
 
 
 
 </head>
 <body ng-app="myApp" ng-controller="home">
-
 
 	<nav class="navbar navbar-default menu ">
 		<div class="container col-sm-12">
@@ -81,52 +88,36 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">велосипеди <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#!/mountainBikes">горні</a></li>
+							<li><a href="#!/mountainBikes/1">горні</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/allMountainBikes">двохпідвіси</a></li>
+							<li><a href="#!/allMountainBikes/1">двохпідвіси</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/racingBikes">шосейні</a></li>
+							<li><a href="#!/racingBikes/1">шосейні</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">запчастини<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#!/frames">рами</a></li>
+							<li><a href="#!/frames/1">рами</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/forks">вилки</a></li>
+							<li><a href="#!/forks/1">вилки</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/rims">обіда</a></li>
+							<li><a href="#!/rims/1">обіда</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/tires">шини</a></li>
+							<li><a href="#!/tires/1">шини</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/brakes">тормоза</a></li>
+							<li><a href="#!/brakes/1">тормоза</a></li>
 						</ul></li>
 					<li><a href="#">контакти <span class="sr-only"></span></a></li>
 
 				</ul>
-				<form class="navbar-form navbar-left">
-					<div class="btn-group " >
-
-						<select class="form-control selectSearch" ng-model="searchObject">
-							<option ng-repeat="object in searchObjects">{{object}}</option>
 
 
-						</select>
-					</div>
-					<div class="input-group">
-
-						<input type="text" class="form-control" placeholder="Пошук"
-							ng-model="searchWord" /> <span class="input-group-btn">
 
 
-							<button class="btn btn-primary" type="button">Search</button>
+				<button class="btn btn-primary search" ng-click="changeSearchForm()" type="button">Search</button>
 
-						</span>
 
-					</div>
-					<!-- Single button -->
-
-				</form>
 
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="login" href="#!/login"> <span
@@ -143,10 +134,45 @@
 		</div>
 
 	</nav>
-
+	
+	
+	
+	
+	<div class="container" ng-show="showSearchForm">
+    <div class="row">    
+        <div class="col-xs-6 col-xs-offset-3">
+		    <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Contains</a></li>
+                      <li><a href="#its_equal">It's equal</a></li>
+                      <li><a href="#greather_than">Greather than ></a></li>
+                      <li><a href="#less_than">Less than < </a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+        </div>
+	</div>
+</div>
+	
+      <br ng-if="showSearchForm"></br>
+      
 	<div ng-view></div>
+	
 
+<h1>{{showSearchForm}}</h1>
 
+<h1>{{location.path()}}</h1>
 
 
 

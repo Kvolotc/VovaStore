@@ -10,43 +10,99 @@
 					<img ng-src="images/frames/{{frame.imageName}}.jpg" 
 						 />
 
-					<div class="media-body">
-						<h5>Bike = {{frame.brand}}</h5>
-						<h5>Model = {{frame.model}}</h5>
-						<h5>Price = {{frame.price}}</h5>
-						<h5>Type = {{frame.type}}</h5>
+				<div class="media-body" style="font-size: 15px; color: black;">
 
-						<div ng-if="frame.existSnubber">
-							<h5>snubberDTO = {{frame.snubberDTO.brandSnubber}}</h5>
-							<h5>snubberDTO = {{frame.snubberDTO.courseSnubber}}</h5>
-							<h5>snubberDTO = {{frame.snubberDTO.typeSnubber}}</h5>
-						</div>
+					<strong><p style="text-align: center;">{{frame.brand}}
+							{{frame.model}} {{frame.createdOn}}</p> </strong>
+					<p>Type: {{frame.type}}</p>
+					<p>Alloy: {{frame.alloy}}</p>
 
-						<div ng-if="!frame.existSnubber">
-							<h5>snubberDTO : -</h5>
-							<h5>snubberDTO : -</h5>
-							<h5>snubberDTO : -</h5>
+					<div ng-if="frame.existSnubber">
+						<p>Brand Snubber : {{frame.snubberDTO.brandSnubber}}</p>
+						<p>Model Snubber : {{frame.snubberDTO.modelSnubber}}</p>
+						<p>Type Snubber : {{frame.snubberDTO.typeSnubber}}</p>
+						<p>Course Snubber : {{frame.snubberDTO.courseSnubber}}</p>
+					</div>
 
-						</div>
-
-
-
-						<div class="buttons pull-right">
-							<button href="#" class="btn btn-success">Buy</button>
-							<button href="#" class="btn btn-success">Backet</button>
-						</div>
+					<div ng-if="!frame.existSnubber">
+						<p>Brand Snubber : -</p>
+						<p>Model Snubber :-</p>
+						<p>Type Snubber : -</p>
+						<p>Course Snubber : -</p>
 
 					</div>
 
+					<p style="text-align: center; font-size: 18px;">{{frame.price}}
+						UA</p>
+
+
+					<div class="buttons pull-right">
+						<button href="#" class="btn btn-success"
+							data-target="#buyingModal" data-toggle="modal"
+							ng-click="changeActiveFrame(frame)">Buy</button>
+						<button href="#" class="btn btn-success">Backet</button>
+					</div>
+
 				</div>
+
+			</div>
 			</div>
 
 		</div>
 
-
-
 	</div>
 
 
+
+	
+	<div class="modal fade" tabindex="-1" id="buyingModal"
+			data-keyboard="false" data-backdrop="static">
+
+
+			<div class="modal-dialog modal-md ">
+
+				<div class="col-sm-12 container">
+					<div class="text-center panel panel-default secses">
+						<button type="button" class="close" data-dismiss="modal">
+							&times;</button>
+
+						<div class="thumbnail bikesModal">
+							<strong><p style="font-size: 18px;">{{activeFrame.brand}}
+									{{activeFrame.model}}</p> </strong> <img
+								style="float: none; width: 60%;"
+								ng-src="images/frames/{{activeFrame.imageName}}.jpg" />
+							<div class="media-body">
+								<br> <br> Number = <input style="float: none"
+									class="col-sm-2" type="number" ng-model="countFrames" /> <br> <br>
+								<p style="font-size: 20px;">{{activeFrame.price * countFrames}} UA</p>
+
+							</div>
+
+
+						</div>
+
+						<div class="form-group ">
+
+							<div
+								class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group">
+								<a type="button" class="btn btn-success">Buy</a>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+<nav aria-label="Page navigation example" style="text-align: center;">
+<ul class="pagination" ng-show="productFactory.isPrevious" ><li class="page-item"><a class="page-link" ng-click="padination.previous(url, productFactory.masPage[0]-1, productFactory)" >Previous</a></li></ul>
+  <ul class="pagination" ng-repeat="numPage in productFactory.masPage">
+    <li class="page-item"><a class="page-link" href="#!/frames/{{numPage}}"">{{numPage}}</a></li>
+  </ul>
+ <ul class="pagination" ng-show="productFactory.isNext">  <li class="page-item"><a class="page-link" ng-click="padination.next(url, productFactory.masPage[4]+1, productFactory)" >Next</a></li></ul>
+</nav>
+	
 
 

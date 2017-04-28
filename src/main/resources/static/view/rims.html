@@ -1,33 +1,90 @@
 
-	<div class="container">
+<div class="container">
 
 
-		<div class="row">
-			<div class="col-sm-4  col-xs-6" ng-repeat="rim in rims">
+	<div class="row">
+		<div class="col-sm-4  col-xs-6" ng-repeat="rim in rims">
 
-				<div class="thumbnail product">
-					<img ng-src="images/rims/{{rim.imageName}}.jpg" 
-						 />
+			<div class="thumbnail product">
+				<img ng-src="images/rims/{{rim.imageName}}.jpg" />
 
-					<div class="media-body">
-						<h5>Bike = {{rim.brand}}</h5>
-						<h5>Model = {{rim.model}}</h5>
-						<h5>Price = {{rim.price}}</h5>
-						<h5>Type = {{rim.type}}</h5>
+				<div class="media-body" style="font-size: 15px; color: black;">
+
+					<strong><p style="text-align: center;">{{rim.brand}}
+							{{rim.model}}</p> </strong>
+
+					<p>Year of model : {{rim.createdOn}}</p>
+					<p>Type: {{rim.type}}</p>
+					<p>Diameter: {{rim.diameter}} cm.</p>
 
 
-						<div class="buttons pull-right">
-							<button href="#" class="btn btn-success">Buy</button>
-							<button href="#" class="btn btn-success">Backet</button>
+					<p style="text-align: center; font-size: 18px;">{{rim.price}}
+						UA</p>
+
+
+					<div class="buttons pull-right">
+						<button href="#" class="btn btn-success"
+							data-target="#buyingModal" data-toggle="modal"
+							ng-click="changeActiveRim(rim)">Buy</button>
+						<button href="#" class="btn btn-success">Backet</button>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<div class="modal fade" tabindex="-1" id="buyingModal"
+			data-keyboard="false" data-backdrop="static">
+
+
+			<div class="modal-dialog modal-md ">
+
+				<div class="col-sm-12 container">
+					<div class="text-center panel panel-default secses">
+						<button type="button" class="close" data-dismiss="modal">
+							&times;</button>
+
+						<div class="thumbnail bikesModal">
+							<strong><p style="font-size: 18px;">{{activeRim.brand}}
+									{{activeRim.model}}</p> </strong> <img
+								style="float: none; width: 60%;"
+								ng-src="images/rims/{{activeRim.imageName}}.jpg" />
+							<div class="media-body">
+								<br> <br> Number = <input style="float: none"
+									class="col-sm-2" type="number" ng-model="countRims" /> <br> <br>
+								<p style="font-size: 20px;">{{activeRim.price * countRims}} UA</p>
+
+							</div>
+
+
+						</div>
+
+						<div class="form-group ">
+
+							<div
+								class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group">
+								<a type="button" class="btn btn-success">Buy</a>
+							</div>
+
 						</div>
 
 					</div>
-
 				</div>
 			</div>
 
 		</div>
-
-
-
-	</div>
+		
+<nav aria-label="Page navigation example" style="text-align: center;">
+<ul class="pagination" ng-show="productFactory.isPrevious" ><li class="page-item"><a class="page-link" ng-click="padination.previous(url, productFactory.masPage[0]-1, productFactory)" >Previous</a></li></ul>
+  <ul class="pagination" ng-repeat="numPage in productFactory.masPage">
+    <li class="page-item"><a class="page-link" href="#!/rims/{{numPage}}"">{{numPage}}</a></li>
+  </ul>
+ <ul class="pagination" ng-show="productFactory.isNext">  <li class="page-item"><a class="page-link" ng-click="padination.next(url, productFactory.masPage[4]+1, productFactory)" >Next</a></li></ul>
+</nav>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import store.persistence.entity.Rim;
 import store.persistence.entity.Tire;
 import store.persistence.repository.TireDao;
 import store.service.TireService;
@@ -60,6 +61,16 @@ public class TireServiceImpl implements TireService {
 	@Override
 	public List<Tire> findbyDiameter(Integer diameter) {
 		return tireDao.findbyDiameter(diameter);
+	}
+	
+	@Override
+	public int findCountPages() {
+		return tireDao.findCountPages();
+	}
+
+	@Override
+	public List<Tire> findProducts(int page) {
+		return tireDao.findProducts(page);
 	}
 
 }

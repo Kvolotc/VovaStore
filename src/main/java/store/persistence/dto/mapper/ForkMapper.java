@@ -38,12 +38,12 @@ public class ForkMapper {
 		return dto;
 	}
 	
-	public static List<Fork> forkDTOListToForklist(List<ForkDTO> dtos) {
+	public static List<Fork> forkDTOListToForkList(List<ForkDTO> dtos) {
 		
 		return dtos.stream().map(dto -> forkDTOToFork(dto)).collect(Collectors.toList());
 	}
 	
-	public static List<ForkDTO> forkListToForkDTOlist(List<Fork> forks) {
+	public static List<ForkDTO> forkListToForkDTOList(List<Fork> forks) {
 		
 		return forks.stream().map(fork -> forkToForkDTO(fork)).collect(Collectors.toList());
 	}

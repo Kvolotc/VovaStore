@@ -1,0 +1,133 @@
+angular.module('myApp').controller(
+		'bikes',
+		function($scope, $rootScope, $http, $location, $routeParams, mountainBikeFactory) {
+
+			$scope.bikes = [];
+			
+			$scope.count = 66;
+
+			$scope.mountainBikeFactory = mountainBikeFactory;
+
+			$scope.IsNext = false;
+
+			switch ($location.path()) {
+			case "/mountainBikes/" + $routeParams.page:
+				
+				$scope.urlBike = "#!/mountainBikes/";
+				$http({
+					method : "GET",
+					url : '/mountainBikes/' + $routeParams.page
+				}).then(function(response) {
+					$scope.bikes = response.data;
+				}, function myError(response) {
+
+				});
+				
+				if($routeParams.page == 1) {
+					
+					$http({
+						method : "GET",
+						url : '/getCountPage/mountainBikes'
+					}).then(function(response) {
+						
+						mountainBikeFactory.masPage = [];
+						mountainBikeFactory.countPage = response.data;
+						console.log(mountainBikeFactory.countPage)
+						var pages = mountainBikeFactory.countPage;
+						var sizePage = 5;
+
+				if (pages > 5) {
+					$scope.IsNext = true;
+					mountainBikeFactory.countPage = mountainBikeFactory.countPage - 5;
+				} else {
+					sizePage = pages;
+				}
+
+				for (var ind = 1; sizePage >= ind; ind++) {
+					mountainBikeFactory.masPage.push(ind);
+				}
+
+					}, function myError(response) {
+						
+					});
+				}
+
+				break;
+			case "/allMountainBikes/" + $routeParams.page:
+				$scope.urlBike = "#!/allMountainBikes/";
+				$http({
+					method : "GET",
+					url : '/allMountainBikes/' + $routeParams.page
+				}).then(function(response) {
+					$scope.bikes = response.data;
+				}, function myError(response) {
+
+				});
+
+				break;
+			case "/racingBikes/" + $routeParams.page:
+				$scope.urlBike = "#!/racingBikes/";
+				$http({
+					method : "GET",
+					url : '/racingBikes/' + $routeParams.page
+				}).then(function(response) {
+					$scope.bikes = response.data;
+				}, function myError(response) {
+
+				});
+
+				break;
+			default:
+				break;
+
+			}
+			
+			if($routeParams.page == 2) {
+				console.log(mountainBikeFactory.countPage)
+			}
+
+			if (mountainBikeFactory.isAllowed && $routeParams.page == 55 ) {
+				
+				$scope.count = $scope.count - 5;
+				console.log
+
+					mountainBikeFactory.masPage = [];
+				console.log($rootScope.count);
+			   console.log(mountainBikeFactory.countPage)
+				var pages = mountainBikeFactory.countPage;
+
+				var sizePage = 5;
+
+				if (pages > 6) {
+					$scope.IsNext = true;
+					mountainBikeFactory.countPage = mountainBikeFactory.countPage - 5;
+				} else {
+					sizePage = pages;
+				}
+
+				for (var ind = 1; sizePage >= ind; ind++) {
+					mountainBikeFactory.masPage.push(ind);
+				}
+				
+				mountainBikeFactory.isAllowed = false;
+
+			}
+			
+
+			$scope.count = 1;
+
+			$scope.price = function() {
+				$scope.activeBike.price = $scope.activeBike.price
+						* $scope.count;
+			}
+
+			$scope.activeBike = {
+
+			};
+
+			$scope.changeActiveBike = function(bike) {
+				console.log(bike);
+				$scope.activeBike = bike;
+			}
+
+		});

@@ -3,15 +3,15 @@ package store.persistence.dto;
 import java.sql.Timestamp;
 
 
-import store.persistence.entity.enums.Role;
-
 public class UserDTO {
 
 	private String firstName;
 	
 	private String lastName;
 	
-	private Timestamp date;
+	private Timestamp birthDate;
+	
+	private Timestamp registrationDate;
 	
 	private String gender;
 	
@@ -41,12 +41,20 @@ public class UserDTO {
 		this.lastName = lastName;
 	}
 
-	public Timestamp getDate() {
-		return date;
+	public Timestamp getBirthDate() {
+		return birthDate;
 	}
 
-	public void setDate(Timestamp date) {
-		this.date = date;
+	public void setBirthDate(Timestamp birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Timestamp getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Timestamp registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
 	public String getGender() {

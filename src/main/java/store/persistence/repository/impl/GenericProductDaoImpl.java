@@ -1,5 +1,6 @@
 package store.persistence.repository.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,6 +18,8 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	private final static int SIZE_PAGE = 1;
 	
 	private Class<T> entity;
 
@@ -41,6 +44,35 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 	@Override
 	public List<T> findBetweenPrice(Integer min, Integer max) {
 		return entityManager.createQuery("FROM"+entity.getSimpleName()+"e BETWEEN"+min+"AND"+max,entity).getResultList();
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	@Override
+	public int findCountPages() {
+
+		long lll =  entityManager
+				.createQuery("SELECT COUNT(e.id) FROM " + entity.getSimpleName()+" e", Long.class).getSingleResult();
+
+		int countPage = (int)lll;
+
+		if (countPage % SIZE_PAGE >= 1) {
+			countPage = (countPage / SIZE_PAGE) + 1;
+		} else {
+			countPage /= SIZE_PAGE;
+		}
+
+		return countPage;
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	@Override
+	public List<T> findProducts(int page) {
+
+		int from = (page - 1) * SIZE_PAGE;
+
+		return entityManager.createQuery("FROM " + entity.getSimpleName(), entity).setFirstResult(from)
+				.setMaxResults(SIZE_PAGE).getResultList();
+
 	}
 
 }

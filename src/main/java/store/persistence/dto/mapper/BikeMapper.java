@@ -38,12 +38,12 @@ public class BikeMapper {
 		return dto;
 	}
 	
-	public static List<Bike> bikeDTOListToBikelist(List<BikeDTO> dtos) {
+	public static List<Bike> bikeDTOListToBikeList(List<BikeDTO> dtos) {
 		
 		return dtos.stream().map(dto -> bikeDTOToBike(dto)).collect(Collectors.toList());
 	}
 	
-	public static List<BikeDTO> bikeListToBikeDTOlist(List<Bike> bikes) {
+	public static List<BikeDTO> bikeListToBikeDTOList(List<Bike> bikes) {
 
 		return bikes.stream().map(bike -> bikeToBikeDTO(bike)).collect(Collectors.toList());
 	}

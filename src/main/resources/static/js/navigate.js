@@ -1,6 +1,6 @@
-var myApp = angular.module('myApp', [ "ngRoute" ])
+var myApp = angular.module('myApp', [ "ngRoute", "ngTable", "ui.bootstrap"]);
 
-.config(function($routeProvider, $locationProvider) {
+myApp.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 
 	.when('', {
@@ -18,19 +18,19 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 		controller : 'login'
 	})
 
-	.when('/mountainBikes', {
+	.when('/mountainBikes/:page', {
 		templateUrl : 'view/bikes.html',
-		controller : 'bikes'
+		controller : 'mountainBike',
 	})
 	
-	.when('/allMountainBikes', {
+	.when('/allMountainBikes/:page', {
 		templateUrl : 'view/bikes.html',
-		controller : 'bikes'
+		controller : 'allMountainsBikes'
 	})
 	
-	.when('/racingBikes', {
+	.when('/racingBikes/:page', {
 		templateUrl : 'view/bikes.html',
-		controller : 'bikes'
+		controller : 'racingBikes'
 	})
 
 //	.when('/actived/:name', {
@@ -43,27 +43,27 @@ var myApp = angular.module('myApp', [ "ngRoute" ])
 		controller : 'forgotPassword'
 	})
 
-	.when('/frames', {
+	.when('/frames/:page', {
 		templateUrl : 'view/frames.html',
 		controller : 'frames'
 	})
 	
-	.when('/forks', {
+	.when('/forks/:page', {
 		templateUrl : 'view/forks.html',
 		controller : 'forks'
 	})
 
-	.when('/rims', {
+	.when('/rims/:page', {
 		templateUrl : 'view/rims.html',
 		controller : 'rims'
 	})
 
-	.when('/tires', {
+	.when('/tires/:page', {
 		templateUrl : 'view/tires.html',
 		controller : 'tires'
 	})
 
-	.when('/brakes', {
+	.when('/brakes/:page', {
 		templateUrl : 'view/brakes.html',
 		controller : 'brakes'
 	})

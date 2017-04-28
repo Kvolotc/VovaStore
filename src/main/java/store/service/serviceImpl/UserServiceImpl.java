@@ -1,10 +1,9 @@
 package store.service.serviceImpl;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
+
 import java.util.List;
 
-import org.apache.commons.codec.digest.DigestUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -64,11 +63,10 @@ public class UserServiceImpl implements  UserService {
 		
 		return userDao.findByToken(token);
 	}
-	
-	public static void main(String[] args) throws UnsupportedEncodingException {
-		 String md5Hex = DigestUtils.md5Hex("dasdsad"+"dadadsd");
-		 System.out.println(md5Hex);
-		
+
+	@Override
+	public List<User> findNotActiveUsers() {
+		return userDao.indNotActiveUsers();
 	}
 
 }

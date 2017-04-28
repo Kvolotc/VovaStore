@@ -40,12 +40,12 @@ public class RimMapper {
 		return dto;
 	}
 	
-	public static List<Rim> rimDTOListToRimlist(List<RimDTO> dtos) {
+	public static List<Rim> rimDTOListToRimList(List<RimDTO> dtos) {
 		
 		return dtos.stream().map(dto -> rimDTOToRim(dto)).collect(Collectors.toList());
 	}
 	
-	public static List<RimDTO> rimListToRimDTOlist(List<Rim> rims) {
+	public static List<RimDTO> rimListToRimDTOList(List<Rim> rims) {
 		
 		return rims.stream().map(rim -> rimToRimDTO(rim)).collect(Collectors.toList());
 	}

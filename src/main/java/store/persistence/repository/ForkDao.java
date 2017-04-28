@@ -9,4 +9,5 @@ public interface ForkDao extends GenericProductDao<Fork, Integer>{
 	public List<Fork> findByCourse(Integer course);
 	
 	public List<Fork> findBetweenCourse(Integer min, Integer max);
+	
 }

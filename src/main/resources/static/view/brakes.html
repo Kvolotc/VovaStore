@@ -10,21 +10,26 @@
 					<img ng-src="images/brakes/{{brake.imageName}}.jpg" 
 						 />
 
-					<div class="media-body">
-						<h5>Bike = {{brake.brand}}</h5>
-						<h5>Model = {{brake.model}}</h5>
-						<h5>Price = {{brake.price}}</h5>
-						<h5>Type = {{brake.type}}</h5>
+				<div class="media-body" style="font-size: 15px; color: black;">
 
+					<strong><p style="text-align: center;">{{brake.brand}}
+							{{brake.model}}</p> </strong>
+					<p>Year of model : {{brake.createdOn}}</p>		
+					<p>Type: {{brake.type}}</p>
 
-						<div class="buttons pull-right">
-							<button href="#" class="btn btn-success">Buy</button>
-							<button href="#" class="btn btn-success">Backet</button>
-						</div>
+					<p style="text-align: center; font-size: 18px;">{{brake.price}}
+						UA</p>
 
+					<div class="buttons pull-right">
+						<button href="#" class="btn btn-success"
+							data-target="#buyingModal" data-toggle="modal"
+							ng-click="changeActiveBrake(brake)">Buy</button>
+						<button href="#" class="btn btn-success">Backet</button>
 					</div>
 
 				</div>
+
+			</div>
 			</div>
 
 		</div>
@@ -33,6 +38,55 @@
 
 	</div>
 
+
+		<div class="modal fade" tabindex="-1" id="buyingModal"
+			data-keyboard="false" data-backdrop="static">
+
+
+			<div class="modal-dialog modal-md ">
+
+				<div class="col-sm-12 container">
+					<div class="text-center panel panel-default secses">
+						<button type="button" class="close" data-dismiss="modal">
+							&times;</button>
+
+						<div class="thumbnail bikesModal">
+							<strong><p style="font-size: 18px;">{{activeBrake.brand}}
+									{{activeBrake.model}}</p> </strong> <img
+								style="float: none; width: 60%;"
+								ng-src="images/brakes/{{activeBrake.imageName}}.jpg" />
+							<div class="media-body">
+								<br> <br> Number = <input style="float: none"
+									class="col-sm-2" type="number" ng-model="countBrakes" /> <br> <br>
+								<p style="font-size: 20px;">{{activeBrake.price * countBrakes}} UA</p>
+
+							</div>
+
+
+						</div>
+
+						<div class="form-group ">
+
+							<div
+								class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group">
+								<a type="button" class="btn btn-success">Buy</a>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+<nav aria-label="Page navigation example" style="text-align: center;">
+<ul class="pagination" ng-show="productFactory.isPrevious" ><li class="page-item"><a class="page-link" ng-click="padination.previous(url, productFactory.masPage[0]-1, productFactory)" >Previous</a></li></ul>
+  <ul class="pagination" ng-repeat="numPage in productFactory.masPage">
+    <li class="page-item"><a class="page-link" href="#!/brakes/{{numPage}}"">{{numPage}}</a></li>
+  </ul>
+ <ul class="pagination" ng-show="productFactory.isNext">  <li class="page-item"><a class="page-link" ng-click="padination.next(url, productFactory.masPage[4]+1, productFactory)" >Next</a></li></ul>
+</nav>
 
 
 

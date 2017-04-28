@@ -1,5 +1,7 @@
 package store.persistence.repository.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -39,6 +41,12 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		
 		return (User) entityManager.createNativeQuery("SELECT * FROM users WHERE password = :token", User.class)
 				.setParameter("token", token).getSingleResult();
+	}
+
+	@Override
+	public List<User> indNotActiveUsers() {
+
+		return entityManager.createNativeQuery("SELECT * FROM users WHERE is_activated  = false ", User.class).getResultList();
 	}
 
 }

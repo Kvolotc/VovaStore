@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://localhost:8080/#!/brakes -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><script src="chrome-extension://nhcombnfcfkgnammoobfmfiokobfpokb/_locales/en/Kernel.js?0.21352157738599487"></script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style type="text/css">.uib-time input{width:50px;}</style><style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style><style type="text/css">.uib-datepicker-popup.dropdown-menu{display:block;float:none;margin:0;}.uib-button-bar{padding:10px 9px 2px;}</style><style type="text/css">.uib-position-measure{display:block !important;visibility:hidden !important;position:absolute !important;top:-9999px !important;left:-9999px !important;}.uib-position-scrollbar-measure{position:absolute !important;top:-9999px !important;width:50px !important;height:50px !important;overflow:scroll !important;}.uib-position-body-scrollbar-measure{overflow:scroll !important;}</style><style type="text/css">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-left,.uib-right{width:100%}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+
+<title>Insert title here</title>
+<!--<base href="/">--><base href=".">
+
+
+<link crossorigin="anonymous" href="./Insert title here_files/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet">
+<link href="./Insert title here_files/ng-table.css" rel="stylesheet">
+
+<link rel="stylesheet" href="./Insert title here_files/home.css">
+<link rel="stylesheet" href="./Insert title here_files/registration.css">
+<link rel="stylesheet" href="./Insert title here_files/bikes.css">
+<link rel="stylesheet" href="./Insert title here_files/login.css">
+<link rel="stylesheet" href="./Insert title here_files/forgotPassword.css">
+<link rel="stylesheet" href="./Insert title here_files/product.css">
+
+
+<script src="./Insert title here_files/angular.min.js.завантаження"></script>
+<script src="./Insert title here_files/angular-route.min.js.завантаження"></script>
+<script src="./Insert title here_files/jquery-1.11.1.min.js.завантаження" type="text/javascript"></script>
+<script src="./Insert title here_files/jquery-2.1.3.min.js.завантаження" type="text/javascript"></script>
+<script src="./Insert title here_files/jquery.validate.min.js.завантаження" type="text/javascript"></script>
+<script src="./Insert title here_files/additional-methods.min.js.завантаження"></script>
+<script crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" src="./Insert title here_files/bootstrap.min.js.завантаження"></script>
+	<script src="./Insert title here_files/ng-table.js.завантаження"></script>
+	<script src="./Insert title here_files/ui-bootstrap-tpls-2.5.0.min.js.завантаження"></script>
+	
+
+<script src="./Insert title here_files/navigate.js.завантаження"></script>
+<script src="./Insert title here_files/homeCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/loginCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/registrationCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/bikeCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/forgotPasswordCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/frameCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/forkCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/rimCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/tireCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/brakeCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/allMountainBikeCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/mountainBikeCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/racingBikeCntrl.js.завантаження"></script>
+<script src="./Insert title here_files/productFactory.js.завантаження"></script> 
+<script src="./Insert title here_files/productService.js.завантаження"></script> 
+
+
+
+
+<link type="text/css" rel="stylesheet" href="chrome-extension://nhcombnfcfkgnammoobfmfiokobfpokb/_locales/en/main.css?0.3030912109511974"><script src="chrome-extension://nhcombnfcfkgnammoobfmfiokobfpokb/_locales/en/foreground.js?0.6659001761778907"></script></head>
+<body ng-app="myApp" ng-controller="home" class="ng-scope">
+
+	<nav class="navbar navbar-default menu ">
+		<div class="container col-sm-12">
+ 
+			<div class="navbar-header">
+				<button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+
+			</div>
+
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active-link "><a href="http://localhost:8080/"><span class="glyphicon glyphicon-home  "></span> головна</a></li>
+					<li class="dropdown"><a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" role="button">велосипеди <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="http://localhost:8080/#!/mountainBikes/1">горні</a></li>
+							<li class="divider" role="separator"></li>
+							<li><a href="http://localhost:8080/#!/allMountainBikes/1">двохпідвіси</a></li>
+							<li class="divider" role="separator"></li>
+							<li><a href="http://localhost:8080/#!/racingBikes/1">шосейні</a></li>
+						</ul></li>
+					<li class="dropdown"><a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" role="button">запчастини<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="http://localhost:8080/#!/frames">рами</a></li>
+							<li class="divider" role="separator"></li>
+							<li><a href="http://localhost:8080/#!/forks">вилки</a></li>
+							<li class="divider" role="separator"></li>
+							<li><a href="http://localhost:8080/#!/rims">обіда</a></li>
+							<li class="divider" role="separator"></li>
+							<li><a href="http://localhost:8080/#!/tires">шини</a></li>
+							<li class="divider" role="separator"></li>
+							<li><a href="http://localhost:8080/#!/brakes">тормоза</a></li>
+						</ul></li>
+					<li><a href="http://localhost:8080/#">контакти <span class="sr-only"></span></a></li>
+
+				</ul>
+				<form class="navbar-form navbar-left ng-pristine ng-valid">
+					<div class="btn-group ">
+
+						<select class="form-control selectSearch ng-pristine ng-untouched ng-valid ng-empty" ng-model="searchObject"><option value="? string: ?" selected="selected"></option>
+							<!-- ngRepeat: object in searchObjects --><option ng-repeat="object in searchObjects" class="ng-binding ng-scope" value="Bike">Bike</option><!-- end ngRepeat: object in searchObjects --><option ng-repeat="object in searchObjects" class="ng-binding ng-scope" value="Brake">Brake</option><!-- end ngRepeat: object in searchObjects --><option ng-repeat="object in searchObjects" class="ng-binding ng-scope" value="Fork">Fork</option><!-- end ngRepeat: object in searchObjects --><option ng-repeat="object in searchObjects" class="ng-binding ng-scope" value="Frame">Frame</option><!-- end ngRepeat: object in searchObjects --><option ng-repeat="object in searchObjects" class="ng-binding ng-scope" value="Rim">Rim</option><!-- end ngRepeat: object in searchObjects --><option ng-repeat="object in searchObjects" class="ng-binding ng-scope" value="Tire">Tire</option><!-- end ngRepeat: object in searchObjects -->
+
+
+						</select>
+					</div>
+					<div class="input-group">
+
+						<input class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="searchWord" placeholder="Пошук" type="text"> <span class="input-group-btn">
+
+
+							<button class="btn btn-primary" type="button">Search</button>
+
+						</span>
+
+					</div>
+					<!-- Single button -->
+
+				</form>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a class="login" href="http://localhost:8080/#!/login"> <span class="glyphicon glyphicon-log-in"></span> логін
+					</a></li>
+					<li><a class="registration" href="http://localhost:8080/#!/registration"> <span class="glyphicon glyphicon-user"></span> реєстрація
+					</a></li>
+				</ul>
+			</div>
+
+
+
+		</div>
+
+	</nav>
+	
+	<!-- ngView: --><div ng-view="" class="ng-scope">
+
+	<div class="container ng-scope">
+
+
+		<div class="row">
+			<!-- ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Tektro HDC-M290.jpg" src="./Insert title here_files/Tektro HDC-M290.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = TEKTRO</h5>
+						<h5 class="ng-binding">Model = HDC-M290</h5>
+						<h5 class="ng-binding">Price = 1200</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Shimano 105 BR-5800.jpg" src="./Insert title here_files/Shimano 105 BR-5800.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SHIMANO</h5>
+						<h5 class="ng-binding">Model = 105 BR-5800</h5>
+						<h5 class="ng-binding">Price = 2500</h5>
+						<h5 class="ng-binding">Type = Clover</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/TEKTRO R-325.jpg" src="./Insert title here_files/TEKTRO R-325.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = TEKTRO</h5>
+						<h5 class="ng-binding">Model = R-325</h5>
+						<h5 class="ng-binding">Price = 1000</h5>
+						<h5 class="ng-binding">Type = Clover</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Tektro HD-M290.jpg" src="./Insert title here_files/Tektro HD-M290.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = TEKTRO</h5>
+						<h5 class="ng-binding">Model = HD-M290</h5>
+						<h5 class="ng-binding">Price = 1500</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Shimano BR-M315.jpg" src="./Insert title here_files/Shimano BR-M315.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SHIMANO</h5>
+						<h5 class="ng-binding">Model = BR-M315</h5>
+						<h5 class="ng-binding">Price = 1700</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Shimano M395.jpg" src="./Insert title here_files/Shimano M395.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SHIMANO</h5>
+						<h5 class="ng-binding">Model = M395</h5>
+						<h5 class="ng-binding">Price = 2400</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Shimano M446.jpg" src="./Insert title here_files/Shimano M446.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SHIMANO</h5>
+						<h5 class="ng-binding">Model = M446</h5>
+						<h5 class="ng-binding">Price = 1800</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Tektro HDC 330.jpg" src="./Insert title here_files/Tektro HDC 330.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = TEKTRO</h5>
+						<h5 class="ng-binding">Model = HDC 330</h5>
+						<h5 class="ng-binding">Price = 2000</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Shimano 596.jpg" src="./Insert title here_files/Shimano 596.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SHIMANO</h5>
+						<h5 class="ng-binding">Model = 596</h5>
+						<h5 class="ng-binding">Price = 2200</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Avid Code X0.jpg" src="./Insert title here_files/Avid Code X0.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = AVID</h5>
+						<h5 class="ng-binding">Model = Code X0</h5>
+						<h5 class="ng-binding">Price = 4000</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Shimano Deore BR-M615.jpg" src="./Insert title here_files/Shimano Deore BR-M615.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SHIMANO</h5>
+						<h5 class="ng-binding">Model = Deore BR-M615</h5>
+						<h5 class="ng-binding">Price = 4500</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/SRAM Guide RS.jpg" src="./Insert title here_files/SRAM Guide RS.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SRAM</h5>
+						<h5 class="ng-binding">Model = Guide RS</h5>
+						<h5 class="ng-binding">Price = 5000</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/Shimano Deore XT M8000.jpg" src="./Insert title here_files/Shimano Deore XT M8000.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SHIMANO</h5>
+						<h5 class="ng-binding">Model = Deore XT M8000</h5>
+						<h5 class="ng-binding">Price = 8900</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes --><div class="col-sm-4  col-xs-6 ng-scope" ng-repeat="brake in brakes">
+
+				<div class="thumbnail product">
+					<img ng-src="images/brakes/SRAM Guide R G2.jpg" src="./Insert title here_files/SRAM Guide R G2.jpg">
+
+					<div class="media-body">
+						<h5 class="ng-binding">Bike = SRAM</h5>
+						<h5 class="ng-binding">Model = Guide R G2</h5>
+						<h5 class="ng-binding">Price = 6500</h5>
+						<h5 class="ng-binding">Type = Hydraulics</h5>
+
+
+						<div class="buttons pull-right">
+							<button href="#" class="btn btn-success">Buy</button>
+							<button href="#" class="btn btn-success">Backet</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- end ngRepeat: brake in brakes -->
+
+		</div>
+
+
+
+	</div>
+
+
+		<div class="modal fade ng-scope" tabindex="-1" id="buyingModal" data-keyboard="false" data-backdrop="static">
+
+
+			<div class="modal-dialog modal-md ">
+
+				<div class="col-sm-12 container">
+					<div class="text-center panel panel-default secses">
+						<button type="button" class="close" data-dismiss="modal">
+							×</button>
+
+						<div class="thumbnail bikesModal">
+							<strong><p style="font-size: 18px;" class="ng-binding">
+									  year</p> </strong> <img style="float: none; width: 75%;">
+							<div class="media-body">
+								Size = <select>
+									<option value="S">S</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+								</select> <br> <br> Number = <input style="float: none" class="col-sm-2 ng-pristine ng-untouched ng-valid ng-empty" type="number" ng-model="count"> <br> <br>
+								<p style="font-size: 20px;" class="ng-binding">NaN UA</p>
+
+							</div>
+
+
+						</div>
+
+						<div class="form-group ">
+
+							<div class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group">
+								<a type="button" class="btn btn-success">Buy</a>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	
+
+<nav aria-label="Page navigation example" style="text-align: center;" class="ng-scope">
+<ul class="pagination ng-hide" ng-show="productFactory.isPrevious"><li class="page-item"><a class="page-link" ng-click="padination.previous(url, productFactory.masPage[0]-1, productFactory)">Previous</a></li></ul>
+  <!-- ngRepeat: numPage in productFactory.masPage -->
+ <ul class="pagination ng-hide" ng-show="productFactory.isNext">  <li class="page-item"><a class="page-link" ng-click="padination.next(url, productFactory.masPage[4]+1, productFactory)">Next</a></li></ul>
+</nav>
+
+
+
+</div>
+
+
+
+
+
+
+
+</body></html>

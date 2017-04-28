@@ -1,18 +1,44 @@
 angular.module('myApp')
-.controller('tires', function($scope, $http, $routeParams) {
+.controller('tires', function($scope, $http, $routeParams,$location, $routeParams, productFactory, padination) {
 
-	$scope.tires = [];
+			$scope.tires = [];
+			
+            $scope.productFactory = productFactory;
+			
+			$scope.padination = padination;
+			
+			$scope.url = "/tires/";
+			
+			$scope.counTires = 1;
+			
+			$scope.activeTire = {};
+
+			$http({
+				method : "GET",
+				url : '/tires/' + $routeParams.page
+			}).then(function(response) {
+				$scope.tires = response.data;
+
+			}, function myError(response) {
+
+			});
+			
+            $scope.padination.firstPadination('/getCountPage/tires', $routeParams.page, $scope.productFactory);	 				
+
+			
+			$scope.padination.updatePadination('/getCountPage/tires', $routeParams.page, $scope.productFactory);
+			
 	
-	$http({
-		method : "GET",
-		url : '/tires'
-	}).then(function (response) {
-		console.log(response);
-		$scope.tires = response.data;
-		console.log($scope.frames)
-		
-	}, function myError(response) {
-		
-	});
 
-});	
+			$scope.price = function() {
+				$scope.activeTires.price = $scope.activeTires.price
+						* $scope.counTires;
+			}
+
+
+			$scope.changeActiveTire = function(tire) {
+				$scope.activeTire = tire;
+			}
+
+
+		});

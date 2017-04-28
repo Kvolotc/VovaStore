@@ -2,6 +2,7 @@ package store.web.controller;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -39,6 +40,7 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<String> registrateUser(@RequestBody User user) {
 		
+		user.setRegistrationDate(new Timestamp(System.currentTimeMillis()));
 		String token = service.save(user).getPassword();
 
 		return new ResponseEntity<String>(new Gson().toJson(token), HttpStatus.OK);
@@ -127,7 +129,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value = "/forgotPassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/forgotPassword", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<User> forgotPassword(@RequestBody ForgotPasswordParam forgotPasswordParam) {
 		

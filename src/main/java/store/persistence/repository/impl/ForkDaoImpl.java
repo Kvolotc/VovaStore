@@ -1,5 +1,6 @@
 package store.persistence.repository.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import store.persistence.entity.Brake;
 import store.persistence.entity.Fork;
 import store.persistence.repository.ForkDao;
 
@@ -18,6 +20,8 @@ public class ForkDaoImpl extends GenericProductDaoImpl<Fork, Integer> implements
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	private final static int SIZE_PAGE = 1;
 	
 	protected ForkDaoImpl() {
 		super(Fork.class);
@@ -39,5 +43,7 @@ public class ForkDaoImpl extends GenericProductDaoImpl<Fork, Integer> implements
 		return entityManager.createQuery("FROM FORK e BETWEEN :min AND :max", Fork.class).
 				setParameter("min", min).setParameter("max", max).getResultList();
 	}
+	
+
 
 }

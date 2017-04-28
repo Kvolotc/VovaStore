@@ -36,8 +36,11 @@ public class User {
 	@Size(max = 20)
 	private String lastName;
 	
-	@Column(name = "date")
-	private Timestamp date;
+	@Column(name = "birth_date")
+	private Timestamp birthDate;
+	
+	@Column(name = "registration_date")
+	private Timestamp registrationDate;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "gender")
@@ -99,14 +102,6 @@ public class User {
 		this.password = password;
 	}
 
-	public Timestamp getDate() {
-		return date;
-	}
-
-	public void setDate(Timestamp date) {
-		this.date = date;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -138,5 +133,30 @@ public class User {
 	public void setLogged(boolean isLogged) {
 		this.isLogged = isLogged;
 	}
+
+	public Timestamp getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Timestamp birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public Timestamp getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Timestamp registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate
+				+ ", registrationDate=" + registrationDate + ", gender=" + gender + ", eMail=" + eMail
+				+ ", isActivated=" + isActivated + ", isLogged=" + isLogged + ", role=" + role + ", password="
+				+ password + "]";
+	}
+	
 	
 }

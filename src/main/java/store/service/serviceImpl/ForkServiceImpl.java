@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import store.persistence.entity.Brake;
 import store.persistence.entity.Fork;
 import store.persistence.repository.ForkDao;
 import store.service.ForkService;
@@ -65,6 +66,16 @@ public class ForkServiceImpl implements ForkService{
 	@Override
 	public List<Fork> findBetweenCourse(Integer min, Integer max) {
 		return forkDao.findBetweenCourse(min, max);	
+	}
+	
+	@Override
+	public int findCountPages() {
+		return forkDao.findCountPages();
+	}
+
+	@Override
+	public List<Fork> findProducts(int page) {
+		return forkDao.findProducts(page);
 	}
 	
 }

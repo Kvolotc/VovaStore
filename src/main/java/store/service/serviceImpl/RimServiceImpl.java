@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import store.persistence.entity.Frame;
 import store.persistence.entity.Rim;
 import store.persistence.repository.RimDao;
 import store.service.RimService;
@@ -60,6 +61,16 @@ public class RimServiceImpl implements RimService {
 	@Override
 	public List<Rim> findbyDiameter(Integer diameter) {
 		return rimDao.findbyDiameter(diameter);
+	}
+	
+	@Override
+	public int findCountPages() {
+		return rimDao.findCountPages();
+	}
+
+	@Override
+	public List<Rim> findProducts(int page) {
+		return rimDao.findProducts(page);
 	}
 
 }

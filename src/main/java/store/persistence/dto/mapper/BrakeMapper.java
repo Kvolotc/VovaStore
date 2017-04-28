@@ -38,12 +38,12 @@ public class BrakeMapper {
 		return dto;
 	}
 
-	public static List<Brake> brakeDTOListToBrakelist(List<BrakeDTO> dtos) {
+	public static List<Brake> brakeDTOListToBrakeList(List<BrakeDTO> dtos) {
 		
 		return dtos.stream().map(dto -> brakeDTOToBrake(dto)).collect(Collectors.toList());
 	}
 	
-	public static List<BrakeDTO> brakeListToBrakeDTOlist(List<Brake> brakes) {
+	public static List<BrakeDTO> brakeListToBrakeDTOList(List<Brake> brakes) {
 		
 		return brakes.stream().map(brake -> brakeToBrakeDTO(brake)).collect(Collectors.toList());
 	}

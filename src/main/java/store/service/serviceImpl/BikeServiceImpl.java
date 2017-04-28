@@ -3,6 +3,7 @@ package store.service.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import store.persistence.entity.Bike;
@@ -17,8 +18,7 @@ public class BikeServiceImpl implements BikeService{
 	
 	@Override
 	public Bike save(Bike entity) {
-		bikeDao.save(entity);
-		
+		bikeDao.save(entity);	
 		return entity;
 	}
 
@@ -58,18 +58,38 @@ public class BikeServiceImpl implements BikeService{
 	}
 
 	@Override
-	public List<Bike> findMountainBikes() {
-		return bikeDao.findMountainBikes();
+	public List<Bike> findMountainBikes(int page) {
+		
+		return bikeDao.findMountainBikes(page);
 	}
 
 	@Override
-	public List<Bike> findAllMountainBikes() {
-		return bikeDao.findAllMountainBikes();
+	public List<Bike> findAllMountainBikes(int page) {
+		
+
+		return bikeDao.findAllMountainBikes(page);
 	}
 
 	@Override
-	public List<Bike> findRacingBikes() {
-		return bikeDao.findRacingBikes();
+	public List<Bike> findRacingBikes(int page) {
+		
+		
+		return bikeDao.findRacingBikes(page);
+	}
+
+	@Override
+	public int findCountPageMountainBikes() {
+		return bikeDao.findCountPageMountainBikes();
+	}
+
+	@Override
+	public int findCountPageAllMountainBikes() {
+		return bikeDao.findCountPageAllMountainBikes();
+	}
+
+	@Override
+	public int findCountPageRacingBikes() {
+		return bikeDao.findCountPageRacingBikes();
 	}
 
 }

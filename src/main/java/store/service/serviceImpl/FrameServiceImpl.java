@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import store.persistence.entity.Fork;
 import store.persistence.entity.Frame;
 import store.persistence.repository.FrameDao;
 import store.service.FrameService;
@@ -72,4 +73,13 @@ public class FrameServiceImpl implements FrameService {
 		return frameDao.findWithOutSnubber();
 	}
 
+	@Override
+	public int findCountPages() {
+		return frameDao.findCountPages();
+	}
+
+	@Override
+	public List<Frame> findProducts(int page) {
+		return frameDao.findProducts(page);
+	}
 }

@@ -38,7 +38,7 @@ public abstract class GenericDaoImpl <T, ID> implements GenericDao<T, ID> {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	@Override
 	public void delete(T entity) {
-		entityManager.remove(entity);
+		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
 	}
 
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
