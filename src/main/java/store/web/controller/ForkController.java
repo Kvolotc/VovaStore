@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import store.persistence.dto.BrakeDTO;
 import store.persistence.dto.ForkDTO;
-import store.persistence.dto.mapper.BrakeMapper;
 import store.persistence.dto.mapper.ForkMapper;
 import store.persistence.entity.Fork;
 import store.service.ForkService;
@@ -37,4 +36,31 @@ public class ForkController {
 		return ForkMapper.forkListToForkDTOList(service.findProducts(page));
 	}
 
+	@RequestMapping(value = "/searchForks/", method = RequestMethod.GET)
+	public List<ForkDTO> getSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max,
+			@RequestParam int page) {
+
+		String words[] = word.split(" ");
+
+		if (words.length > 1) {
+			return ForkMapper
+					.forkListToForkDTOList(service.findBySearchProductsWithTwoSearchWords(words[0], words[1], min, max, page));
+		} else {
+			return ForkMapper.forkListToForkDTOList(service.findBySearchProductsWithOneSearchWord(words[0], min, max, page));
+		}
+
+	}
+
+	@RequestMapping(value = "/countSearchForks/", method = RequestMethod.GET)
+	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
+
+		String words[] = word.split(" ");
+
+		if (words.length > 1) {
+			return service.findCountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
+		} else {
+			return service.findCountBySearchProductsWithOneSearchWord(word, min, max);
+		}
+
+	}
 }

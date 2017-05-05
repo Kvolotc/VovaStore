@@ -1,17 +1,28 @@
-angular.module('myApp')
-.controller('rims', function($scope, $http, $routeParams,$location, $routeParams, productFactory, padination) {
+angular.module('myApp').controller(
+		'rims',
+		function($scope, $http, $routeParams, $location, $routeParams,
+				paginationService) {
 
 			$scope.rims = [];
-			
-            $scope.productFactory = productFactory;
-			
-			$scope.padination = padination;
-			
+
+			$scope.paginationService = paginationService;
+
+			$scope.urlRim = "#!/rims/";
+
 			$scope.url = "/rims/";
-			
+
 			$scope.countRims = 1;
-			
+
 			$scope.activeRim = {};
+
+			$scope.paginationParam = {
+				masPages : [],
+				isNext : false,
+				isPrevious : false
+			}
+
+			paginationService.pagination('/getCountPage/rims',
+					$routeParams.page, $scope.paginationParam)
 
 			$http({
 				method : "GET",
@@ -22,23 +33,14 @@ angular.module('myApp')
 			}, function myError(response) {
 
 			});
-			
-            $scope.padination.firstPadination('/getCountPage/rims', $routeParams.page, $scope.productFactory);	 				
-
-			
-			$scope.padination.updatePadination('/getCountPage/rims', $routeParams.page, $scope.productFactory);
-			
-	
 
 			$scope.price = function() {
 				$scope.activeRims.price = $scope.activeRims.price
 						* $scope.countRims;
 			}
 
-
 			$scope.changeActiveRim = function(rim) {
 				$scope.activeRim = rim;
 			}
-
 
 		});

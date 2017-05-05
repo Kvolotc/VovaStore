@@ -58,22 +58,17 @@ public class BikeServiceImpl implements BikeService{
 	}
 
 	@Override
-	public List<Bike> findMountainBikes(int page) {
-		
+	public List<Bike> findMountainBikes(int page) {		
 		return bikeDao.findMountainBikes(page);
 	}
 
 	@Override
 	public List<Bike> findAllMountainBikes(int page) {
-		
-
 		return bikeDao.findAllMountainBikes(page);
 	}
 
 	@Override
-	public List<Bike> findRacingBikes(int page) {
-		
-		
+	public List<Bike> findRacingBikes(int page) {	
 		return bikeDao.findRacingBikes(page);
 	}
 
@@ -90,6 +85,26 @@ public class BikeServiceImpl implements BikeService{
 	@Override
 	public int findCountPageRacingBikes() {
 		return bikeDao.findCountPageRacingBikes();
+	}
+
+	@Override
+	public List<Bike> findBySearchBikesWithOneSearchWord(String SearchWord, int min, int max, int page) {		
+		return bikeDao.findBySearchBikesWithOneSearchWord(SearchWord, min, max, page);
+	}
+
+	@Override
+	public List<Bike> findBySearchBikesWithTwoSearchWords(String SearchWord, String SearchWord2, int min, int max, int page) {
+		return bikeDao.findBySearchBikesWithTwoSearchWords(SearchWord, SearchWord2, min, max, page);
+	}
+
+	@Override
+	public int findCountBySearchBikesWithOneSearchWord(String SearchWord, int min, int max) {
+		return bikeDao.findCountBySearchBikesWithOneSearchWord(SearchWord, min, max);
+	}
+
+	@Override
+	public int findCountBySearchBikesWithTwoSearchWords(String SearchWord, String SearchWord2, int min, int max) {
+		return bikeDao.findCountBySearchBikesWithTwoSearchWords(SearchWord, SearchWord2, min, max);
 	}
 
 }

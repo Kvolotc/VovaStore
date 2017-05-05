@@ -12,7 +12,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.1.1/rzslider.min.css">
 
 <link rel="stylesheet" th:href="@{/css/home.css}">
 <link rel="stylesheet" th:href="@{/css/registration.css}">
@@ -38,25 +39,36 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.js"></script>
-	<script th:src= "@{/js/ui-bootstrap-tpls-2.5.0.min.js}" ></script>
-	
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.1.1/rzslider.min.js"></script>
+
 
 <script th:src="@{/js/navigate.js}"></script>
 <script th:src="@{/js/controller/homeCntrl.js}"></script>
 <script th:src="@{/js/controller/loginCntrl.js}"></script>
 <script th:src="@{/js/controller/registrationCntrl.js}"></script>
 <script th:src="@{/js/controller/forgotPasswordCntrl.js}"></script>
-<script th:src="@{/js/controller/frameCntrl.js}"></script>
-<script th:src="@{/js/controller/forkCntrl.js}"></script>
-<script th:src="@{/js/controller/rimCntrl.js}"></script>
-<script th:src="@{/js/controller/tireCntrl.js}"></script>
-<script th:src="@{/js/controller/brakeCntrl.js}"></script>
-<script th:src="@{/js/controller/allMountainBikeCntrl.js}"></script>
-<script th:src="@{/js/controller/mountainBikeCntrl.js}"></script>
-<script th:src="@{/js/controller/racingBikeCntrl.js}"></script>
-<script th:src="@{/js/factory/productFactory.js}"></script> 
-<script th:src="@{/js/service/productService.js}"></script> 
+<script th:src="@{/js/controller/product/frameCntrl.js}"></script>
+<script th:src="@{/js/controller/product/forkCntrl.js}"></script>
+<script th:src="@{/js/controller/product/rimCntrl.js}"></script>
+<script th:src="@{/js/controller/product/tireCntrl.js}"></script>
+<script th:src="@{/js/controller/product/brakeCntrl.js}"></script>
+<script th:src="@{/js/controller/product/allMountainBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/product/mountainBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/product/racingBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/searchProduct/searchBikesCntrl.js}"></script>
+<script th:src="@{/js/controller/searchProduct/searchBrakeCntrl.js}"></script>
+<script th:src="@{/js/controller/searchProduct/searchForkCntrl.js}"></script>
+<script th:src="@{/js/controller/searchProduct/searchFrameCntrl.js}"></script>
+<script th:src="@{/js/controller/searchProduct/searchRimCntrl.js}"></script>
+<script th:src="@{/js/controller/searchProduct/searchTireCntrl.js}"></script>
+<script th:src="@{/js/factory/productFactory.js}"></script>
+<script th:src="@{/js/service/productService.js}"></script>
+<script th:src="@{/js/service/paginationService.js}"></script>
+
+
 
 
 
@@ -82,7 +94,7 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active-link "><a href="/"><span
+					<li class="active-link "><a href="#!/"><span
 							class="glyphicon glyphicon-home  "></span> головна</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -109,13 +121,11 @@
 							<li><a href="#!/brakes/1">тормоза</a></li>
 						</ul></li>
 					<li><a href="#">контакти <span class="sr-only"></span></a></li>
+					<li><a style="cursor: pointer;" ng-click="changeSearchForm()"><span
+							class="glyphicon glyphicon-search"></span> Search<span
+							class="sr-only "></span></a></li>
 
 				</ul>
-
-
-
-
-				<button class="btn btn-primary search" ng-click="changeSearchForm()" type="button">Search</button>
 
 
 
@@ -134,45 +144,61 @@
 		</div>
 
 	</nav>
-	
-	
-	
-	
-	<div class="container" ng-show="showSearchForm">
-    <div class="row">    
-        <div class="col-xs-6 col-xs-offset-3">
-		    <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains">Contains</a></li>
-                      <li><a href="#its_equal">It's equal</a></li>
-                      <li><a href="#greather_than">Greather than ></a></li>
-                      <li><a href="#less_than">Less than < </a></li>
-                      <li class="divider"></li>
-                      <li><a href="#all">Anything</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-            </div>
-        </div>
+
+
+
+	<div class="search" ng-show="showSearchForm">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="form-section">
+						<div class="row">
+							<form role="form" id="search-form">
+								<div class="col-md-4 col-md-offset-2  col-xs-4 col-xs-offset-2">
+									<div class="form-group">
+										<label class="sr-only"></label> <input type="text"
+											name="searchWord" ng-model="searchWord" class="form-control"
+											placeholder="Search word">
+									</div>
+								</div>						
+
+								<div class="col-md-4   col-xs-4 ">
+									<div class="form-group">
+										<select name="selectProduct" ng-model="searchProduct"
+											ng-hide="hideProduct" class="form-control">
+											<option ng-repeat="product in searchProducts">{{product}}</option>
+
+										</select>
+									</div>
+								</div>
+								
+									<div class="col-md-8 col-md-offset-2  col-xs-8 col-xs-offset-2">
+								<div class="form-group">
+									<rzslider style="font-size:15px"
+										rz-slider-model="slider.minValue"
+										rz-slider-high="slider.maxValue"
+										rz-slider-options="slider.options"></rzslider>
+										</div>
+								</div>
+								
+								
+								<div class="col-md-2 col-md-offset-5 col-xs-2 col-xs-offset-5">
+									<button type="submit" id="searchSubmit" style="font-size:15px"
+										class="btn btn-primary glyphicon glyphicon-search"> Search</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
-	
-      <br ng-if="showSearchForm"></br>
-      
+
+<br ng-show="showSearchForm"></br>
+
+
 	<div ng-view></div>
-	
 
-<h1>{{showSearchForm}}</h1>
-
-<h1>{{location.path()}}</h1>
 
 
 

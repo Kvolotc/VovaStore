@@ -66,5 +66,26 @@ public class BrakeServiceImpl implements BrakeService {
 	public List<Brake> findProducts(int page) {
 		return brakeDao.findProducts(page);
 	}
+
+	@Override
+	public List<Brake> findBySearchProductsWithOneSearchWord(String searchWord, int min, int max, int page) {
+		return brakeDao.findBySearchProductsWithOneSearchWord(searchWord, min, max, page);
+	}
+
+	@Override
+	public List<Brake> findBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max,
+			int page) {
+		return brakeDao.findBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max, page);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return brakeDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return brakeDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	}
 	
 }

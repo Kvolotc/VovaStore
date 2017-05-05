@@ -37,7 +37,7 @@ myApp
 						}
 					}
 
-					this.updatePadination = function(url,numPage, factory) {
+					this.updatePadination = function(url, numPage, factory) {
 						if (factory.countPage == 0 && numPage != 1) {
 
 							$http({

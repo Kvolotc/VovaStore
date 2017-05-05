@@ -1,19 +1,28 @@
-angular.module('myApp').controller('mountainBike',function($scope, $rootScope, $http, $location, $routeParams, productFactory, padination) {
+angular.module('myApp').controller(
+		'mountainBike',
+		function($scope, $rootScope, $http, $location, $routeParams,
+				paginationService) {
 
 			$scope.bikes = [];
-			
-			$scope.productFactory = productFactory;
-			
-			$scope.padination = padination;
-			
+
+			$scope.paginationService = paginationService;
+
 			$scope.urlBike = "#!/mountainBikes/";
-			
+
 			$scope.url = "/mountainBikes/";
-			
+
 			$scope.countBikes = 1;
-			
+
 			$scope.activeBike = {};
-			
+
+			$scope.paginationParam = {
+				masPages : [],
+				isNext : false,
+				isPrevious : false
+			}
+
+			paginationService.pagination('/getCountPage/mountainBikes',
+					$routeParams.page, $scope.paginationParam)
 
 			$http({
 				method : "GET",
@@ -23,22 +32,14 @@ angular.module('myApp').controller('mountainBike',function($scope, $rootScope, $
 			}, function myError(response) {
 
 			});
-			
-			$scope.padination.firstPadination('/getCountPage/mountainBikes', $routeParams.page, $scope.productFactory);	 				
-
-			
-			$scope.padination.updatePadination('/getCountPage/mountainBikes', $routeParams.page, $scope.productFactory);
-				
 
 			$scope.price = function() {
 				$scope.activeBike.price = $scope.activeBike.price
 						* $scope.count;
 			}
 
-
 			$scope.changeActiveBike = function(bike) {
 				$scope.activeBike = bike;
 			}
-
 
 		});

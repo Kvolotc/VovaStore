@@ -19,7 +19,7 @@
 
 
 					<p style="text-align: center; font-size: 18px;">{{rim.price}}
-						UA</p>
+						USD</p>
 
 
 					<div class="buttons pull-right">
@@ -59,7 +59,7 @@
 							<div class="media-body">
 								<br> <br> Number = <input style="float: none"
 									class="col-sm-2" type="number" ng-model="countRims" /> <br> <br>
-								<p style="font-size: 20px;">{{activeRim.price * countRims}} UA</p>
+								<p style="font-size: 20px;">{{activeRim.price * countRims}} USD</p>
 
 							</div>
 
@@ -82,9 +82,9 @@
 		</div>
 		
 <nav aria-label="Page navigation example" style="text-align: center;">
-<ul class="pagination" ng-show="productFactory.isPrevious" ><li class="page-item"><a class="page-link" ng-click="padination.previous(url, productFactory.masPage[0]-1, productFactory)" >Previous</a></li></ul>
-  <ul class="pagination" ng-repeat="numPage in productFactory.masPage">
-    <li class="page-item"><a class="page-link" href="#!/rims/{{numPage}}"">{{numPage}}</a></li>
+<ul class="pagination" ng-show="paginationParam.isPrevious" ><li class="page-item"><a class="page-link" style="cursor: pointer;" ng-click="paginationService.previous(url, paginationParam.masPages[0]-1)" >Previous</a></li></ul>
+  <ul class="pagination" ng-repeat="numPage in paginationParam.masPages">
+    <li class="page-item"><a class="page-link" href="{{urlRim}}{{numPage}}">{{numPage}}</a></li>
   </ul>
- <ul class="pagination" ng-show="productFactory.isNext">  <li class="page-item"><a class="page-link" ng-click="padination.next(url, productFactory.masPage[4]+1, productFactory)" >Next</a></li></ul>
+ <ul class="pagination" ng-show="paginationParam.isNext">  <li class="page-item"><a class="page-link" style="cursor: pointer;" ng-click="paginationService.next(url, paginationParam.masPages[4]+1)" >Next</a></li></ul>
 </nav>

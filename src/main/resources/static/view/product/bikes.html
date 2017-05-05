@@ -29,7 +29,7 @@
 						<p>Tire = {{bike.tire.brand}} {{bike.tire.model}},
 							{{bike.tire.type}}, diameter {{bike.tire.diameter}} cm.</p>
 						<p style="text-align: center; font-size: 18px;">{{bike.price}}
-							UA</p>
+							USD</p>
 
 
 					</div>
@@ -74,7 +74,7 @@
 							class="col-sm-2" type="number" ng-model="countBikes" /> <br>
 						<br>
 						<p style="font-size: 20px;">{{activeBike.price * countBikes}}
-							UA</p>
+							USD</p>
 
 					</div>
 
@@ -96,17 +96,17 @@
 
 </div>
 <nav  aria-label="Page navigation example" style="text-align: center;">
-	<ul class="pagination" ng-show="productFactory.isPrevious">
+	<ul class="pagination" ng-show="paginationParam.isPrevious">
 		<li class="page-item"><a class="page-link"
-			ng-click="padination.previous(url, productFactory.masPage[0]-1, productFactory)">Previous</a></li>
+			style="cursor: pointer;" ng-click="paginationService.previous(url, paginationParam.masPages[0]-1)">Previous</a></li>
 	</ul>
-	<ul class="pagination" ng-repeat="numPage in productFactory.masPage">
+	<ul class="pagination" ng-repeat="numPage in paginationParam.masPages">
 		<li class="page-item"><a class="page-link"
 			href="{{urlBike}}{{numPage}}"">{{numPage}}</a></li>
 	</ul>
-	<ul class="pagination" ng-show="productFactory.isNext">
+	<ul class="pagination" ng-show="paginationParam.isNext">
 		<li class="page-item"><a class="page-link"
-			ng-click="padination.next(url, productFactory.masPage[4]+1, productFactory)">Next</a></li>
+			style="cursor: pointer;" ng-click="paginationService.next(url, paginationParam.masPages[4]+1)">Next</a></li>
 	</ul>
 </nav>
 

@@ -82,4 +82,25 @@ public class FrameServiceImpl implements FrameService {
 	public List<Frame> findProducts(int page) {
 		return frameDao.findProducts(page);
 	}
+
+	@Override
+	public List<Frame> findBySearchProductsWithOneSearchWord(String searchWord, int min, int max, int page) {
+		return frameDao.findBySearchProductsWithOneSearchWord(searchWord, min, max, page);
+	}
+
+	@Override
+	public List<Frame> findBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max,
+			int page) {
+		return frameDao.findBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max, page);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return frameDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return frameDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	}
 }

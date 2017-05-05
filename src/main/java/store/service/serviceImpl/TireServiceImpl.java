@@ -73,4 +73,25 @@ public class TireServiceImpl implements TireService {
 		return tireDao.findProducts(page);
 	}
 
+	@Override
+	public List<Tire> findBySearchProductsWithOneSearchWord(String searchWord, int min, int max, int page) {
+		return tireDao.findBySearchProductsWithOneSearchWord(searchWord, min, max, page);
+	}
+
+	@Override
+	public List<Tire> findBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max,
+			int page) {
+		return tireDao.findBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max, page);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return tireDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return tireDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	}
+
 }

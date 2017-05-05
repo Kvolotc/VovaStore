@@ -15,5 +15,13 @@ public interface GenericProductDao<T, ID> extends GenericDao<T, ID> {
 	
 	public List<T> findProducts(int page);
 	
+	public List<T> findBySearchProductsWithOneSearchWord(String searchWord, int min, int max, int page);
+	
+	public List<T> findBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max, int page);
+	
+	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max);
+	
+	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max);
+	
 	
 }

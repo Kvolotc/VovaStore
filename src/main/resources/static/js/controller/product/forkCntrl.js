@@ -1,17 +1,28 @@
-angular.module('myApp')
-.controller('forks', function($scope, $http, $routeParams,$location, $routeParams, productFactory, padination) {
+angular.module('myApp').controller(
+		'forks',
+		function($scope, $http, $routeParams, $location, $routeParams,
+				paginationService) {
 
 			$scope.forks = [];
-			
-            $scope.productFactory = productFactory;
-			
-			$scope.padination = padination;
-			
+
+			$scope.paginationService = paginationService;
+
+			$scope.urlFork = "#!/forks/";
+
 			$scope.url = "/forks/";
-			
+
 			$scope.countForks = 1;
-			
+
 			$scope.activeFork = {};
+
+			$scope.paginationParam = {
+				masPages : [],
+				isNext : false,
+				isPrevious : false
+			}
+
+			paginationService.pagination('/getCountPage/forks',
+					$routeParams.page, $scope.paginationParam)
 
 			$http({
 				method : "GET",
@@ -22,23 +33,14 @@ angular.module('myApp')
 			}, function myError(response) {
 
 			});
-			
-            $scope.padination.firstPadination('/getCountPage/forks', $routeParams.page, $scope.productFactory);	 				
-
-			
-			$scope.padination.updatePadination('/getCountPage/forks', $routeParams.page, $scope.productFactory);
-			
-	
 
 			$scope.price = function() {
 				$scope.activeFork.price = $scope.activeFork.price
 						* $scope.countForks;
 			}
 
-
 			$scope.changeActiveFork = function(fork) {
 				$scope.activeFork = fork;
 			}
-
 
 		});

@@ -60,14 +60,12 @@ angular.module('myApp').controller('forgotPassword',
 						data : $scope.forgotPasswordParam
 
 					}).then(function(response) {
-						console.log(response);
 						$("#forgotPasswordModal").modal("show");
 
 					}, function errorCallback(response) {
 
 						$scope.message = 'Invalid Email';
 						$scope.isWarning = true;
-						console.log(response);
 
 					});
 

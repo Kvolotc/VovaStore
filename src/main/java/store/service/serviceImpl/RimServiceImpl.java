@@ -73,4 +73,25 @@ public class RimServiceImpl implements RimService {
 		return rimDao.findProducts(page);
 	}
 
+	@Override
+	public List<Rim> findBySearchProductsWithOneSearchWord(String searchWord, int min, int max, int page) {
+		return rimDao.findBySearchProductsWithOneSearchWord(searchWord, min, max, page);
+	}
+
+	@Override
+	public List<Rim> findBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max,
+			int page) {
+		return rimDao.findBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max, page);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return rimDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return rimDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	}
+
 }

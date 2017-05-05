@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', [ "ngRoute", "ngTable", "ui.bootstrap"]);
+var myApp = angular.module('myApp', [ "ngRoute", "rzModule", "ui.bootstrap" ]);
 
 myApp.config(function($routeProvider, $locationProvider) {
 	$routeProvider
@@ -19,24 +19,54 @@ myApp.config(function($routeProvider, $locationProvider) {
 	})
 
 	.when('/mountainBikes/:page', {
-		templateUrl : 'view/bikes.html',
+		templateUrl : 'view/product/bikes.html',
 		controller : 'mountainBike',
 	})
-	
+
 	.when('/allMountainBikes/:page', {
-		templateUrl : 'view/bikes.html',
+		templateUrl : 'view/product/bikes.html',
 		controller : 'allMountainsBikes'
 	})
-	
+
 	.when('/racingBikes/:page', {
-		templateUrl : 'view/bikes.html',
+		templateUrl : 'view/product/bikes.html',
 		controller : 'racingBikes'
 	})
 
-//	.when('/actived/:name', {
-//		templateUrl : 'view/activate.html',
-//		controller : 'active'
-//	})
+	.when('/searchBikes/word=:word;min=:min;max=:max;page=:page', {
+		templateUrl : 'view/product/bikes.html',
+		controller : 'searchBikes'
+	})
+	
+	.when('/searchBrakes/word=:word;min=:min;max=:max;page=:page', {
+		templateUrl : 'view/product/brakes.html',
+		controller : 'searchBrakes'
+	})
+	
+	.when('/searchFrames/word=:word;min=:min;max=:max;page=:page', {
+		templateUrl : 'view/product/frames.html',
+		controller : 'searchFrames'
+	})
+	
+	.when('/searchForks/word=:word;min=:min;max=:max;page=:page', {
+		templateUrl : 'view/product/forks.html',
+		controller : 'searchForks'
+	}).
+	
+	when('/searchRims/word=:word;min=:min;max=:max;page=:page', {
+		templateUrl : 'view/product/rims.html',
+		controller : 'searchRims'
+	})
+	
+	.when('/searchTires/word=:word;min=:min;max=:max;page=:page', {
+		templateUrl : 'view/product/tires.html',
+		controller : 'searchTires'
+	})
+
+	//	.when('/actived/:name', {
+	//		templateUrl : 'view/activate.html',
+	//		controller : 'active'
+	//	})
 
 	.when('/forgotPassword', {
 		templateUrl : 'view/forgotPassword.html',
@@ -44,27 +74,27 @@ myApp.config(function($routeProvider, $locationProvider) {
 	})
 
 	.when('/frames/:page', {
-		templateUrl : 'view/frames.html',
+		templateUrl : 'view/product/frames.html',
 		controller : 'frames'
 	})
-	
+
 	.when('/forks/:page', {
-		templateUrl : 'view/forks.html',
+		templateUrl : 'view/product/forks.html',
 		controller : 'forks'
 	})
 
 	.when('/rims/:page', {
-		templateUrl : 'view/rims.html',
+		templateUrl : 'view/product/rims.html',
 		controller : 'rims'
 	})
 
 	.when('/tires/:page', {
-		templateUrl : 'view/tires.html',
+		templateUrl : 'view/product/tires.html',
 		controller : 'tires'
 	})
 
 	.when('/brakes/:page', {
-		templateUrl : 'view/brakes.html',
+		templateUrl : 'view/product/brakes.html',
 		controller : 'brakes'
 	})
 
@@ -72,10 +102,10 @@ myApp.config(function($routeProvider, $locationProvider) {
 		redirectTo : '/'
 	})
 
-//	$locationProvider.html5Mode({
-//		enabled : true,
-//		requireBase : true
-//	});
-//	$locationProvider.hashPrefix('!');
+	//	$locationProvider.html5Mode({
+	//		enabled : true,
+	//		requireBase : true
+	//	});
+	//	$locationProvider.hashPrefix('!');
 
 });

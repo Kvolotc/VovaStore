@@ -27,4 +27,12 @@ public interface BikeService extends GenericService<Bike, Integer> {
 	
 	public List<Bike> findBetweenPrice(Integer min , Integer max);
 	
+	public List<Bike> findBySearchBikesWithOneSearchWord(String searchWord, int min, int max, int page);
+	
+	public List<Bike> findBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max, int page);
+	
+	public int findCountBySearchBikesWithOneSearchWord(String searchWord, int min, int max);
+	
+	public int findCountBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max);
+	
 }

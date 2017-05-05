@@ -161,7 +161,6 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 					
 				}, function errorCallback(response) {
 					
-					console.log(response);
 					
 				});
 				

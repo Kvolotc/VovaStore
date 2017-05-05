@@ -42,12 +42,12 @@ public class TireMapper {
 		return dto;
 	}
 	
-	public static List<Tire> tireDTOListTotireList(List<TireDTO> dtos) {
+	public static List<Tire> tireDTOListToTireList(List<TireDTO> dtos) {
 		
 		return dtos.stream().map(dto -> tireDTOToTire(dto)).collect(Collectors.toList());
 	}
 	
-	public static List<TireDTO> tireListTotireDTOList(List<Tire> tires) {
+	public static List<TireDTO> tireListToTireDTOList(List<Tire> tires) {
 		
 		return tires.stream().map(tire -> tireToTireDTO(tire)).collect(Collectors.toList());
 	}

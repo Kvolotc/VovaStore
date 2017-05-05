@@ -77,5 +77,26 @@ public class ForkServiceImpl implements ForkService{
 	public List<Fork> findProducts(int page) {
 		return forkDao.findProducts(page);
 	}
+
+	@Override
+	public List<Fork> findBySearchProductsWithOneSearchWord(String searchWord, int min, int max, int page) {
+		return forkDao.findBySearchProductsWithOneSearchWord(searchWord, min, max, page);
+	}
+
+	@Override
+	public List<Fork> findBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max,
+			int page) {
+		return forkDao.findBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max, page);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return forkDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	}
+
+	@Override
+	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return forkDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	}
 	
 }
