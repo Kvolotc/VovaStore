@@ -80,7 +80,7 @@
 
 </div>
 
-<nav aria-label="Page navigation example" style="text-align: center;">
+<nav aria-label="Page navigation example" style="text-align: center;" ng-show="tires.length != 0">
 	<ul class="pagination" ng-show="paginationParam.isPrevious">
 		<li class="page-item"><a class="page-link"
 			style="cursor: pointer;" ng-click="paginationService.previous(url, paginationParam.masPages[0]-1)">Previous</a></li>
