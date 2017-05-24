@@ -3,7 +3,7 @@ package store.persistence.dto;
 
 public class BikeDTO {
 	
-	private Double price;
+	private int price;
 	
 	private BrakeDTO brake;
 	
@@ -17,11 +17,11 @@ public class BikeDTO {
 
 	private String imageName;
 
-	public Double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

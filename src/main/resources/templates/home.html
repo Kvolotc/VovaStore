@@ -164,16 +164,16 @@
 
 								<div class="col-md-4   col-xs-4 ">
 									<div class="form-group">
-										<select name="selectProduct" ng-model="searchProduct"
-											ng-hide="hideProduct" class="form-control">
-											<option ng-repeat="product in searchProducts">{{product}}</option>
+										<select name="selectProduct" ng-model="searchProduct" ng-change="change(searchProduct)"
+											class="form-control">
+											<option  ng-repeat="product in searchProducts">{{product}}</option>
 
 										</select>
 									</div>
 								</div>
 								
 									<div class="col-md-8 col-md-offset-2  col-xs-8 col-xs-offset-2">
-								<div class="form-group">
+								<div class="form-group" ng-show="searchProduct != '' ">
 									<rzslider style="font-size:15px"
 										rz-slider-model="slider.minValue"
 										rz-slider-high="slider.maxValue"

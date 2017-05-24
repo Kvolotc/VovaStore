@@ -94,4 +94,9 @@ public class RimServiceImpl implements RimService {
 		return rimDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
 
+	@Override
+	public int findMaxPriceProduct() {
+		return rimDao.findMaxPriceProduct();
+	}
+
 }

@@ -3,7 +3,7 @@ package store.persistence.dto;
 
 public class RimDTO {
 		
-	private double price;
+	private int price;
 
 	private String model;
 	
@@ -17,11 +17,11 @@ public class RimDTO {
 	
 	private String imageName;
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

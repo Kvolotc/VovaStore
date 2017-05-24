@@ -98,5 +98,10 @@ public class ForkServiceImpl implements ForkService{
 	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
 		return forkDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
+
+	@Override
+	public int findMaxPriceProduct() {
+		return forkDao.findMaxPriceProduct();
+	}
 	
 }

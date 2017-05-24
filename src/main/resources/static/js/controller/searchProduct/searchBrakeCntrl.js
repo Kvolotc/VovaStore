@@ -4,6 +4,8 @@ angular.module('myApp').controller(
 				paginationService) {
 
 			$scope.brakes = [];
+			
+			$scope.isEmpty = false;
 
 			$scope.paginationService = paginationService;
 
@@ -42,6 +44,9 @@ angular.module('myApp').controller(
 								+ $routeParams.page
 					}).then(function(response) {
 				$scope.brakes = response.data;
+				if($scope.brakes.length == 0) {
+					$scope.isEmpty = true;
+				}
 			}, function myError(response) {
 
 			});

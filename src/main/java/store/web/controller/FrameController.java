@@ -68,4 +68,9 @@ public class FrameController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/maxPriceFrames", method = RequestMethod.GET)
+	public int findMaxPrice() {
+		return service.findMaxPriceProduct();
+	}
 }

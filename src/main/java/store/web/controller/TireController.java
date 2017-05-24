@@ -73,4 +73,9 @@ public class TireController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/maxPriceTires", method = RequestMethod.GET)
+	public int findMaxPrice() {
+		return service.findMaxPriceProduct();
+	}
 }

@@ -1,21 +1,20 @@
 
-	<div class="container">
+<div class="container">
 
 
-		<div class="row">
-			<div class="col-sm-4  col-xs-6" ng-repeat="fork in forks">
+	<div class="row">
+		<div class="col-sm-4  col-xs-6" ng-repeat="fork in forks">
 
-				<div class="thumbnail product">
-					<img ng-src="images/forks/{{fork.imageName}}.jpg" 
-						 />
+			<div class="thumbnail product">
+				<img ng-src="images/forks/{{fork.imageName}}.jpg" />
 
 				<div class="media-body" style="font-size: 15px; color: black;">
 
 					<strong><p style="text-align: center;">{{fork.brand}}
 							{{fork.model}}</p> </strong>
-					<p>Year of model : {{fork.createdOn}}</p>			
+					<p>Year of model : {{fork.createdOn}}</p>
 					<p>Type: {{fork.type}}</p>
-					<p >Course : {{fork.course}} mm.</p>
+					<p>Course : {{fork.course}} mm.</p>
 
 
 					<p style="text-align: center; font-size: 18px;">{{fork.price}}
@@ -26,66 +25,90 @@
 						<button href="#" class="btn btn-success"
 							data-target="#buyingModal" data-toggle="modal"
 							ng-click="changeActiveFork(fork)">Buy</button>
-							<button href="
+						<button href="
 							#" class="btn btn-success">Backet</button>
 					</div>
-
 				</div>
-
 			</div>
-			</div>
-
 		</div>
-
 	</div>
-	
-	
-	<div class="modal fade" tabindex="-1" id="buyingModal"
-			data-keyboard="false" data-backdrop="static">
+</div>
 
 
-			<div class="modal-dialog modal-md ">
 
-				<div class="col-sm-12 container">
-					<div class="text-center panel panel-default secses">
-						<button type="button" class="close" data-dismiss="modal">
-							&times;</button>
-
-						<div class="thumbnail bikesModal">
-							<strong><p style="font-size: 18px;">{{activeFork.brand}}
-									{{activeFork.model}}</p> </strong> <img
-								style="float: none; width: 60%;"
-								ng-src="images/forks/{{activeFork.imageName}}.jpg" />
-							<div class="media-body">
-								<br> <br> Number = <input style="float: none"
-									class="col-sm-2" type="number" ng-model="countForks" /> <br> <br>
-								<p style="font-size: 20px;">{{activeFork.price * countForks}} USD</p>
-
-							</div>
+<div class="container" ng-if="isEmpty">
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 ">
+			<div class="thumbnail bikes pull-left ">
+				<div class="media-body">
+					<p style="text-align: center; color: red; font-size: 18px; text-transform: uppercase;">forks
+						has not been found</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
-						</div>
 
-						<div class="form-group ">
 
-							<div
-								class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group">
-								<a type="button" class="btn btn-success">Buy</a>
-							</div>
+<div class="modal fade" tabindex="-1" id="buyingModal"
+	data-keyboard="false" data-backdrop="static">
 
-						</div>
+
+	<div class="modal-dialog modal-md ">
+
+		<div class="col-sm-12 container">
+			<div class="text-center panel panel-default secses">
+				<button type="button" class="close" data-dismiss="modal">
+					&times;</button>
+
+				<div class="thumbnail bikesModal">
+					<strong><p style="font-size: 18px;">{{activeFork.brand}}
+							{{activeFork.model}}</p> </strong> <img style="float: none; width: 60%;"
+						ng-src="images/forks/{{activeFork.imageName}}.jpg" />
+					<div class="media-body">
+						<br> <br> Number = <input style="float: none"
+							class="col-sm-2" type="number" ng-model="countForks" /> <br>
+						<br>
+						<p style="font-size: 20px;">{{activeFork.price * countForks}}
+							USD</p>
 
 					</div>
-				</div>
-			</div>
 
+
+				</div>
+
+				<div class="form-group ">
+
+					<div
+						class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group">
+						<a type="button" class="btn btn-success">Buy</a>
+					</div>
+
+				</div>
+
+			</div>
 		</div>
-		
-<nav aria-label="Page navigation example" style="text-align: center;" ng-show="forks.length != 0">
-<ul class="pagination" ng-show="paginationParam.isPrevious" ><li class="page-item"><a class="page-link" style="cursor: pointer;" ng-click="paginationService.previous(url, paginationParam.masPages[0]-1)" >Previous</a></li></ul>
-  <ul class="pagination" ng-repeat="numPage in paginationParam.masPages">
-    <li class="page-item"><a class="page-link" href="{{urlFork}}{{numPage}}"">{{numPage}}</a></li>
-  </ul>
- <ul class="pagination" ng-show="paginationParam.isNext">  <li class="page-item"><a class="page-link" style="cursor: pointer;" ng-click="paginationService.next(url, paginationParam.masPages[4]+1)" >Next</a></li></ul>
+	</div>
+
+</div>
+
+<nav aria-label="Page navigation example" style="text-align: center;"
+	ng-show="forks.length != 0">
+	<ul class="pagination" ng-show="paginationParam.isPrevious">
+		<li class="page-item"><a class="page-link"
+			style="cursor: pointer;"
+			ng-click="paginationService.previous(url, paginationParam.masPages[0]-1)">Previous</a></li>
+	</ul>
+	<ul class="pagination" ng-repeat="numPage in paginationParam.masPages">
+		<li class="page-item"><a class="page-link"
+			href="{{urlFork}}{{numPage}}"">{{numPage}}</a></li>
+	</ul>
+	<ul class="pagination" ng-show="paginationParam.isNext">
+		<li class="page-item"><a class="page-link"
+			style="cursor: pointer;"
+			ng-click="paginationService.next(url, paginationParam.masPages[4]+1)">Next</a></li>
+	</ul>
 </nav>
-	
+

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import store.persistence.entity.Bike;
 import store.persistence.repository.GenericProductDao;
 
 @Repository
@@ -158,6 +157,12 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 		}
 
 		return countPage;
+	}
+	
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	@Override
+	public int findMaxPriceProduct() {
+		return (int) entityManager.createQuery("SELECT MAX(e.price) FROM " + entity.getSimpleName() + " e").getSingleResult();		
 	}
 
 }

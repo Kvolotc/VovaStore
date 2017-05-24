@@ -4,6 +4,8 @@ angular.module('myApp').controller(
 				paginationService) {
 
 			$scope.rims = [];
+			
+			$scope.isEmpty = false;
 
 			$scope.paginationService = paginationService;
 
@@ -41,6 +43,9 @@ angular.module('myApp').controller(
 								+ $routeParams.page
 					}).then(function(response) {
 				$scope.rims = response.data;
+				if($scope.rims.length == 0) {
+					$scope.isEmpty = true;
+				}
 			}, function myError(response) {
 
 			});

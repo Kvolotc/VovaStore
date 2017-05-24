@@ -87,5 +87,10 @@ public class BrakeServiceImpl implements BrakeService {
 	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
 		return brakeDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
+
+	@Override
+	public int findMaxPriceProduct() {
+		return brakeDao.findMaxPriceProduct();
+	}
 	
 }

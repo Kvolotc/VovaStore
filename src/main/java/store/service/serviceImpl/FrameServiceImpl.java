@@ -103,4 +103,9 @@ public class FrameServiceImpl implements FrameService {
 	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
 		return frameDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
+
+	@Override
+	public int findMaxPriceProduct() {
+		return frameDao.findMaxPriceProduct();
+	}
 }

@@ -201,4 +201,10 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 		return countPage;
 	}
 
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public int findMaxPrice() {
+		return  (int) entityManager.createNativeQuery("SELECT MAX(bikes.price) FROM bikes").getSingleResult();
+	}
+
 }

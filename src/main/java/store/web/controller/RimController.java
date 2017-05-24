@@ -68,4 +68,9 @@ public class RimController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/maxPriceRims", method = RequestMethod.GET)
+	public int findMaxPrice() {
+		return service.findMaxPriceProduct();
+	}
 }

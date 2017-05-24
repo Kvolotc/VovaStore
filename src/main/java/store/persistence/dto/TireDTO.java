@@ -3,7 +3,7 @@ package store.persistence.dto;
 
 public class TireDTO {
 		
-	private double price;
+	private int price;
 
 	private String model;
 	
@@ -19,11 +19,11 @@ public class TireDTO {
 
 	private String imageName;
 	
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

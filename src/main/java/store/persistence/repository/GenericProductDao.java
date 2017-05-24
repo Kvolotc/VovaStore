@@ -23,5 +23,6 @@ public interface GenericProductDao<T, ID> extends GenericDao<T, ID> {
 	
 	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max);
 	
-	
+	public int findMaxPriceProduct();
+
 }

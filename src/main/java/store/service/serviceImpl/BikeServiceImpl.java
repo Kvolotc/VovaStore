@@ -107,4 +107,9 @@ public class BikeServiceImpl implements BikeService{
 		return bikeDao.findCountBySearchBikesWithTwoSearchWords(SearchWord, SearchWord2, min, max);
 	}
 
+	@Override
+	public int findMaxPrice() {
+		return bikeDao.findMaxPrice();
+	}
+	
 }

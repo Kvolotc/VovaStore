@@ -24,4 +24,5 @@ public interface GenericProductService<T,ID> extends GenericService<T, ID> {
 	
 	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max);
 
+	public int findMaxPriceProduct();
 }

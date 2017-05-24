@@ -34,4 +34,5 @@ public interface BikeDao extends GenericDao<Bike, Integer>  {
 	
 	public int findCountBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max);
 	
+	public int findMaxPrice();
 }

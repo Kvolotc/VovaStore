@@ -4,7 +4,7 @@ angular.module('myApp').controller(
 				paginationService) {
 
 			$scope.bikes = [];
-			
+
 			$scope.isEmpty = false;
 
 			$scope.paginationService = paginationService;
@@ -44,7 +44,7 @@ angular.module('myApp').controller(
 								+ $routeParams.page
 					}).then(function(response) {
 				$scope.bikes = response.data;
-				if($scope.bikes.length == 0) {
+				if ($scope.bikes.length == 0) {
 					$scope.isEmpty = true;
 				}
 			}, function myError(response) {

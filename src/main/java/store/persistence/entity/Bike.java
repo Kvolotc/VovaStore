@@ -20,7 +20,7 @@ public class Bike {
 	private int id;
 	
 	@Column(name="price")
-	private Double price;
+	private int price;
 	
 	@ManyToOne
 	@JoinColumn(name = "brake_id", referencedColumnName = "id")
@@ -93,11 +93,11 @@ public class Bike {
 		this.imageName = imageName;
 	}
 
-	public Double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

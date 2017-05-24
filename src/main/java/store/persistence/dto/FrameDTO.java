@@ -2,7 +2,7 @@ package store.persistence.dto;
 
 public class FrameDTO {
 
-	private double price;
+	private int price;
 
 	private String model;
 
@@ -28,11 +28,11 @@ public class FrameDTO {
 		this.snubberDTO = snubberDTO;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

@@ -69,4 +69,9 @@ public class BrakeController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/maxPriceBrakes", method = RequestMethod.GET)
+	public int findMaxPrice() {
+		return service.findMaxPriceProduct();
+	}
 }

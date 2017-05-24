@@ -93,5 +93,10 @@ public class BikeController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/maxPriceBikes", method = RequestMethod.GET)
+	public int findMaxPriceAllMountainBikes() {
+		return service.findMaxPrice();
+	}
 
 }

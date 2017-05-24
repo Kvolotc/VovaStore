@@ -1,26 +1,24 @@
 var myApp = angular.module('myApp');
 myApp.controller('home',
-		function($scope, $route, $location, $routeParams) {
+		function($scope, $route, $location, $routeParams, $http) {
 
-			$scope.searchProducts = [ 'Bike', 'Brake', 'Fork', 'Frame', 'Rim',
-					'Tire' ];
+			$scope.searchProducts = [ 'Bikes', 'Brakes', 'Forks', 'Frames', 'Rims',
+					'Tires' ];
 
 			$scope.searchProduct = '';
 
 			$scope.searchWord = '';
 
 			$scope.showSearchForm = false;
-
-			$scope.hideProduct = false;
-
+			
 			$scope.location = $location;
 
 			$scope.slider = {
-				minValue : 0,
-				maxValue : 10000,
+				minValue : 1,
+				maxValue : 	0,
 				options : {
-					floor : 0,
-					ceil : 10000,
+					floor : 1,
+					ceil : 	0,
 					step : 1,
 					noSwitching : true,
 					translate : function(value) {
@@ -28,6 +26,18 @@ myApp.controller('home',
 					}
 				}
 			};
+			
+			$scope.change = function(product) {
+				$http({
+					method : 'GET',
+					url : '/maxPrice'+product,
+				}).then(function(response) {
+					$scope.slider.maxValue = response.data;
+					$scope.slider.options.ceil = response.data;
+				}, function errorCallback(response) {});
+			}
+					
+			
 
 			$scope.changeSearchForm = function() {
 				$scope.showSearchForm = !$scope.showSearchForm;
@@ -36,9 +46,9 @@ myApp.controller('home',
 			jQuery.validator.addMethod('selectProduct',
 					function(value) {
 
-						return (value == 'Bike' || value == 'Brake'
-								|| value == 'Fork' || value == 'Frame'
-								|| value == 'Rim' || value == 'Tire');
+						return (value == 'Bikes' || value == 'Brakes'
+								|| value == 'Forks' || value == 'Frames'
+								|| value == 'Rims' || value == 'Tires');
 					}, "Please select Product");
 
 			$.validator.setDefaults({
@@ -72,71 +82,53 @@ myApp.controller('home',
 						if ($("#search-form").valid()) {
 
 							switch ($scope.searchProduct) {
-							case 'Bike': {
+							case 'Bikes': {
 
-								$location
-										.path('/searchBikes/word='
-												+ $scope.searchWord + ';min='
-												+ $scope.slider.minValue
-												+ ';max='
-												+ $scope.slider.maxValue
-												+ ';page=1');
+								$location.path('/searchBikes/word='
+										+ $scope.searchWord + ';min='
+										+ $scope.slider.minValue + ';max='
+										+ $scope.slider.maxValue + ';page=1');							
 								break;
 
 							}
-							case 'Brake': {
+							case 'Brakes': {
 
-								$location
-										.path('/searchBrakes/word='
-												+ $scope.searchWord + ';min='
-												+ $scope.slider.minValue
-												+ ';max='
-												+ $scope.slider.maxValue
-												+ ';page=1');
+								$location.path('/searchBrakes/word='
+										+ $scope.searchWord + ';min='
+										+ $scope.slider.minValue + ';max='
+										+ $scope.slider.maxValue + ';page=1');
 								break;
 							}
-							case 'Fork': {
+							case 'Forks': {
 
-								$location
-										.path('/searchForks/word='
-												+ $scope.searchWord + ';min='
-												+ $scope.slider.minValue
-												+ ';max='
-												+ $scope.slider.maxValue
-												+ ';page=1');
+								$location.path('/searchForks/word='
+										+ $scope.searchWord + ';min='
+										+ $scope.slider.minValue + ';max='
+										+ $scope.slider.maxValue + ';page=1');
 								break;
 							}
-							case 'Frame': {
+							case 'Frames': {
 
-								$location
-										.path('/searchFrames/word='
-												+ $scope.searchWord + ';min='
-												+ $scope.slider.minValue
-												+ ';max='
-												+ $scope.slider.maxValue
-												+ ';page=1');
+								$location.path('/searchFrames/word='
+										+ $scope.searchWord + ';min='
+										+ $scope.slider.minValue + ';max='
+										+ $scope.slider.maxValue + ';page=1');
 								break;
 							}
-							case 'Rim': {
+							case 'Rims': {
 
-								$location
-										.path('/searchRims/word='
-												+ $scope.searchWord + ';min='
-												+ $scope.slider.minValue
-												+ ';max='
-												+ $scope.slider.maxValue
-												+ ';page=1');
+								$location.path('/searchRims/word='
+										+ $scope.searchWord + ';min='
+										+ $scope.slider.minValue + ';max='
+										+ $scope.slider.maxValue + ';page=1');
 								break;
 							}
-							case 'Tire': {
+							case 'Tires': {
 
-								$location
-										.path('/searchTires/word='
-												+ $scope.searchWord + ';min='
-												+ $scope.slider.minValue
-												+ ';max='
-												+ $scope.slider.maxValue
-												+ ';page=1' );
+								$location.path('/searchTires/word='
+										+ $scope.searchWord + ';min='
+										+ $scope.slider.minValue + ';max='
+										+ $scope.slider.maxValue + ';page=1');
 								break;
 							}
 							default:

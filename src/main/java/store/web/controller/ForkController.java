@@ -63,4 +63,9 @@ public class ForkController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/maxPriceForks", method = RequestMethod.GET)
+	public int findMaxPrice() {
+		return service.findMaxPriceProduct();
+	}
 }

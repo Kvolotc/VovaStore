@@ -94,4 +94,9 @@ public class TireServiceImpl implements TireService {
 		return tireDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
 
+	@Override
+	public int findMaxPriceProduct() {
+		return tireDao.findMaxPriceProduct();
+	}
+
 }
