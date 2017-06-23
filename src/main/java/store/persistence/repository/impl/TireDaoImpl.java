@@ -18,8 +18,6 @@ public class TireDaoImpl extends GenericProductDaoImpl<Tire, Integer> implements
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private final static int SIZE_PAGE = 1;
-	
 	protected TireDaoImpl() {
 		super(Tire.class);
 	}

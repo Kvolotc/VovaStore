@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import store.persistence.dto.UserDTO;
 import store.persistence.entity.User;
 import store.persistence.entity.enums.Gender;
+import store.persistence.entity.enums.Role;
 
 public class UserMapper {
 
@@ -16,12 +17,13 @@ public class UserMapper {
 		user.setActivated(dto.isActivated());
 		user.setBirthDate(dto.getBirthDate());
 		user.setRegistrationDate(dto.getRegistrationDate());
-		user.seteMail(dto.geteMail());
+		user.setEmail(dto.getEmail());
 		user.setFirstName(dto.getFirstName());
 		user.setGender(Gender.valueOf(dto.getGender()));
 		user.setLastName(dto.getLastName());
 		user.setLogged(dto.isLogged());
 		user.setPassword(dto.getPassword());
+		user.setRole(Role.valueOf(dto.getRole()));
 
 		return user;
 	}
@@ -33,12 +35,13 @@ public class UserMapper {
 		dto.setActivated(user.isActivated());
 		dto.setBirthDate(user.getBirthDate());
 		dto.setRegistrationDate(user.getRegistrationDate());
-		dto.seteMail(user.geteMail());
+		dto.setEmail(user.getEmail());
 		dto.setFirstName(user.getFirstName());
 		dto.setGender(user.getGender().toString());
 		dto.setLastName(user.getLastName());
 		dto.setLogged(user.isLogged());
 		dto.setPassword(user.getPassword());
+		dto.setRole(user.getRole().role);
 
 		return dto;
 	}

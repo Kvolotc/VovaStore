@@ -1,4 +1,4 @@
-angular.module('myApp').controller('login', function($scope, $http, $location) {
+angular.module('myApp').controller('login', function(currentUser, $scope, $http, $location) {
 
 	$scope.loginParam = {
 		eMail : $scope.eMail,
@@ -30,6 +30,13 @@ angular.module('myApp').controller('login', function($scope, $http, $location) {
 
 			}).then(function(response) {
 
+				console.log(response.data)
+				currentUser.isLogged = response.data.logged;
+				currentUser.role = response.data.role;
+				currentUser.firstName = response.data.firstName
+				currentUser.lastName = response.data.lastName
+				currentUser.email = response.data.email
+				
 				$scope.isWarning = false;
 				$location.path("/");
 

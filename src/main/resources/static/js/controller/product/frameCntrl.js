@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'frames',
 		function($scope, $http, $routeParams, $location, $routeParams,
-				paginationService) {
+				paginationService, purchaseProductFactory) {
 
 			$scope.frames = [];
 
@@ -10,10 +10,13 @@ angular.module('myApp').controller(
 			$scope.urlFrame = "#!/frames/";
 
 			$scope.url = "/frames/";
-
-			$scope.countFrames = 1;
-
-			$scope.activeFrame = {};
+			
+			$scope.buyProduct = function(product) {
+				if(purchaseProductFactory.length >=1) {
+					purchaseProductFactory.splice(0, purchaseProductFactory.length)
+				}
+				purchaseProductFactory.push(product)
+			}
 
 			$scope.paginationParam = {
 				masPages : [],
@@ -34,13 +37,5 @@ angular.module('myApp').controller(
 
 			});
 
-			$scope.price = function() {
-				$scope.activeFrame.price = $scope.activeFrame.price
-						* $scope.countFrames;
-			}
-
-			$scope.changeActiveFrame = function(frame) {
-				$scope.activeFrame = frame;
-			}
 
 		});

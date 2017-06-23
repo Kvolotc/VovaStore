@@ -18,8 +18,6 @@ public class RimDaoImpl extends GenericProductDaoImpl<Rim, Integer> implements R
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private final static int SIZE_PAGE = 1;
-	
 	protected RimDaoImpl() {
 		super(Rim.class);
 	}

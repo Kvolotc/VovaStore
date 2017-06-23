@@ -1,13 +1,14 @@
 angular.module('myApp').controller('registration', function($scope, $http) {
 
+	
 	$scope.user = {
-		firstName : $scope.firstName,
-		lastName : $scope.lastName,
-		gender : $scope.gender,
-		birthDate : $scope.birthDate,
-		eMail : $scope.eMail,
-		password : $scope.pasword,
-		role : 'USER'
+			firstName : $scope.firstName,
+			lastName : $scope.lastName,
+			gender : $scope.gender,
+			birthDate : $scope.birthDate,
+			email : $scope.email,
+			password : $scope.pasword,
+	        role : 'USER'
 	};
 
 
@@ -26,24 +27,11 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 
 	$scope.hideModal = function() {
 		$("#successModal").modal("hide")
-	}
-	
-	
-	$(function() {
-
-		$.validator.setDefaults({
-			errorClass : 'help-block',
-			highlight : function(element) {
-				$(element).closest('.form-group').addClass('has-error');
-			},
-			unhighlight : function(element) {
-				$(element).closest('.form-group').removeClass('has-error');
-			}
-		});
+	}	
 		
 		
 		
-	    $.validator.addMethod(
+		jQuery.validator.addMethod(
 	            'regex',
 	            function(value, element){
 	                return this.optional(element) || /(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-\011\013\014\016-\177])*")@((?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)$)|\[(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\]$/i.test(value);
@@ -57,11 +45,10 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 
 			return (value == 'FEMALE' || value == 'MALE');
 		}, "Please select gender");
-		
 	
 
 		$(document).ready(function() {
-
+			
 			$("#registration-form").validate({
 
 				rules : {
@@ -70,12 +57,10 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 						regex: true,
 						remote : {
 							url : '/email',
-							data : $scope.user.eMail,
 							type : "post",
-							async : true,
+							async : false,
 							contentType : 'application/json;charset-UTF-8',
 							dataType : 'json',
-
 						}
 
 					},
@@ -121,7 +106,7 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 					},
 					birtday: {
 					   max: "You can not register if you do not have at least 12 years",
-					   min:	"Wrong date" 
+					   min:	"Wrong date", 
 				   }
 				}
 
@@ -172,7 +157,5 @@ angular.module('myApp').controller('registration', function($scope, $http) {
 				return false;
 			}
 		});
-
-	})
 
 });

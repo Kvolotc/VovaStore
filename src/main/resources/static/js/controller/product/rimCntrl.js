@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'rims',
 		function($scope, $http, $routeParams, $location, $routeParams,
-				paginationService) {
+				paginationService, purchaseProductFactory) {
 
 			$scope.rims = [];
 
@@ -11,9 +11,12 @@ angular.module('myApp').controller(
 
 			$scope.url = "/rims/";
 
-			$scope.countRims = 1;
-
-			$scope.activeRim = {};
+			$scope.buyProduct = function(product) {
+				if(purchaseProductFactory.length >=1) {
+					purchaseProductFactory.splice(0, purchaseProductFactory.length)
+				}
+				purchaseProductFactory.push(product)
+			}
 
 			$scope.paginationParam = {
 				masPages : [],
@@ -33,14 +36,5 @@ angular.module('myApp').controller(
 			}, function myError(response) {
 
 			});
-
-			$scope.price = function() {
-				$scope.activeRims.price = $scope.activeRims.price
-						* $scope.countRims;
-			}
-
-			$scope.changeActiveRim = function(rim) {
-				$scope.activeRim = rim;
-			}
 
 		});

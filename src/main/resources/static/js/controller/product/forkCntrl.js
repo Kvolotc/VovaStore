@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'forks',
 		function($scope, $http, $routeParams, $location, $routeParams,
-				paginationService) {
+				paginationService, purchaseProductFactory) {
 
 			$scope.forks = [];
 
@@ -10,10 +10,13 @@ angular.module('myApp').controller(
 			$scope.urlFork = "#!/forks/";
 
 			$scope.url = "/forks/";
-
-			$scope.countForks = 1;
-
-			$scope.activeFork = {};
+			
+			$scope.buyProduct = function(product) {
+				if(purchaseProductFactory.length >=1) {
+					purchaseProductFactory.splice(0, purchaseProductFactory.length)
+				}
+				purchaseProductFactory.push(product)
+			}
 
 			$scope.paginationParam = {
 				masPages : [],
@@ -34,13 +37,5 @@ angular.module('myApp').controller(
 
 			});
 
-			$scope.price = function() {
-				$scope.activeFork.price = $scope.activeFork.price
-						* $scope.countForks;
-			}
-
-			$scope.changeActiveFork = function(fork) {
-				$scope.activeFork = fork;
-			}
 
 		});

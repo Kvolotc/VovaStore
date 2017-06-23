@@ -1,7 +1,20 @@
 package store.persistence.entity.enums;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
 
-	ADMIN,
-	USER;
+public enum Role implements GrantedAuthority {
+
+	ADMIN("ADMIN"),
+	USER("USER");
+	
+	private Role(final String role) {
+		this.role = role;
+	}
+
+	public String role;
+
+	@Override
+	public String getAuthority() {
+		return role;
+	}
 }

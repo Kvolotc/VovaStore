@@ -21,8 +21,6 @@ public class ForkDaoImpl extends GenericProductDaoImpl<Fork, Integer> implements
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private final static int SIZE_PAGE = 1;
-	
 	protected ForkDaoImpl() {
 		super(Fork.class);
 	}

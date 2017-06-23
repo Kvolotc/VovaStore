@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'searchBrakes',
 		function($scope, $rootScope, $http, $location, $routeParams,
-				paginationService) {
+				paginationService, purchaseProductFactory) {
 
 			$scope.brakes = [];
 			
@@ -17,12 +17,16 @@ angular.module('myApp').controller(
 					+ $routeParams.min + ";max=" + $routeParams.max + ";page=";
 
 			$scope.router = $routeParams;
+			
+			$scope.buyProduct = function(product) {
+				if(purchaseProductFactory.length >=1) {
+					purchaseProductFactory.splice(0, purchaseProductFactory.length)
+				}
+				purchaseProductFactory.push(product)
+			}
 
 			$scope.hideProduct = true;
 
-			$scope.countBrakes = 1;
-
-			$scope.activeBrake = {};
 
 			$scope.paginationParam = {
 				masPages : [],
@@ -50,14 +54,5 @@ angular.module('myApp').controller(
 			}, function myError(response) {
 
 			});
-
-			$scope.price = function() {
-				$scope.activeBrake.price = $scope.activeBrake.price
-						* $scope.countBrakes;
-			}
-
-			$scope.changeActiveBrake = function(brake) {
-				$scope.activeBrake = brake;
-			}
 
 		});

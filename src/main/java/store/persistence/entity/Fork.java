@@ -21,7 +21,7 @@ import store.persistence.entity.enums.typeEnum.ForkType;
 
 @Entity
 @Table(name = "forks")
-public class Fork extends Product{
+public class Fork extends Product<ForkBrand>{
 	
 	@Column(name = "course")
 	private String course;
@@ -29,10 +29,6 @@ public class Fork extends Product{
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
 	private ForkType type;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "brand")
-	private ForkBrand brand;
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fork")
@@ -60,14 +56,6 @@ public class Fork extends Product{
 
 	public void setType(ForkType type) {
 		this.type = type;
-	}
-
-	public ForkBrand getBrand() {
-		return brand;
-	}
-
-	public void setBrand(ForkBrand brand) {
-		this.brand = brand;
 	}
 
 }

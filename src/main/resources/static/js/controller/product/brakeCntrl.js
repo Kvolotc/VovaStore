@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'brakes',
 		function($scope, $http, $routeParams, $location, $routeParams,
-				paginationService) {
+				paginationService, purchaseProductFactory) {
 
 			$scope.brakes = [];
 
@@ -10,10 +10,13 @@ angular.module('myApp').controller(
 			$scope.urlBrake = "#!/brakes/";
 
 			$scope.url = "/brakes/";
-
-			$scope.countBrakes = 1;
-
-			$scope.activeBrake = {};
+			
+			$scope.buyProduct = function(product) {
+				if(purchaseProductFactory.length >=1) {
+					purchaseProductFactory.splice(0, purchaseProductFactory.length)
+				}
+				purchaseProductFactory.push(product)
+			}
 
 			$scope.paginationParam = {
 				masPages : [],
@@ -34,13 +37,5 @@ angular.module('myApp').controller(
 
 			});
 
-			$scope.price = function() {
-				$scope.activeBrake.price = $scope.activeBrake.price
-						* $scope.countBrakes;
-			}
-
-			$scope.changeActiveBrake = function(brake) {
-				$scope.activeBrake = brake;
-			}
 
 		});

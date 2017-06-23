@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import store.persistence.entity.enums.Gender;
 import store.persistence.entity.enums.Role;
 
@@ -23,6 +21,37 @@ import store.persistence.entity.enums.Role;
 @Table(name = "users")
 public class User {
 	
+	public User() {};
+	
+	public User(int id, String firstName, String lastName, Timestamp birthDate, Timestamp registrationDate,
+			Gender gender, String email, boolean isActivated, boolean isLogged, Role role, String password) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDate = birthDate;
+		this.registrationDate = registrationDate;
+		this.gender = gender;
+		this.email = email;
+		this.isActivated = isActivated;
+		this.isLogged = isLogged;
+		this.role = role;
+		this.password = password;
+	}
+	
+	public User(User user) {
+		this.id = user.id;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.birthDate = user.birthDate;
+		this.registrationDate = user.registrationDate;
+		this.gender = user.gender;
+		this.email = user.email;
+		this.isActivated = user.isActivated;
+		this.isLogged = user.isLogged;
+		this.role = user.role;
+		this.password = user.password;
+	}
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +61,7 @@ public class User {
 	@Size(max = 20)
 	private String firstName;
 	
-	@Column(name = "lasT_name")
+	@Column(name = "last_name")
 	@Size(max = 20)
 	private String lastName;
 	
@@ -47,7 +76,7 @@ public class User {
 	private Gender gender;
 	
 	@Column(name = "email", unique = true)
-	private String eMail;
+	private String email;
 	
 	@Column(name = "is_activated")
 	private boolean isActivated;
@@ -69,38 +98,6 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public String geteMail() {
-		return eMail;
-	}
-
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -116,22 +113,6 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public boolean isActivated() {
-		return isActivated;
-	}
-
-	public void setActivated(boolean isActivated) {
-		this.isActivated = isActivated;
-	}
-
-	public boolean isLogged() {
-		return isLogged;
-	}
-
-	public void setLogged(boolean isLogged) {
-		this.isLogged = isLogged;
 	}
 
 	public Timestamp getBirthDate() {
@@ -150,13 +131,60 @@ public class User {
 		this.registrationDate = registrationDate;
 	}
 
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isActivated() {
+		return isActivated;
+	}
+
+	public void setActivated(boolean isActivated) {
+		this.isActivated = isActivated;
+	}
+
+	public boolean isLogged() {
+		return isLogged;
+	}
+
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate=" + birthDate
-				+ ", registrationDate=" + registrationDate + ", gender=" + gender + ", eMail=" + eMail
+				+ ", registrationDate=" + registrationDate + ", gender=" + gender + ", email=" + email
 				+ ", isActivated=" + isActivated + ", isLogged=" + isLogged + ", role=" + role + ", password="
 				+ password + "]";
 	}
-	
 	
 }

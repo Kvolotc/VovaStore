@@ -18,7 +18,7 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	private final static int SIZE_PAGE = 2;
+	private final static int SIZE_PAGE = 1;
 
 	private Class<T> entity;
 

@@ -15,7 +15,7 @@ public class UserDTO {
 	
 	private String gender;
 	
-	private String eMail;
+	private String email;
 	
 	private boolean isActivated;
 	
@@ -65,12 +65,12 @@ public class UserDTO {
 		this.gender = gender;
 	}
 
-	public String geteMail() {
-		return eMail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public boolean isActivated() {
@@ -103,7 +103,5 @@ public class UserDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	
+	}	
 }

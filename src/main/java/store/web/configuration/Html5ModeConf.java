@@ -1,5 +1,4 @@
 //package store.web.configuration;
-//
 //import java.util.Collections;
 //import java.util.Map;
 //
@@ -20,7 +19,7 @@
 //	        @Override
 //	        public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status, Map<String, Object> model) {
 //	            return status == HttpStatus.NOT_FOUND
-//	                    ? new ModelAndView("/home", Collections.<String, Object>emptyMap(), HttpStatus.OK)
+//	                    ? new ModelAndView("/", Collections.<String, Object>emptyMap(), HttpStatus.OK)
 //	                    : null;
 //	        }
 //	    };

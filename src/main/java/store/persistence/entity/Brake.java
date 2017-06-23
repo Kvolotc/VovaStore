@@ -17,15 +17,11 @@ import store.persistence.entity.enums.typeEnum.BrakeType;
 
 @Entity
 @Table(name = "brakes")
-public class Brake extends Product{
+public class Brake extends Product<BrakeBrand>{
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
 	private BrakeType type;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "brand")
-	private BrakeBrand brand;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "brake",fetch = FetchType.LAZY)
@@ -45,15 +41,6 @@ public class Brake extends Product{
 
 	public void setType(BrakeType type) {
 		this.type = type;
-	}
-
-	public BrakeBrand getBrand() {
-		return brand;
-	}
-
-	public void setBrand(BrakeBrand brand) {
-		this.brand = brand;
-	}
-	
+	}	
 	
 }

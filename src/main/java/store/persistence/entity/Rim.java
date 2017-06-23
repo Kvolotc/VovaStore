@@ -19,7 +19,7 @@ import store.persistence.entity.enums.typeEnum.RimType;
 
 @Entity
 @Table(name = "rims")
-public class Rim extends Product{
+public class Rim extends Product<RimBrand>{
 
 	@Column(name = "diameter")
 	private double diameter;
@@ -27,10 +27,6 @@ public class Rim extends Product{
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
 	private RimType type;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "brand")
-	private RimBrand brand;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "rim",fetch = FetchType.LAZY)
@@ -60,12 +56,4 @@ public class Rim extends Product{
 		this.type = type;
 	}
 
-	public RimBrand getBrand() {
-		return brand;
-	}
-
-	public void setBrand(RimBrand brand) {
-		this.brand = brand;
-	}
-		
 }

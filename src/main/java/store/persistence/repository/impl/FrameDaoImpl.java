@@ -1,6 +1,5 @@
 package store.persistence.repository.impl;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import store.persistence.entity.Brake;
 import store.persistence.entity.Frame;
 import store.persistence.repository.FrameDao;
 
@@ -19,8 +17,6 @@ public class FrameDaoImpl extends GenericProductDaoImpl<Frame, Integer> implemen
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	private final static int SIZE_PAGE = 1;
 	
 	protected FrameDaoImpl() {
 		super(Frame.class);

@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'searchBikes',
 		function($scope, $rootScope, $http, $location, $routeParams,
-				paginationService) {
+				paginationService, purchaseProductFactory) {
 
 			$scope.bikes = [];
 
@@ -17,12 +17,16 @@ angular.module('myApp').controller(
 					+ $routeParams.min + ";max=" + $routeParams.max + ";page=";
 
 			$scope.router = $routeParams;
+			
+			$scope.buyProduct = function(product) {
+				if(purchaseProductFactory.length >=1) {
+					purchaseProductFactory.splice(0, purchaseProductFactory.length)
+				}
+				purchaseProductFactory.push(product)
+			}
 
 			$scope.hideProduct = true;
 
-			$scope.countBikes = 1;
-
-			$scope.activeBike = {};
 
 			$scope.paginationParam = {
 				masPages : [],
@@ -50,14 +54,5 @@ angular.module('myApp').controller(
 			}, function myError(response) {
 
 			});
-
-			$scope.price = function() {
-				$scope.activeBike.price = $scope.activeBike.price
-						* $scope.countBikes;
-			}
-
-			$scope.changeActiveBike = function(bike) {
-				$scope.activeBike = bike;
-			}
 
 		});

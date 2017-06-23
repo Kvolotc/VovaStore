@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'tires',
 		function($scope, $http, $routeParams, $location, $routeParams,
-				paginationService) {
+				paginationService, purchaseProductFactory) {
 
 			$scope.tires = [];
 
@@ -10,10 +10,13 @@ angular.module('myApp').controller(
 			$scope.urlTire = "#!/tires/";
 
 			$scope.url = "/tires/";
-
-			$scope.counTires = 1;
-
-			$scope.activeTire = {};
+			
+			$scope.buyProduct = function(product) {
+				if(purchaseProductFactory.length >=1) {
+					purchaseProductFactory.splice(0, purchaseProductFactory.length)
+				}
+				purchaseProductFactory.push(product)
+			}
 
 			$scope.paginationParam = {
 				masPages : [],
@@ -33,14 +36,5 @@ angular.module('myApp').controller(
 			}, function myError(response) {
 
 			});
-
-			$scope.price = function() {
-				$scope.activeTires.price = $scope.activeTires.price
-						* $scope.counTires;
-			}
-
-			$scope.changeActiveTire = function(tire) {
-				$scope.activeTire = tire;
-			}
 
 		});

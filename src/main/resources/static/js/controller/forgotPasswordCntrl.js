@@ -7,7 +7,7 @@ angular.module('myApp').controller('forgotPassword',
 
 			}
 
-			$scope.message = '';
+			$scope.message = 'Invalid Email';
 
 			$scope.isWarning = false;
 
@@ -17,7 +17,7 @@ angular.module('myApp').controller('forgotPassword',
 				$("#forgotPasswordModal").modal("hide")
 			}
 
-			$.validator.setDefaults({
+			jQuery.validator.setDefaults({
 				errorClass : 'help-block',
 				highlight : function(element) {
 					$(element).closest('.form-group').addClass('has-error');
@@ -64,7 +64,6 @@ angular.module('myApp').controller('forgotPassword',
 
 					}, function errorCallback(response) {
 
-						$scope.message = 'Invalid Email';
 						$scope.isWarning = true;
 
 					});

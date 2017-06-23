@@ -14,6 +14,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.1.1/rzslider.min.css">
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
 
 <link rel="stylesheet" th:href="@{/css/home.css}">
 <link rel="stylesheet" th:href="@{/css/registration.css}">
@@ -21,6 +23,7 @@
 <link rel="stylesheet" th:href="@{/css/login.css}">
 <link rel="stylesheet" th:href="@{/css/forgotPassword.css}">
 <link rel="stylesheet" th:href="@{/css/product.css}">
+<link rel="stylesheet" th:href="@{/css/chosen.min.css}">
 
 
 <script
@@ -43,6 +46,10 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.1.1/rzslider.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+<script th:src="@{/js/chosen.jquery.min.js}"></script>
+
 
 
 <script th:src="@{/js/navigate.js}"></script>
@@ -50,6 +57,7 @@
 <script th:src="@{/js/controller/loginCntrl.js}"></script>
 <script th:src="@{/js/controller/registrationCntrl.js}"></script>
 <script th:src="@{/js/controller/forgotPasswordCntrl.js}"></script>
+<script th:src="@{/js/controller/profileCntrl.js}"></script>
 <script th:src="@{/js/controller/product/frameCntrl.js}"></script>
 <script th:src="@{/js/controller/product/forkCntrl.js}"></script>
 <script th:src="@{/js/controller/product/rimCntrl.js}"></script>
@@ -64,7 +72,10 @@
 <script th:src="@{/js/controller/searchProduct/searchFrameCntrl.js}"></script>
 <script th:src="@{/js/controller/searchProduct/searchRimCntrl.js}"></script>
 <script th:src="@{/js/controller/searchProduct/searchTireCntrl.js}"></script>
+<script th:src="@{/js/controller/purchaseProductCntrl.js}"></script>
 <script th:src="@{/js/factory/productFactory.js}"></script>
+<script th:src="@{/js/factory/currentUser.js}"></script>
+<script th:src="@{/js/factory/purchaseProductFactory.js}"></script>
 <script th:src="@{/js/service/productService.js}"></script>
 <script th:src="@{/js/service/paginationService.js}"></script>
 
@@ -93,7 +104,7 @@
 
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
+				<ul ng-show="currentUser.role != null" class="nav navbar-nav">
 					<li class="active-link "><a href="#!/"><span
 							class="glyphicon glyphicon-home  "></span> головна</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
@@ -124,17 +135,33 @@
 					<li><a style="cursor: pointer;" ng-click="changeSearchForm()"><span
 							class="glyphicon glyphicon-search"></span> Search<span
 							class="sr-only "></span></a></li>
+					<li ng-show="currentUser.role == 'ADMIN' "><a href="#">користувачі
+							<span class="sr-only"></span>
+					</a></li>
 
 				</ul>
 
 
 
-				<ul class="nav navbar-nav navbar-right">
+				<ul ng-show="currentUser.isLogged == false"
+					class="nav navbar-nav navbar-right">
 					<li><a class="login" href="#!/login"> <span
 							class="glyphicon glyphicon-log-in"></span> логін
 					</a></li>
 					<li><a class="registration" href="#!/registration"> <span
 							class="glyphicon glyphicon-user"></span> реєстрація
+					</a></li>
+				</ul>
+
+				<ul ng-show="currentUser.isLogged == true"
+					class="nav navbar-nav navbar-right">
+					<li><a class="logout" ng-click="logout()" class="logout"
+						href="#!/"> <span class="glyphicon glyphicon-log-out"></span>
+							вийти
+					</a></li>
+
+					<li><a class="profile" href="#!/profile"> <span
+							class="glyphicon glyphicon-cog"></span> профіль
 					</a></li>
 				</ul>
 			</div>
@@ -145,7 +172,7 @@
 
 	</nav>
 
-
+	<h1>CURENT USER - {{currentUser}}</h1>
 
 	<div class="search" ng-show="showSearchForm">
 		<div class="container">
@@ -160,31 +187,32 @@
 											name="searchWord" ng-model="searchWord" class="form-control"
 											placeholder="Search word">
 									</div>
-								</div>						
+								</div>
 
 								<div class="col-md-4   col-xs-4 ">
 									<div class="form-group">
-										<select name="selectProduct" ng-model="searchProduct" ng-change="change(searchProduct)"
-											class="form-control">
-											<option  ng-repeat="product in searchProducts">{{product}}</option>
+										<select name="selectProduct" ng-model="searchProduct"
+											ng-change="change(searchProduct)" class="form-control">
+											<option ng-repeat="product in searchProducts">{{product}}</option>
 
 										</select>
 									</div>
 								</div>
-								
-									<div class="col-md-8 col-md-offset-2  col-xs-8 col-xs-offset-2">
-								<div class="form-group" ng-show="searchProduct != '' ">
-									<rzslider style="font-size:15px"
-										rz-slider-model="slider.minValue"
-										rz-slider-high="slider.maxValue"
-										rz-slider-options="slider.options"></rzslider>
-										</div>
+
+								<div class="col-md-8 col-md-offset-2  col-xs-8 col-xs-offset-2">
+									<div class="form-group" ng-show="searchProduct != '' ">
+										<rzslider style="font-size:15px"
+											rz-slider-model="slider.minValue"
+											rz-slider-high="slider.maxValue"
+											rz-slider-options="slider.options"></rzslider>
+									</div>
 								</div>
-								
-								
+
+
 								<div class="col-md-2 col-md-offset-5 col-xs-2 col-xs-offset-5">
-									<button type="submit" id="searchSubmit" style="font-size:15px"
-										class="btn btn-primary glyphicon glyphicon-search"> Search</button>
+									<button type="submit" id="searchSubmit" style="font-size: 15px"
+										class="btn btn-primary glyphicon glyphicon-search">
+										Search</button>
 								</div>
 							</form>
 						</div>
@@ -194,7 +222,7 @@
 		</div>
 	</div>
 
-<br ng-show="showSearchForm"></br>
+	<br ng-show="showSearchForm"></br>
 
 
 	<div ng-view></div>

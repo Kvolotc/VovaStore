@@ -37,7 +37,8 @@ public class RimController {
 	
 	@RequestMapping(value = "/rims/{page}", method = RequestMethod.GET)
 	public List<RimDTO> getRacingBikes(@PathVariable("page") int page) {
-				
+				System.out.println(service.findProducts(page));
+				System.out.println(RimMapper.rimListToRimDTOList(service.findProducts(page)));
 		return RimMapper.rimListToRimDTOList(service.findProducts(page));
 	}
 	

@@ -33,31 +33,36 @@ myApp.config(function($routeProvider, $locationProvider) {
 		controller : 'racingBikes'
 	})
 
+	.when('/purchaseProduct', {
+		templateUrl : 'view/purchaseProduct.html',
+		controller : 'purchaseProduct'
+	})
+
 	.when('/searchBikes/word=:word;min=:min;max=:max;page=:page', {
 		templateUrl : 'view/product/bikes.html',
 		controller : 'searchBikes'
 	})
-	
+
 	.when('/searchBrakes/word=:word;min=:min;max=:max;page=:page', {
 		templateUrl : 'view/product/brakes.html',
 		controller : 'searchBrakes'
 	})
-	
+
 	.when('/searchFrames/word=:word;min=:min;max=:max;page=:page', {
 		templateUrl : 'view/product/frames.html',
 		controller : 'searchFrames'
 	})
-	
+
 	.when('/searchForks/word=:word;min=:min;max=:max;page=:page', {
 		templateUrl : 'view/product/forks.html',
 		controller : 'searchForks'
 	}).
-	
+
 	when('/searchRims/word=:word;min=:min;max=:max;page=:page', {
 		templateUrl : 'view/product/rims.html',
 		controller : 'searchRims'
 	})
-	
+
 	.when('/searchTires/word=:word;min=:min;max=:max;page=:page', {
 		templateUrl : 'view/product/tires.html',
 		controller : 'searchTires'
@@ -96,6 +101,11 @@ myApp.config(function($routeProvider, $locationProvider) {
 	.when('/brakes/:page', {
 		templateUrl : 'view/product/brakes.html',
 		controller : 'brakes'
+	})
+
+	.when('/profile', {
+		templateUrl : 'view/profile.html',
+		controller : 'profile'
 	})
 
 	.otherwise({

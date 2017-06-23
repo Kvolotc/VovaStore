@@ -31,7 +31,6 @@ public class BikeController {
 
 	@RequestMapping(value = "/mountainBikes/{page}", method = RequestMethod.GET)
 	public List<BikeDTO> getMountainBikes(@PathVariable("page") int page) {
-
 		return BikeMapper.bikeListToBikeDTOList(service.findMountainBikes(page));
 	}
 

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Product {
+public class Product<B> {
 
 	@Id
 	@Column(name = "id")
@@ -21,6 +21,10 @@ public class Product {
 	
 	@Column(name = "model")
 	private String model;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "brand")
+	private B brand;
 	
 	@Column(name = "created_on")
 	private int createdOn;
@@ -66,6 +70,14 @@ public class Product {
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public B getBrand() {
+		return brand;
+	}
+
+	public void setBrand(B brand) {
+		this.brand = brand;
 	}
 	
 }

@@ -19,7 +19,7 @@ import store.persistence.entity.enums.typeEnum.FrameType;
 
 @Entity
 @Table(name = "frames")
-public class Frame extends Product {
+public class Frame extends Product<FrameBrand> {
 	
 	@Column(name = "is_exist_snubber")
 	private boolean isExistSnubber;
@@ -27,10 +27,6 @@ public class Frame extends Product {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "alloy")
 	private Alloy alloy;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "brand")
-	private FrameBrand brand;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type")
@@ -70,14 +66,6 @@ public class Frame extends Product {
 
 	public void setType(FrameType type) {
 		this.type = type;
-	}
-
-	public FrameBrand getBrand() {
-		return brand;
-	}
-
-	public void setBrand(FrameBrand brand) {
-		this.brand = brand;
 	}
 
 }
