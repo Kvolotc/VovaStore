@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'forks',
 		function($scope, $http, $routeParams, $location, $routeParams,
-				paginationService, purchaseProductFactory) {
+				paginationService, purchaseProductFactory, basketFactory, toastr) {
 
 			$scope.forks = [];
 
@@ -10,6 +10,32 @@ angular.module('myApp').controller(
 			$scope.urlFork = "#!/forks/";
 
 			$scope.url = "/forks/";
+			
+			$scope.addToBacket = function(product) {
+				
+				toastr.success('Fork '+product.brand +' '+ product.model+' was added in basket');
+				
+				var ind = basketFactory.map(function(e) { return e.imageName; }).indexOf(product.imageName);
+				
+				console.log(ind)
+				
+				if(ind != -1) {
+					basketFactory[ind].amount++;
+					basketFactory[ind].price += product.price;
+					return;
+				}
+				
+				basketFactory.push({
+					amount:1,
+					product:'forks',
+					imageName: product.imageName,
+					brand:product.brand,
+					model:product.model,
+					productPrice:product.price,
+					price:product.price
+				});
+			};
+			
 			
 			$scope.buyProduct = function(product) {
 				if(purchaseProductFactory.length >=1) {

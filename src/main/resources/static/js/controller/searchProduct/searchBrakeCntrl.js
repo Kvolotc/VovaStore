@@ -1,13 +1,38 @@
 angular.module('myApp').controller(
 		'searchBrakes',
 		function($scope, $rootScope, $http, $location, $routeParams,
-				paginationService, purchaseProductFactory) {
+				paginationService, purchaseProductFactory, basketFactory, toastr) {
 
 			$scope.brakes = [];
 			
 			$scope.isEmpty = false;
 
 			$scope.paginationService = paginationService;
+			
+			
+			$scope.addToBacket = function(product) {
+				
+				toastr.success('Brake '+product.brand +' '+ product.model+' was added in basket');
+				
+				var ind = basketFactory.map(function(e) { return e.imageName; }).indexOf(product.imageName);
+				
+				if(ind != -1) {
+					basketFactory[ind].amount++;
+					basketFactory[ind].price += product.price;
+					return;
+				}
+				
+				basketFactory.push({
+					amount:1,
+					product:'brakes',
+					imageName: product.imageName,
+					brand:product.brand,
+					model:product.model,
+					productPrice:product.price,
+					price:product.price
+				});
+			};
+			
 
 			$scope.urlBrake = "#!/searchBrakes/word=" + $routeParams.word
 					+ ";min=" + $routeParams.min + ";max=" + $routeParams.max

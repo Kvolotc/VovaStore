@@ -1,7 +1,7 @@
 <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 container"
 	id="purchaseProduct">
 	<div class="panel panel-default">
-		<div class="panel-heading">profile</div>
+		<div class="panel-heading">Purchase</div>
 
 		<div class="panel-body">
 			<form id="purchase-form" class="form-horizontal">
@@ -84,7 +84,7 @@
 
 				<div
 					class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-					<div ng-repeat="pro in product" ng-if="payment == 'cash' ">
+					<div ng-if="payment == 'cash' ">
 						<p style="font-size: 20px; text-align: center">Cash is = {{cash}} USD</p>
 
 					</div>
@@ -92,8 +92,8 @@
 				
 				<div
 					class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-					<div ng-repeat="pro in product" ng-if="payment == 'credit' ">
-						<p style="font-size: 20px; text-align: center">Credit on 12 months = {{ credit}} USD payment on every month</p>
+					<div ng-if="payment == 'credit' ">
+						<p style="font-size: 20px; text-align: center">Credit on 12 months = {{credit}} USD payment on every month</p>
 
 					</div>
 				</div>

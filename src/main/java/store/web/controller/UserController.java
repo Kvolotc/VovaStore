@@ -174,11 +174,6 @@ public class UserController {
 	public UserDTO updateUser(@RequestBody UpdateUserParam newUser) {
 		User user = service.findByEmail(newUser.getCurrentEmail());
 		
-		System.out.println(newUser.getEmail());
-		System.out.println(newUser.getFirstName());
-		System.out.println(newUser.getLastName());
-		System.out.println(newUser.getCurrentEmail());
-		
 		user.setFirstName(newUser.getFirstName());
 		user.setLastName(newUser.getLastName());
 		

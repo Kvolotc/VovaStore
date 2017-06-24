@@ -1,7 +1,7 @@
 angular.module('myApp').controller(
 		'brakes',
 		function($scope, $http, $routeParams, $location, $routeParams,
-				paginationService, purchaseProductFactory) {
+				paginationService, purchaseProductFactory, basketFactory, toastr) {
 
 			$scope.brakes = [];
 
@@ -10,6 +10,31 @@ angular.module('myApp').controller(
 			$scope.urlBrake = "#!/brakes/";
 
 			$scope.url = "/brakes/";
+			
+			
+			$scope.addToBacket = function(product) {
+				
+				toastr.success('Brake '+product.brand +' '+ product.model+' was added in basket');
+				
+				var ind = basketFactory.map(function(e) { return e.imageName; }).indexOf(product.imageName);
+				
+				if(ind != -1) {
+					basketFactory[ind].amount++;
+					basketFactory[ind].price += product.price;
+					return;
+				}
+				
+				basketFactory.push({
+					amount:1,
+					product:'brakes',
+					imageName: product.imageName,
+					brand:product.brand,
+					model:product.model,
+					productPrice:product.price,
+					price:product.price
+				});
+			};
+			
 			
 			$scope.buyProduct = function(product) {
 				if(purchaseProductFactory.length >=1) {

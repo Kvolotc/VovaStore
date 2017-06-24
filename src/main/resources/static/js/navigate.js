@@ -1,6 +1,24 @@
-var myApp = angular.module('myApp', [ "ngRoute", "rzModule", "ui.bootstrap" ]);
+var myApp = angular.module('myApp', [ "ngRoute", "rzModule", "ui.bootstrap", "toastr", ]);
 
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
+	
+	angular.extend(toastrConfig, {
+	    allowHtml: false,
+	    closeButton: false,
+	    extendedTimeOut: 1000,
+	    iconClasses: {
+	      error: 'toast-error',
+	      info: 'toast-info',
+	      success: 'toast-success',
+	      warning: 'toast-warning'
+	    },  
+
+	    timeOut: 2000,
+	    titleClass: 'toast-title',
+	    toastClass: 'toast'
+	  });
+	
+	
 	$routeProvider
 
 	.when('', {

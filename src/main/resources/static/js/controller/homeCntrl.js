@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp');
-myApp.controller('home', function(currentUser, $scope, $route, $location, $routeParams,
+myApp.controller('home', function(currentUser, basketFactory, purchaseProductFactory, toastr, $scope, $route, $location, $routeParams,
 		$http) {
 
 	$scope.searchProducts = [ 'Bikes', 'Brakes', 'Forks', 'Frames', 'Rims',
@@ -8,6 +8,8 @@ myApp.controller('home', function(currentUser, $scope, $route, $location, $route
 	$scope.searchProduct = '';
 
 	$scope.searchWord = '';
+	
+	$scope.basketFactory = basketFactory;
 
 	$scope.showSearchForm = false;
 
@@ -15,21 +17,7 @@ myApp.controller('home', function(currentUser, $scope, $route, $location, $route
 	
 	$scope.currentUser = currentUser;
 	
-//	$http({
-//		method : "GET",
-//		url : '/getCurrentUser'
-//	}).then(function(response) {
-//		console.log(response)
-//		
-//		currentUser.role = response.data.role;
-//		currentUser.isLogged = response.data.logged;
-//		
-//		$scope.currentUser = currentUser;
-//
-//
-//	}, function myError(response) {
-//
-//	});
+	$scope.price = 0;
 
 	$scope.slider = {
 		minValue : 1,
@@ -44,6 +32,59 @@ myApp.controller('home', function(currentUser, $scope, $route, $location, $route
 			}
 		}
 	};
+	
+	
+	$scope.countPrice = function() {
+		
+		$scope.price = 0;
+		
+		for(var ind = 0; ind < basketFactory.length; ind++) {
+			$scope.price += basketFactory[ind].price;
+		}
+	} 
+	
+	
+	$scope.buyProductInBasket = function() {
+		
+		if(purchaseProductFactory.length >=1) {
+			purchaseProductFactory.splice(0, purchaseProductFactory.length)
+		}
+		
+		for(var ind = 0; ind < basketFactory.length; ind++) {
+			purchaseProductFactory.push(basketFactory[ind]);
+		}
+	}
+	
+	
+	$scope.deleteAllProduct = function() {
+		basketFactory.splice(0, basketFactory.length);
+		$("#backetModal").modal("hide");
+		
+		toastr.info('All products was deleted');
+	}
+	
+	
+	$scope.changePriceProduct = function(product, amount) {
+		
+		product.price = product.productPrice * amount;
+		
+		$scope.countPrice();	
+		
+	}
+	
+	
+	$scope.deleteProduct = function(product) {
+		var ind = $scope.basketFactory.map(function(e) { return e.imageName; }).indexOf(product.imageName);
+		
+		$scope.basketFactory.splice(ind, 1);
+		
+		toastr.info(product.product+' '+product.brand+' '+product.model+' was deleted');
+		
+		if(basketFactory.length == 0) {
+			$("#backetModal").modal("hide");
+		}
+	}
+	
 
 	$scope.change = function(product) {
 		$http({
@@ -51,12 +92,14 @@ myApp.controller('home', function(currentUser, $scope, $route, $location, $route
 			url : '/maxPrice' + product,
 		}).then(function(response) {
 			$scope.slider.maxValue = response.data;
+			$scope.slider.minValue = 1;
 			$scope.slider.options.ceil = response.data;
 		}, function errorCallback(response) {
 		});
 	}
 
 	$scope.changeSearchForm = function() {
+
 		$scope.showSearchForm = !$scope.showSearchForm;
 	}
 
@@ -66,6 +109,8 @@ myApp.controller('home', function(currentUser, $scope, $route, $location, $route
 				|| value == 'Frames' || value == 'Rims' || value == 'Tires');
 	}, "Please select Product");
 
+	
+	
 	jQuery.validator.setDefaults({
 		errorClass : 'help-block',
 		highlight : function(element) {
@@ -76,11 +121,28 @@ myApp.controller('home', function(currentUser, $scope, $route, $location, $route
 		}
 	});
 	
+	
+	
 	$scope.logout = function() {
 		$scope.currentUser.isLogged = false;
 	}
+	
+	
+//	function fun() {
+//		console.log('INNN')
+//		if($scope.basketFactory.length == 0) {
+//			var eml = document.getElementById('basket');
+//			eml.style.color = "#8d8c8c";
+//		}
+//		else {
+//			var eml = document.getElementById('basket');
+//			eml.style.color = "green";
+//		}
+//	}
 
 	$(document).ready(function() {
+		
+//		document.cookie = "Vova = 222111";
 
 		$("#search-form").validate({
 
@@ -94,10 +156,18 @@ myApp.controller('home', function(currentUser, $scope, $route, $location, $route
 			}
 		});
 	});
+	
+	
+	
+	$("#buyProduct").click(
+		function() {
+			$("#backetModal").modal("hide")
+	})
 
+	
+	
 	$("#searchSubmit").click(
 			function() {
-
 				if ($("#search-form").valid()) {
 
 					$location.path('/search' + $scope.searchProduct + '/word='

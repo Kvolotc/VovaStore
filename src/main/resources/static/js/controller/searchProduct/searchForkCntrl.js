@@ -1,13 +1,39 @@
 angular.module('myApp').controller(
 		'searchForks',
 		function($scope, $rootScope, $http, $location, $routeParams,
-				paginationService, purchaseProductFactory) {
+				paginationService, purchaseProductFactory, basketFactory, toastr) {
 
 			$scope.forks = [];
 			
 			$scope.isEmpty = false;
 
 			$scope.paginationService = paginationService;
+			
+			
+			$scope.addToBacket = function(product) {
+				
+				toastr.success('Fork'+product.brand +' '+ product.model+' was added in basket');
+				
+				var ind = basketFactory.map(function(e) { return e.imageName; }).indexOf(product.imageName);
+				
+				if(ind != -1) {
+					basketFactory[ind].amount++;
+					basketFactory[ind].price += product.price;
+					return;
+				}
+				
+				basketFactory.push({
+					amount:1,
+					product:'forks',
+					imageName: product.imageName,
+					brand:product.brand,
+					model:product.model,
+					productPrice:product.price,
+					price:product.price
+				});
+			};
+			
+			
 
 			$scope.urlFork = "#!/searchForks/word=" + $routeParams.word
 					+ ";min=" + $routeParams.min + ";max=" + $routeParams.max

@@ -22,6 +22,12 @@ body {
 	top: 3px
 }
 
+.basket {
+	font-size: 25px;
+	margin-top: 7px;
+	margin-left: -200px;
+}
+
 .search {
 	margin-top: 7px;
 	margin-left: 20px;
