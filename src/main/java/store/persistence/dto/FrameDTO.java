@@ -1,6 +1,8 @@
 package store.persistence.dto;
 
 public class FrameDTO {
+	
+	private int id;
 
 	private int price;
 
@@ -90,6 +92,14 @@ public class FrameDTO {
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

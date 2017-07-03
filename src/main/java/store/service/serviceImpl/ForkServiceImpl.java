@@ -69,8 +69,8 @@ public class ForkServiceImpl implements ForkService{
 	}
 	
 	@Override
-	public int findCountPages() {
-		return forkDao.findCountPages();
+	public int findAmountPages() {
+		return forkDao.findAmountPages();
 	}
 
 	@Override
@@ -90,13 +90,13 @@ public class ForkServiceImpl implements ForkService{
 	}
 
 	@Override
-	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
-		return forkDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	public int findAmountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return forkDao.findAmountBySearchProductsWithOneSearchWord(searchWord, min, max);
 	}
 
 	@Override
-	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
-		return forkDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	public int findAmountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return forkDao.findAmountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
 
 	@Override

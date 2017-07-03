@@ -1,14 +1,20 @@
 package store.web.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import store.persistence.dto.RimDTO;
 import store.persistence.dto.RimDTO;
@@ -30,9 +36,9 @@ public class RimController {
 		return RimMapper.rimListToRimDTOList(service.findAll());
 	}
 	
-	@RequestMapping(value = "/getCountPage/rims", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAmountPage/rims", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
-		return service.findCountPages();
+		return service.findAmountPages();
 	}
 	
 	@RequestMapping(value = "/rims/{page}", method = RequestMethod.GET)
@@ -57,15 +63,15 @@ public class RimController {
 
 	}
 
-	@RequestMapping(value = "/countSearchRims/", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAmountPageSearchRims/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
 		String words[] = word.split(" ");
 
 		if (words.length > 1) {
-			return service.findCountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
+			return service.findAmountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
 		} else {
-			return service.findCountBySearchProductsWithOneSearchWord(word, min, max);
+			return service.findAmountBySearchProductsWithOneSearchWord(word, min, max);
 		}
 
 	}
@@ -73,5 +79,20 @@ public class RimController {
 	@RequestMapping(value = "/maxPriceRims", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
+	}
+	
+	@RequestMapping(value = "/photo/rim/{rimId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@ResponseBody
+	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("rimId") int rimId) throws IOException {
+
+		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\rims\\"
+				+ file.getOriginalFilename());
+
+		file.transferTo(filee);	
+
+		Rim rim = service.findById(rimId);
+		rim.setImageName(file.getOriginalFilename());
+		service.update(rim);
+
 	}
 }

@@ -11,5 +11,9 @@ public interface UserService extends GenericService<User, Integer> {
 	public User findByToken(String token);
 	
 	public List<User> findNotActiveUsers();
+	
+	public List<User> findUserByPage(int page);
+	
+	public int findAmountPageUsers();
 
 }

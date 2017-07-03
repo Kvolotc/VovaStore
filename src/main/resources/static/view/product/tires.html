@@ -1,3 +1,18 @@
+<style>
+::-webkit-input-placeholder {
+	color: black !important;
+}
+
+::-moz-placeholder {
+	color: black !important;
+} /* Firefox 19+ */
+:-moz-placeholder {
+	color: black !important;
+} /* Firefox 18- */
+:-ms-input-placeholder {
+	color: black !important;
+}
+</style>
 
 <div class="container">
 
@@ -6,7 +21,7 @@
 		<div class="col-sm-4  col-xs-6" ng-repeat="tire in tires">
 
 			<div class="thumbnail product">
-				<img ng-src="images/tires/{{tire.imageName}}.jpg" />
+				<img ng-src="images/tires/{{tire.imageName}}" />
 
 				<div class="media-body" style="font-size: 15px; color: black;">
 
@@ -20,6 +35,39 @@
 
 					<p style="text-align: center; font-size: 18px;">{{tire.price}}
 						USD</p>
+
+
+
+					<form ng-show="currentUser.role == 'ADMIN' "
+						id="formUpload {{tire.id}}" action=""
+						enctype="multipart/form-data" method="post" accept-charset="UTF-8">
+
+
+						<div class="col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+							<div class="input-group image-preview">
+								<input id="placeHolder {{tire.id}}" type="text"
+									class="form-control image-preview-filename" disabled
+									placeholder="Upload Image"> <span
+									class="input-group-btn">
+
+									<div class="btn btn-default image-preview-input">
+										<span class="glyphicon glyphicon-folder-open"></span> <span
+											class="image-preview-input-title">Browse</span> <input
+											onchange="angular.element(this).scope().filesChanged(this)"
+											ng-click="changeTireId(tire.id)" type="file"
+											accept="image/png, image/jpeg, image/gif" name="file"
+											class="file" />
+
+									</div> <input disabled id="send {{tire.id}}" type="submit"
+									class="btn btn-success input-md" value="Send">
+								</span>
+							</div>
+						</div>
+
+					</form>
+
+
+					<br> <br>
 
 
 					<div class="buttons pull-right">

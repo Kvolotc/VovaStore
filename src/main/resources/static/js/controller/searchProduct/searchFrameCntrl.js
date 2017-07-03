@@ -9,6 +9,24 @@ angular.module('myApp').controller(
 
 			$scope.paginationService = paginationService;
 			
+			$scope.currentFrameId;		
+			
+			
+			$scope.filesChanged = function(elm) {
+	
+				document.getElementById('placeHolder '+$scope.currentFrameId).placeholder =  elm.files[0].name;
+				document.getElementById('send '+$scope.currentFrameId).disabled = false;
+				document.getElementById('formUpload '+$scope.currentFrameId).action = /photo/+'Frame/'+$scope.currentFrameId;
+		
+				$scope.$apply();
+			}
+			
+			
+			$scope.changeFrameId = function(frameId) {
+				
+				$scope.currentFrameId = frameId;			
+			}
+			
 			
 			$scope.addToBacket = function(product) {
 				
@@ -60,7 +78,7 @@ angular.module('myApp').controller(
 				isPrevious : false
 			}
 
-			paginationService.pagination('/countSearchFrames/?word='
+			paginationService.pagination('/getAmountPageSearchFrames/?word='
 					+ $routeParams.word + '&min=' + $routeParams.min + '&max='
 					+ $routeParams.max, $routeParams.page,
 					$scope.paginationParam)

@@ -13,6 +13,7 @@ public class ForkMapper {
 	public static Fork forkDTOToFork(ForkDTO dto) {
 		Fork fork = new Fork();
 		
+		fork.setId(dto.getId());
 		fork.setImageName(dto.getImageName());
 		fork.setCreatedOn(dto.getCreatedOn());;
 		fork.setBrand(ForkBrand.getEnumByValue(dto.getBrand()));
@@ -27,6 +28,7 @@ public class ForkMapper {
 	public static ForkDTO forkToForkDTO(Fork fork) {
 		ForkDTO dto = new ForkDTO();
 		
+		dto.setId(fork.getId());
 		dto.setImageName(fork.getImageName());
 		dto.setCreatedOn(fork.getCreatedOn());
 		dto.setBrand(fork.getBrand().forkBrand);

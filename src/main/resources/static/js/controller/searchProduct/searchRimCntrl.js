@@ -9,6 +9,24 @@ angular.module('myApp').controller(
 
 			$scope.paginationService = paginationService;
 			
+			$scope.currentRimId;		
+			
+			
+			$scope.filesChanged = function(elm) {
+	
+				document.getElementById('placeHolder '+$scope.currentRimId).placeholder =  elm.files[0].name;
+				document.getElementById('send '+$scope.currentRimId).disabled = false;
+				document.getElementById('formUpload '+$scope.currentRimId).action = /photo/+'Rim/'+$scope.currentRimId;
+		
+				$scope.$apply();
+			}
+			
+			
+			$scope.changeRimId = function(rimId) {
+				
+				$scope.currentRimId = rimId;			
+			}
+			
 			
             $scope.addToBacket = function(product) {
             	
@@ -59,7 +77,7 @@ angular.module('myApp').controller(
 				isPrevious : false
 			}
 
-			paginationService.pagination('/countSearchRims/?word='
+			paginationService.pagination('/getAmountPageSearchRims/?word='
 					+ $routeParams.word + '&min=' + $routeParams.min + '&max='
 					+ $routeParams.max, $routeParams.page,
 					$scope.paginationParam)

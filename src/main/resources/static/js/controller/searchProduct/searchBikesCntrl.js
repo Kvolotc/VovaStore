@@ -9,6 +9,24 @@ angular.module('myApp').controller(
 
 			$scope.paginationService = paginationService;
 			
+			$scope.currentBikeId;		
+			
+			
+			$scope.filesChanged = function(elm) {
+	
+				document.getElementById('placeHolder '+$scope.currentBikeId).placeholder =  elm.files[0].name;
+				document.getElementById('send '+$scope.currentBikeId).disabled = false;
+				document.getElementById('formUpload '+$scope.currentBikeId).action = /photo/+'bike/'+$scope.currentBikeId;
+		
+				$scope.$apply();
+			}
+			
+			
+			$scope.changeBikeId = function(bikeId) {
+				
+				$scope.currentBikeId = bikeId;			
+			}
+			
 			
 	        $scope.addToBacket = function(product) {
 	        	
@@ -60,7 +78,7 @@ angular.module('myApp').controller(
 				isPrevious : false
 			}
 
-			paginationService.pagination('/countSearchBikes/?word='
+			paginationService.pagination('/getAmountPageSearchBikes/?word='
 					+ $routeParams.word + '&min=' + $routeParams.min + '&max='
 					+ $routeParams.max, $routeParams.page,
 					$scope.paginationParam)

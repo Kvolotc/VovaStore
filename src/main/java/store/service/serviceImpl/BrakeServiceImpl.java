@@ -58,8 +58,8 @@ public class BrakeServiceImpl implements BrakeService {
 	}
 
 	@Override
-	public int findCountPages() {
-		return brakeDao.findCountPages();
+	public int findAmountPages() {
+		return brakeDao.findAmountPages();
 	}
 
 	@Override
@@ -79,13 +79,13 @@ public class BrakeServiceImpl implements BrakeService {
 	}
 
 	@Override
-	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
-		return brakeDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	public int findAmountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return brakeDao.findAmountBySearchProductsWithOneSearchWord(searchWord, min, max);
 	}
 
 	@Override
-	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
-		return brakeDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	public int findAmountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return brakeDao.findAmountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
 
 	@Override

@@ -12,5 +12,7 @@ public interface UserDao extends GenericDao<User,Integer > {
 	
 	public List<User> indNotActiveUsers();
 	
-
+	public List<User> findUserByPage(int page);
+	
+	public int findAmountPageUsers();
 }

@@ -3,6 +3,8 @@ package store.persistence.dto;
 
 public class BikeDTO {
 	
+	private int id;
+	
 	private int price;
 	
 	private BrakeDTO brake;
@@ -73,13 +75,18 @@ public class BikeDTO {
 		this.imageName = imageName;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		return "BikeDTO [price=" + price + ", brake=" + brake + ", fork=" + fork + ", frame=" + frame + ", rim=" + rim
-				+ ", tire=" + tire + ", imageName=" + imageName + "]";
+		return "BikeDTO [id=" + id + ", price=" + price + ", brake=" + brake + ", fork=" + fork + ", frame=" + frame
+				+ ", rim=" + rim + ", tire=" + tire + ", imageName=" + imageName + "]";
 	}
-	
-	
-	
 	
 }

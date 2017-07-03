@@ -69,4 +69,14 @@ public class UserServiceImpl implements  UserService {
 		return userDao.indNotActiveUsers();
 	}
 
+	@Override
+	public List<User> findUserByPage(int page) {
+		return userDao.findUserByPage(page);
+	}
+
+	@Override
+	public int findAmountPageUsers() {
+		return userDao.findAmountPageUsers();
+	}
+
 }

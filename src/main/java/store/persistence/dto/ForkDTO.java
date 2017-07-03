@@ -3,6 +3,8 @@ package store.persistence.dto;
 
 public class ForkDTO {
 	
+	private int id;
+	
 	private String course;
 	
 	private String type;
@@ -73,4 +75,12 @@ public class ForkDTO {
 		this.imageName = imageName;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 }

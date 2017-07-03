@@ -3,6 +3,8 @@ package store.persistence.dto;
 
 public class TireDTO {
 		
+	private int id;
+	
 	private int price;
 
 	private String model;
@@ -81,6 +83,14 @@ public class TireDTO {
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

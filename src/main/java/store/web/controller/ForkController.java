@@ -1,14 +1,20 @@
 package store.web.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import store.persistence.dto.ForkDTO;
 import store.persistence.dto.mapper.ForkMapper;
@@ -26,9 +32,9 @@ public class ForkController {
 		return ForkMapper.forkListToForkDTOList(service.findAll());
 	}
 	
-	@RequestMapping(value = "/getCountPage/forks", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAmountPage/forks", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
-		return service.findCountPages();
+		return service.findAmountPages();
 	}
 	
 	@RequestMapping(value = "/forks/{page}", method = RequestMethod.GET)
@@ -51,15 +57,15 @@ public class ForkController {
 
 	}
 
-	@RequestMapping(value = "/countSearchForks/", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAmountPageSearchForks/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
 		String words[] = word.split(" ");
 
 		if (words.length > 1) {
-			return service.findCountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
+			return service.findAmountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
 		} else {
-			return service.findCountBySearchProductsWithOneSearchWord(word, min, max);
+			return service.findAmountBySearchProductsWithOneSearchWord(word, min, max);
 		}
 
 	}
@@ -67,5 +73,20 @@ public class ForkController {
 	@RequestMapping(value = "/maxPriceForks", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
+	}
+	
+	@RequestMapping(value = "/photo/fork/{forkId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@ResponseBody
+	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("forkId") int forkId) throws IOException {
+
+		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\forks\\"
+				+ file.getOriginalFilename());
+
+		file.transferTo(filee);	
+
+		Fork fork = service.findById(forkId);
+		fork.setImageName(file.getOriginalFilename());
+		service.update(fork);
+
 	}
 }

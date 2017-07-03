@@ -11,6 +11,23 @@ angular.module('myApp').controller(
 
 			$scope.url = "/brakes/";
 			
+			$scope.currentBrakeId;
+			
+			
+			$scope.filesChanged = function(elm) {
+	
+				document.getElementById('placeHolder '+$scope.currentBrakeId).placeholder =  elm.files[0].name;
+				document.getElementById('send '+$scope.currentBrakeId).disabled = false;
+				document.getElementById('formUpload '+$scope.currentBrakeId).action = /photo/+'brake/'+$scope.currentBrakeId;
+				
+				$scope.$apply();
+			}
+			
+			$scope.changeBrakeId = function(brakeId) {
+				
+				$scope.currentBrakeId = brakeId;			
+			}
+			
 			
 			$scope.addToBacket = function(product) {
 				
@@ -49,7 +66,7 @@ angular.module('myApp').controller(
 				isPrevious : false
 			}
 
-			paginationService.pagination('/getCountPage/brakes',
+			paginationService.pagination('/getAmountPage/brakes',
 					$routeParams.page, $scope.paginationParam)
 
 			$http({

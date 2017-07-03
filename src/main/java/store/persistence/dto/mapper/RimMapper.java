@@ -14,6 +14,7 @@ public class RimMapper {
 		
 		Rim rim = new Rim();
 		
+		rim.setId(dto.getId());
 		rim.setImageName(dto.getImageName());
 		rim.setCreatedOn(dto.getCreatedOn());
 		rim.setBrand(RimBrand.valueOf(dto.getBrand()));
@@ -29,6 +30,7 @@ public class RimMapper {
 		
 		RimDTO dto = new RimDTO();
 		
+		dto.setId(rim.getId());
 		dto.setImageName(rim.getImageName());
 		dto.setCreatedOn(rim.getCreatedOn());
 		dto.setBrand(rim.getBrand().toString());

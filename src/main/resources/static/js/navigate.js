@@ -1,24 +1,25 @@
-var myApp = angular.module('myApp', [ "ngRoute", "rzModule", "ui.bootstrap", "toastr", ]);
+var myApp = angular.module('myApp', [ "ngRoute", "rzModule", "ui.bootstrap",
+		"toastr" ]);
 
 myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
-	
-	angular.extend(toastrConfig, {
-	    allowHtml: false,
-	    closeButton: false,
-	    extendedTimeOut: 1000,
-	    iconClasses: {
-	      error: 'toast-error',
-	      info: 'toast-info',
-	      success: 'toast-success',
-	      warning: 'toast-warning'
-	    },  
 
-	    timeOut: 2000,
-	    titleClass: 'toast-title',
-	    toastClass: 'toast'
-	  });
-	
-	
+	angular.extend(toastrConfig, {
+		allowHtml : false,
+		closeButton : true,
+		extendedTimeOut : 1000,
+		positionClass : 'toast-bottom-right',
+		iconClasses : {
+			error : 'toast-error',
+			info : 'toast-info',
+			success : 'toast-success',
+			warning : 'toast-warning'
+		},
+
+		timeOut : 3000,
+		titleClass : 'toast-title',
+		toastClass : 'toast'
+	});
+
 	$routeProvider
 
 	.when('', {
@@ -34,6 +35,36 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 	.when('/login', {
 		templateUrl : 'view/login.html',
 		controller : 'login'
+	})
+
+	.when('/photo/bike/:bikeId', {
+		templateUrl : 'view/file/bikeFile.html',
+		controller : 'mountainBike',
+	})
+
+	.when('/photo/frame/:photo', {
+		templateUrl : 'view/file/bikes.html',
+		controller : 'mountainBike',
+	})
+
+	.when('/photo/brake/:photo', {
+		templateUrl : 'view/file/bikes.html',
+		controller : 'mountainBike',
+	})
+
+	.when('/photo/fork/:photo', {
+		templateUrl : 'view/file/bikes.html',
+		controller : 'mountainBike',
+	})
+
+	.when('/photo/rim/:photo', {
+		templateUrl : 'view/file/bikes.html',
+		controller : 'mountainBike',
+	})
+
+	.when('/photo/tire/:photo', {
+		templateUrl : 'view/product/bikes.html',
+		controller : 'mountainBike',
 	})
 
 	.when('/mountainBikes/:page', {
@@ -96,6 +127,11 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 		controller : 'forgotPassword'
 	})
 
+	.when('/users/:page', {
+		templateUrl : 'view/users.html',
+		controller : 'users'
+	})
+
 	.when('/frames/:page', {
 		templateUrl : 'view/product/frames.html',
 		controller : 'frames'
@@ -130,10 +166,10 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 		redirectTo : '/'
 	})
 
-	//	$locationProvider.html5Mode({
-	//		enabled : true,
-	//		requireBase : true
-	//	});
-	//	$locationProvider.hashPrefix('!');
+		$locationProvider.html5Mode({
+			enabled : true,
+			requireBase : true
+		});
+		$locationProvider.hashPrefix('!');
 
 });

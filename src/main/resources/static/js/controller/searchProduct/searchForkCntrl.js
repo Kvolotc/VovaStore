@@ -9,6 +9,24 @@ angular.module('myApp').controller(
 
 			$scope.paginationService = paginationService;
 			
+			$scope.currentForkId;		
+			
+			
+			$scope.filesChanged = function(elm) {
+	
+				document.getElementById('placeHolder '+$scope.currentForkId).placeholder =  elm.files[0].name;
+				document.getElementById('send '+$scope.currentForkId).disabled = false;
+				document.getElementById('formUpload '+$scope.currentForkId).action = /photo/+'fork/'+$scope.currentForkId;
+		
+				$scope.$apply();
+			}
+			
+			
+			$scope.changeForkId = function(forkId) {
+				
+				$scope.currentForkId = forkId;			
+			}
+			
 			
 			$scope.addToBacket = function(product) {
 				
@@ -60,7 +78,7 @@ angular.module('myApp').controller(
 				isPrevious : false
 			}
 
-			paginationService.pagination('/countSearchForks/?word='
+			paginationService.pagination('/getAmountPageSearchForks/?word='
 					+ $routeParams.word + '&min=' + $routeParams.min + '&max='
 					+ $routeParams.max, $routeParams.page,
 					$scope.paginationParam)

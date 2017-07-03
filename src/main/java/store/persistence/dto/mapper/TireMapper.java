@@ -14,6 +14,7 @@ public class TireMapper {
 		
 		Tire tire = new Tire();
 		
+		tire.setId(dto.getId());
 		tire.setImageName(dto.getImageName());
 		tire.setCreatedOn(dto.getCreatedOn());
 		tire.setBrand(TireBrand.valueOf(dto.getBrand()));
@@ -30,6 +31,7 @@ public class TireMapper {
 		
 		TireDTO dto = new TireDTO();
 		
+		dto.setId(tire.getId());
 		dto.setImageName(tire.getImageName());
 		dto.setCreatedOn(tire.getCreatedOn());
 		dto.setBrand(tire.getBrand().toString());

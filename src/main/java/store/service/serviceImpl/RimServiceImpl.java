@@ -64,8 +64,8 @@ public class RimServiceImpl implements RimService {
 	}
 	
 	@Override
-	public int findCountPages() {
-		return rimDao.findCountPages();
+	public int findAmountPages() {
+		return rimDao.findAmountPages();
 	}
 
 	@Override
@@ -85,13 +85,13 @@ public class RimServiceImpl implements RimService {
 	}
 
 	@Override
-	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
-		return rimDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	public int findAmountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return rimDao.findAmountBySearchProductsWithOneSearchWord(searchWord, min, max);
 	}
 
 	@Override
-	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
-		return rimDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	public int findAmountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return rimDao.findAmountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
 
 	@Override

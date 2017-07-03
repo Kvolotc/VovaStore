@@ -2,6 +2,8 @@ package store.persistence.dto;
 
 
 public class RimDTO {
+	
+	private int id;
 		
 	private int price;
 
@@ -71,6 +73,14 @@ public class RimDTO {
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

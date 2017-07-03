@@ -1,8 +1,9 @@
 package store.persistence.dto;
 
-import javax.persistence.Column;
 
 public class BrakeDTO {
+	
+	private int id;
 
 	private String model;
 	
@@ -62,6 +63,14 @@ public class BrakeDTO {
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

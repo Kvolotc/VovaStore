@@ -74,8 +74,8 @@ public class FrameServiceImpl implements FrameService {
 	}
 
 	@Override
-	public int findCountPages() {
-		return frameDao.findCountPages();
+	public int findAmountPages() {
+		return frameDao.findAmountPages();
 	}
 
 	@Override
@@ -95,13 +95,13 @@ public class FrameServiceImpl implements FrameService {
 	}
 
 	@Override
-	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
-		return frameDao.findCountBySearchProductsWithOneSearchWord(searchWord, min, max);
+	public int findAmountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+		return frameDao.findAmountBySearchProductsWithOneSearchWord(searchWord, min, max);
 	}
 
 	@Override
-	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
-		return frameDao.findCountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
+	public int findAmountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+		return frameDao.findAmountBySearchProductsWithTwoSearchWords(searchWord, searchWord2, min, max);
 	}
 
 	@Override

@@ -8,7 +8,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Log in</div>
 		<div class="panel-body">
-			<form id="login-form" class="form-horizontal">
+			<form id="login-form" action="/login" method="get" class="form-horizontal">
 
 
 				<div class="form-group" ng-class="{'has-error': isWarning == true}">
@@ -16,7 +16,7 @@
 					<div
 						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 						<span class="glyphicon glyphicon-envelope loginGlyp"></span> <input
-							type="text" class="form-control" name="email" placeholder="Email"
+							type="text" class="form-control" name="username" placeholder="Email"
 							ng-model="loginParam.eMail" />
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 				<div class="form-group ">
 
 					<div class="col-sm-2 col-sm-offset-2 col-xs-2 col-xs-offset-2 ">
-						<button type="submit" class="btn btn-success" ng-click="login()">Log
+						<button type="submit" class="btn btn-success">Log <!-- ng-click="login()" -->
 							in</button>
 					</div>
 

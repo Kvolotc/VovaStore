@@ -11,6 +11,24 @@ angular.module('myApp').controller(
 
 			$scope.url = "/racingBikes/";
 			
+			$scope.currentBikeId;		
+			
+			
+			$scope.filesChanged = function(elm) {
+	
+				document.getElementById('placeHolder '+$scope.currentBikeId).placeholder =  elm.files[0].name;
+				document.getElementById('send '+$scope.currentBikeId).disabled = false;
+				document.getElementById('formUpload '+$scope.currentBikeId).action = /photo/+'bike/'+$scope.currentBikeId;
+		
+				$scope.$apply();
+			}
+			
+			
+			$scope.changeBikeId = function(bikeId) {
+				
+				$scope.currentBikeId = bikeId;			
+			}
+			
 			
 	        $scope.addToBacket = function(product) {
 	        	
@@ -49,7 +67,7 @@ angular.module('myApp').controller(
 				isPrevious : false
 			}
 
-			paginationService.pagination('/getCountPage/racingBikes',
+			paginationService.pagination('/getAmountPage/racingBikes',
 					$routeParams.page, $scope.paginationParam)
 
 			$http({

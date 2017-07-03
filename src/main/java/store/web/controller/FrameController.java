@@ -1,14 +1,20 @@
 package store.web.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import store.persistence.dto.FrameDTO;
 import store.persistence.dto.FrameDTO;
@@ -30,9 +36,9 @@ public class FrameController {
 		return FrameMapper.frameListToFrameDTOList(service.findAll());
 	}
 	
-	@RequestMapping(value = "/getCountPage/frames", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAmountPage/frames", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
-		return service.findCountPages();
+		return service.findAmountPages();
 	}
 	
 	@RequestMapping(value = "/frames/{page}", method = RequestMethod.GET)
@@ -56,15 +62,15 @@ public class FrameController {
 
 	}
 
-	@RequestMapping(value = "/countSearchFrames/", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAmountPageSearchFrames/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
 		String words[] = word.split(" ");
 
 		if (words.length > 1) {
-			return service.findCountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
+			return service.findAmountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
 		} else {
-			return service.findCountBySearchProductsWithOneSearchWord(word, min, max);
+			return service.findAmountBySearchProductsWithOneSearchWord(word, min, max);
 		}
 
 	}
@@ -72,5 +78,20 @@ public class FrameController {
 	@RequestMapping(value = "/maxPriceFrames", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
+	}
+	
+	@RequestMapping(value = "/photo/frame/{frameId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@ResponseBody
+	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("frameId") int frameId) throws IOException {
+
+		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\frames\\"
+				+ file.getOriginalFilename());
+
+		file.transferTo(filee);	
+
+		Frame frame = service.findById(frameId);
+		frame.setImageName(file.getOriginalFilename());
+		service.update(frame);
+
 	}
 }

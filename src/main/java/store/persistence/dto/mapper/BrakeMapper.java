@@ -14,6 +14,7 @@ public class BrakeMapper {
 		
 		Brake brake = new Brake();
 		
+		brake.setId(dto.getId());
 		brake.setBrand(BrakeBrand.valueOf(dto.getBrand()));
 		brake.setModel(dto.getModel());
 		brake.setPrice(dto.getPrice());
@@ -28,6 +29,7 @@ public class BrakeMapper {
 		
 		BrakeDTO dto = new BrakeDTO();
 		
+		dto.setId(brake.getId());
 		dto.setImageName(brake.getImageName());
 		dto.setCreatedOn(brake.getCreatedOn());;
 		dto.setBrand(brake.getBrand().toString());

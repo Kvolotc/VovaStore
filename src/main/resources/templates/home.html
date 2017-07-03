@@ -16,7 +16,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.1.1/rzslider.min.css">
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
-<link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
+<link rel="stylesheet"
+	href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
 
 <link rel="stylesheet" th:href="@{/css/home.css}">
 <link rel="stylesheet" th:href="@{/css/registration.css}">
@@ -50,7 +51,8 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 <script th:src="@{/js/chosen.jquery.min.js}"></script>
-<script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script
+	src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
 
 
 
@@ -76,12 +78,15 @@
 <script th:src="@{/js/controller/searchProduct/searchRimCntrl.js}"></script>
 <script th:src="@{/js/controller/searchProduct/searchTireCntrl.js}"></script>
 <script th:src="@{/js/controller/purchaseProductCntrl.js}"></script>
+<script th:src="@{/js/controller/usersCntrl.js}"></script>
 <script th:src="@{/js/factory/productFactory.js}"></script>
 <script th:src="@{/js/factory/basketFactory.js}"></script>
 <script th:src="@{/js/factory/currentUser.js}"></script>
 <script th:src="@{/js/factory/purchaseProductFactory.js}"></script>
 <script th:src="@{/js/service/productService.js}"></script>
 <script th:src="@{/js/service/paginationService.js}"></script>
+<script th:src="@{/js/service/multiparFormService.js}"></script>
+<script th:src="@{/js/directives/fileModel.js}"></script>  
 
 
 
@@ -109,38 +114,38 @@
 
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
-				<ul ng-show="currentUser.role != null" class="nav navbar-nav">
-					<li class="active-link "><a href="#!/"><span
+				<ul class="nav navbar-nav">
+					<li class="active-link "><a href="/"><span
 							class="glyphicon glyphicon-home  "></span> головна</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">велосипеди <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#!/mountainBikes/1">горні</a></li>
+							<li><a href="/mountainBikes/1">горні</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/allMountainBikes/1">двохпідвіси</a></li>
+							<li><a href="/allMountainBikes/1">двохпідвіси</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/racingBikes/1">шосейні</a></li>
+							<li><a href="/racingBikes/1">шосейні</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">запчастини<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#!/frames/1">рами</a></li>
+							<li><a href="/frames/1">рами</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/forks/1">вилки</a></li>
+							<li><a href="/forks/1">вилки</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/rims/1">обіда</a></li>
+							<li><a href="/rims/1">обіда</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/tires/1">шини</a></li>
+							<li><a href="/tires/1">шини</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#!/brakes/1">тормоза</a></li>
+							<li><a href="/brakes/1">тормоза</a></li>
 						</ul></li>
 					<li><a href="#">контакти <span class="sr-only"></span></a></li>
 					<li><a style="cursor: pointer;" ng-click="changeSearchForm()"><span
 							class="glyphicon glyphicon-search"></span> Search<span
 							class="sr-only "></span></a></li>
-					<li ng-show="currentUser.role == 'ADMIN' "><a href="#">користувачі
+					<li ng-show="currentUser.role == 'ADMIN' "><a href="/users/1">користувачі
 							<span class="sr-only"></span>
 					</a></li>
 
@@ -148,10 +153,11 @@
 
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a ng-click="countPrice()" ng-if="basketFactory.length > 0"
-						data-target="#backetModal" data-toggle="modal"
-						style="cursor: pointer"><span style="color: green;"
-							id="basket" class="glyphicon glyphicon-shopping-cart basket">{{basketFactory.length}}</span>
+					<li><a ng-click="countPrice()"
+						ng-if="basketFactory.length > 0" data-target="#backetModal"
+						data-toggle="modal" style="cursor: pointer"><span
+							style="color: green;" id="basket"
+							class="glyphicon glyphicon-shopping-cart basket">{{basketFactory.length}}</span>
 					</a> <a ng-if="basketFactory.length == 0" data-target="#backetModal"
 						data-toggle="modal" style="pointer-events: none; cursor: default;">
 							<span id="basket"
@@ -163,10 +169,10 @@
 
 				<ul ng-show="currentUser.isLogged == false"
 					class="nav navbar-nav navbar-right">
-					<li><a class="login" href="#!/login"> <span
+					<li><a class="login" href="/login"> <span
 							class="glyphicon glyphicon-log-in"></span> логін
 					</a></li>
-					<li><a class="registration" href="#!/registration"> <span
+					<li><a class="registration" href="/registration"> <span
 							class="glyphicon glyphicon-user"></span> реєстрація
 					</a></li>
 				</ul>
@@ -174,11 +180,11 @@
 				<ul ng-show="currentUser.isLogged == true"
 					class="nav navbar-nav navbar-right">
 					<li><a class="logout" ng-click="logout()" class="logout"
-						href="#!/"> <span class="glyphicon glyphicon-log-out"></span>
+						href=""> <span class="glyphicon glyphicon-log-out"></span>
 							вийти
 					</a></li>
 
-					<li><a class="profile" href="#!/profile"> <span
+					<li><a class="profile" href="/profile"> <span
 							class="glyphicon glyphicon-cog"></span> профіль
 					</a></li>
 				</ul>
@@ -189,7 +195,7 @@
 		</div>
 
 	</nav>
-
+	
 	<h1>CURENT USER - {{currentUser}}</h1>
 
 	<div class="search" ng-show="showSearchForm">
@@ -264,7 +270,7 @@
 						<div class="thumbnail product" style="border: 2px solid;">
 
 							<img
-								ng-src="images/{{product.product}}/{{product.imageName}}.jpg" />
+								ng-src="images/{{product.product}}/{{product.imageName}}" />
 
 							<div class="media-body" style="font-size: 15px; color: black;">
 
@@ -283,38 +289,39 @@
 									USD</p>
 
 								<div class="buttons">
-									<button ng-click="deleteProduct(product)" class="btn btn-danger">Delete</button>
+									<button ng-click="deleteProduct(product)"
+										class="btn btn-danger">Delete</button>
 								</div>
 
 							</div>
 
 						</div>
 					</div>
-					
-					
+
+
 
 					<div class="form-group ">
 
 						<div
-							class="col-sm-10 col-sm-offset-1 col-xs-2 col-xs-offset-2 input-group" style="text-align: left;">
-							<p style="text-align: center; font-size: 18px;">Price = {{price}}
-							USD</p>
-							
-							<a id="buyProduct" type="button" href="#!/purchaseProduct" class="btn btn-success col-sm-offset-2" ng-click="buyProductInBasket()">Buy</a>
-							
-							<a id="deleteProduct" type="button" class="btn btn-danger col-sm-offset-3" ng-click="deleteAllProduct()">Delete All</a>
+							class="col-sm-10 col-sm-offset-1 col-xs-2 col-xs-offset-2 input-group"
+							style="text-align: left;">
+							<p style="text-align: center; font-size: 18px;">Price =
+								{{price}} USD</p>
+
+							<a id="buyProduct" type="button" href="/purchaseProduct"
+								class="btn btn-success col-sm-offset-2"
+								ng-click="buyProductInBasket()">Buy</a> <a id="deleteProduct"
+								type="button" class="btn btn-danger col-sm-offset-3"
+								ng-click="deleteAllProduct()">Delete All</a>
 						</div>
 
 					</div>
-					
+
 					<div class="form-group ">
 
 						<div
-							class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group" style="text-align: right;">
-							
-							
-							
-						</div>
+							class="col-sm-4 col-sm-offset-4 col-xs-2 col-xs-offset-2 input-group"
+							style="text-align: right;"></div>
 
 					</div>
 
@@ -324,7 +331,7 @@
 	</div>
 
 
-	<div ng-view> </div>
+	<div ng-view></div>
 
 
 

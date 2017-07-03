@@ -69,16 +69,17 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 		product.price = product.productPrice * amount;
 		
 		$scope.countPrice();	
-		
 	}
 	
 	
 	$scope.deleteProduct = function(product) {
 		var ind = $scope.basketFactory.map(function(e) { return e.imageName; }).indexOf(product.imageName);
 		
+		$scope.price = $scope.price - basketFactory[ind].price;
+		
 		$scope.basketFactory.splice(ind, 1);
 		
-		toastr.info(product.product+' '+product.brand+' '+product.model+' was deleted');
+		toastr.info(product.brand+' '+product.model+' was deleted');
 		
 		if(basketFactory.length == 0) {
 			$("#backetModal").modal("hide");
@@ -124,7 +125,31 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 	
 	
 	$scope.logout = function() {
-		$scope.currentUser.isLogged = false;
+
+		$http({
+			method : 'PUT',
+			url : '/logoutUser',
+			contentType : 'application/json;charset-UTF-8',
+			dataType : 'json',
+			async : false,
+			data : 	$scope.currentUser.email
+
+		}).then(function(response) {
+			
+			toastr.success('Goodbye '+currentUser.firstName+' '+currentUser.lastName);
+			
+			$scope.currentUser.isLogged = false;
+			$scope.currentUser.firstName = null
+			$scope.currentUser.lastName = null
+			$scope.currentUser.email = null
+			$location.path("/");
+		
+
+		}, function errorCallback(response) {
+
+		
+
+		});
 	}
 	
 	
@@ -141,8 +166,6 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 //	}
 
 	$(document).ready(function() {
-		
-//		document.cookie = "Vova = 222111";
 
 		$("#search-form").validate({
 

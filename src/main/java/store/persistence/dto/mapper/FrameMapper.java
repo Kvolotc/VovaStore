@@ -15,6 +15,7 @@ public class FrameMapper {
 		
 		Frame frame = new Frame();
 		
+		frame.setId(dto.getId());
 		frame.setImageName(dto.getImageName());
 		frame.setCreatedOn(dto.getCreatedOn());
 		frame.setAlloy(Alloy.getEnumByValue(dto.getAlloy()));
@@ -33,6 +34,7 @@ public class FrameMapper {
 		
 		FrameDTO dto = new FrameDTO();
 		
+		dto.setId(frame.getId());
 		dto.setImageName(frame.getImageName());
 		dto.setCreatedOn(frame.getCreatedOn());
 		dto.setAlloy(frame.getAlloy().toString());

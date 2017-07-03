@@ -1,4 +1,18 @@
+<style>
+::-webkit-input-placeholder {
+	color: black !important;
+}
 
+::-moz-placeholder {
+	color: black !important;
+} /* Firefox 19+ */
+:-moz-placeholder {
+	color: black !important;
+} /* Firefox 18- */
+:-ms-input-placeholder {
+	color: black !important;
+}
+</style>
 
 <div class="container">
 
@@ -7,7 +21,7 @@
 		<div class="col-sm-4  col-xs-6" ng-repeat="brake in brakes">
 
 			<div class="thumbnail product">
-				<img ng-src="images/brakes/{{brake.imageName}}.jpg" />
+				<img ng-src="images/brakes/{{brake.imageName}}" />
 
 				<div class="media-body" style="font-size: 15px; color: black;">
 
@@ -19,11 +33,45 @@
 					<p style="text-align: center; font-size: 18px;">{{brake.price}}
 						USD</p>
 
+					<form ng-show="currentUser.role == 'ADMIN' "
+						id="formUpload {{brake.id}}" action=""
+						enctype="multipart/form-data" method="post" accept-charset="UTF-8">
+
+
+						<div class="col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+							<div class="input-group image-preview">
+								<input id="placeHolder {{brake.id}}" type="text"
+									class="form-control image-preview-filename" disabled
+									placeholder="Upload Image"> <span
+									class="input-group-btn">
+
+									<div class="btn btn-default image-preview-input">
+										<span class="glyphicon glyphicon-folder-open"></span> <span
+											class="image-preview-input-title">Browse</span> <input
+											onchange="angular.element(this).scope().filesChanged(this)"
+											ng-click="changeBrakeId(brake.id)" type="file"
+											accept="image/png, image/jpeg, image/gif" name="file"
+											class="file" />
+
+									</div> <input disabled id="send {{brake.id}}" type="submit"
+									class="btn btn-success input-md" value="Send">
+								</span>
+							</div>
+						</div>
+
+					</form>
+
+
+					<br> <br>
+
 					<div class="buttons pull-right">
 						<a type="button" class="btn btn-success"
 							ng-click="buyProduct(brake)" href="#!/purchaseProduct">Buy</a>
 						<button ng-click="addToBacket(brake)" class="btn btn-success">Backet</button>
 					</div>
+
+
+
 
 				</div>
 
@@ -34,12 +82,16 @@
 </div>
 
 
+
+
+
 <div class="container" ng-if="isEmpty">
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 ">
 			<div class="thumbnail bikes pull-left ">
 				<div class="media-body">
-					<p style="text-align: center; color: red; font-size: 18px; text-transform: uppercase;">brakes
+					<p
+						style="text-align: center; color: red; font-size: 18px; text-transform: uppercase;">brakes
 						has not been found</p>
 				</div>
 			</div>

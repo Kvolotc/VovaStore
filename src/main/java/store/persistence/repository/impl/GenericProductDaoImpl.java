@@ -18,7 +18,7 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	private final static int SIZE_PAGE = 1;
+	private final static int SIZE_PAGE = 3;
 
 	private Class<T> entity;
 
@@ -50,7 +50,7 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	@Override
-	public int findCountPages() {
+	public int findAmountPages() {
 
 		long count = entityManager.createQuery("SELECT COUNT(e.id) FROM " + entity.getSimpleName() + " e", Long.class)
 				.getSingleResult();
@@ -112,7 +112,7 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	@Override
-	public int findCountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
+	public int findAmountBySearchProductsWithOneSearchWord(String searchWord, int min, int max) {
 
 		String table = entity.getSimpleName() + "s";
 
@@ -136,7 +136,7 @@ public abstract class GenericProductDaoImpl<T, ID> extends GenericDaoImpl<T, ID>
 
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	@Override
-	public int findCountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+	public int findAmountBySearchProductsWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
 
 		String table = entity.getSimpleName() + "s";
 		

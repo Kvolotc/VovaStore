@@ -101,12 +101,12 @@ public class Bike {
 		this.price = price;
 	}
 
-	@Override
-	public String toString() {
-		return "Bike [id=" + id + ", price=" + price + ", brake=" + brake + ", fork=" + fork + ", frame=" + frame
-				+ ", rim=" + rim + ", tire=" + tire + ", imageName=" + imageName + "]";
+	public int getId() {
+		return id;
 	}
-	
-	
+
+	public void setId(int id) {
+		this.id = id;
+	}
 		
 }

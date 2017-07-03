@@ -14,6 +14,7 @@ public class UserMapper {
 
 		User user = new User();
 
+		user.setId(dto.getId());
 		user.setActivated(dto.isActivated());
 		user.setBirthDate(dto.getBirthDate());
 		user.setRegistrationDate(dto.getRegistrationDate());
@@ -32,6 +33,7 @@ public class UserMapper {
 
 		UserDTO dto = new UserDTO();
 
+		dto.setId(user.getId());
 		dto.setActivated(user.isActivated());
 		dto.setBirthDate(user.getBirthDate());
 		dto.setRegistrationDate(user.getRegistrationDate());

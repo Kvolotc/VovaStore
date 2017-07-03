@@ -73,18 +73,18 @@ public class BikeServiceImpl implements BikeService{
 	}
 
 	@Override
-	public int findCountPageMountainBikes() {
-		return bikeDao.findCountPageMountainBikes();
+	public int findAmountPageMountainBikes() {
+		return bikeDao.findAmountPageMountainBikes();
 	}
 
 	@Override
-	public int findCountPageAllMountainBikes() {
-		return bikeDao.findCountPageAllMountainBikes();
+	public int findAmountPageAllMountainBikes() {
+		return bikeDao.findAmountPageAllMountainBikes();
 	}
 
 	@Override
-	public int findCountPageRacingBikes() {
-		return bikeDao.findCountPageRacingBikes();
+	public int findAmountPageRacingBikes() {
+		return bikeDao.findAmountPageRacingBikes();
 	}
 
 	@Override
@@ -98,18 +98,23 @@ public class BikeServiceImpl implements BikeService{
 	}
 
 	@Override
-	public int findCountBySearchBikesWithOneSearchWord(String SearchWord, int min, int max) {
-		return bikeDao.findCountBySearchBikesWithOneSearchWord(SearchWord, min, max);
+	public int findAmountBySearchBikesWithOneSearchWord(String SearchWord, int min, int max) {
+		return bikeDao.findAmountBySearchBikesWithOneSearchWord(SearchWord, min, max);
 	}
 
 	@Override
-	public int findCountBySearchBikesWithTwoSearchWords(String SearchWord, String SearchWord2, int min, int max) {
-		return bikeDao.findCountBySearchBikesWithTwoSearchWords(SearchWord, SearchWord2, min, max);
+	public int findAmountBySearchBikesWithTwoSearchWords(String SearchWord, String SearchWord2, int min, int max) {
+		return bikeDao.findAmountBySearchBikesWithTwoSearchWords(SearchWord, SearchWord2, min, max);
 	}
 
 	@Override
 	public int findMaxPrice() {
 		return bikeDao.findMaxPrice();
+	}
+
+	@Override
+	public Bike findByImageName(String imageName) {
+		return bikeDao.findByImageName(imageName);
 	}
 	
 }

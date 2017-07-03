@@ -12,6 +12,7 @@ public class BikeMapper {
 		
 		Bike bike = new Bike();
 		
+		bike.setId(dto.getId());
 		bike.setPrice(dto.getPrice());
 		bike.setBrake(BrakeMapper.brakeDTOToBrake(dto.getBrake()));
 		bike.setFork(ForkMapper.forkDTOToFork(dto.getFork()));
@@ -27,6 +28,7 @@ public class BikeMapper {
 		
 		BikeDTO dto = new BikeDTO();
 		
+		dto.setId(bike.getId());
 		dto.setPrice(bike.getPrice());
 		dto.setBrake(BrakeMapper.brakeToBrakeDTO(bike.getBrake()));
 		dto.setFork(ForkMapper.forkToForkDTO(bike.getFork()));

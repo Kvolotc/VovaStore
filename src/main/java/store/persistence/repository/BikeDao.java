@@ -20,19 +20,21 @@ public interface BikeDao extends GenericDao<Bike, Integer>  {
 	
 	public List<Bike> findRacingBikes(int page);
 	
-	public int findCountPageMountainBikes();
+	public int findAmountPageMountainBikes();
 	
-	public int findCountPageAllMountainBikes();
+	public int findAmountPageAllMountainBikes();
 	
-	public int findCountPageRacingBikes();
+	public int findAmountPageRacingBikes();
 	
 	public List<Bike> findBySearchBikesWithOneSearchWord(String searchWord, int min, int max, int page);
 	
 	public List<Bike> findBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max, int page);
 	
-	public int findCountBySearchBikesWithOneSearchWord(String searchWord, int min, int max);
+	public int findAmountBySearchBikesWithOneSearchWord(String searchWord, int min, int max);
 	
-	public int findCountBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max);
+	public int findAmountBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max);
 	
 	public int findMaxPrice();
+	
+	public Bike findByImageName(String imageName);
 }

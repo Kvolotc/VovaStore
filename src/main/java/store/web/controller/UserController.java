@@ -1,19 +1,16 @@
 package store.web.controller;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,7 +28,6 @@ import store.persistence.dto.UserDTO;
 import store.persistence.dto.mapper.UserMapper;
 import store.persistence.entity.User;
 import store.persistence.model.ForgotPasswordParam;
-import store.persistence.model.LoginParam;
 import store.persistence.model.UpdateUserParam;
 import store.service.UserService;
 
@@ -54,12 +50,11 @@ public class UserController {
 	@ResponseBody
 	public boolean checkIfExistUserWithThisEmail(@RequestBody String email) {
 
-		
-		System.out.println("EMAIL in JAVA = "+email);
-			
-			int cutNameValue = 6;
-			email = email.substring(cutNameValue).replace("%40", "@");
-		
+		System.out.println("EMAIL in JAVA = " + email);
+
+		int cutNameValue = 6;
+		email = email.substring(cutNameValue).replace("%40", "@");
+
 		try {
 
 			service.findByEmail(email);
@@ -95,15 +90,27 @@ public class UserController {
 		}
 
 	}
+	
+	/*@RequestMapping(value = "/logoutUser", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<UserDTO>  logoutUser(@RequestBody String email) {
+		
+		User user = service.findByEmail(email);
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+		user.setLogged(false);
+		service.update(user);
+		
+		return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.OK);
+	}*/
+
+	/*@RequestMapping(value = "/login", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<UserDTO> loginUser(@RequestBody LoginParam loginParam) {
 
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 		User user = null;
-		
+
 		if (loginParam.geteMail() == null || loginParam.getPassword() == null) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
@@ -127,7 +134,7 @@ public class UserController {
 		} else {
 			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.BAD_REQUEST);
 		}
-	}
+	}*/
 
 	@RequestMapping(value = "/forgotPassword", method = RequestMethod.PUT)
 	@ResponseBody
@@ -155,17 +162,11 @@ public class UserController {
 	@RequestMapping(value = "/getCurrentUser", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<UserDTO> getCurrent(@AuthenticationPrincipal Principal user) {
-		System.out.println("Hello");
-		System.out.println(user);
 		
-//		UserDTO user2 = new UserDTO();
-//		user2.setLogged(true);
-//		user2.setRole("ADMIN");
-//		return new ResponseEntity<>(user2, HttpStatus.OK) ;
-		if(user == null) {
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
-		}
+		System.out.println("User:");
+		System.out.println(user.getName());
 		
+
 		return new ResponseEntity<>(UserMapper.userToUserDTO(service.findByEmail(user.getName())),HttpStatus.OK);
 	}
 
@@ -173,17 +174,31 @@ public class UserController {
 	@ResponseBody
 	public UserDTO updateUser(@RequestBody UpdateUserParam newUser) {
 		User user = service.findByEmail(newUser.getCurrentEmail());
-		
+
 		user.setFirstName(newUser.getFirstName());
 		user.setLastName(newUser.getLastName());
-		
-		if(!user.getEmail().equals(newUser.getEmail())) {
+
+		if (!user.getEmail().equals(newUser.getEmail())) {
 			user.setEmail(newUser.getEmail());
 		}
-		
+
 		service.update(user);
-		
+
 		return UserMapper.userToUserDTO(user);
 	}
-	
+
+	@RequestMapping(value = "/users/{page}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<UserDTO> getUsers(@PathVariable("page") int page) {
+
+		return UserMapper.userListToUserDTOList(service.findUserByPage(page));
+	}
+
+	@RequestMapping(value = "/getAmountPageUsers", method = RequestMethod.GET)
+	@ResponseBody
+	public int findAmountPageUsers() {
+
+		return service.findAmountPageUsers();
+	}
+
 }

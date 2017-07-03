@@ -1,20 +1,25 @@
 package store.web.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import store.persistence.dto.TireDTO;
-import store.persistence.dto.TireDTO;
 import store.persistence.dto.mapper.TireMapper;
-import store.persistence.dto.mapper.TireMapper;
+import store.persistence.entity.Tire;
 import store.service.TireService;
 
 
@@ -35,9 +40,9 @@ public class TireController {
 		return TireMapper.tireListToTireDTOList(service.findAll());
 	}
 	
-	@RequestMapping(value = "/getCountPage/tires", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAmountPage/tires", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
-		return service.findCountPages();
+		return service.findAmountPages();
 	}
 	
 	@RequestMapping(value = "/tires/{page}", method = RequestMethod.GET)
@@ -61,15 +66,15 @@ public class TireController {
 
 	}
 
-	@RequestMapping(value = "/countSearchTires/", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAmountPageSearchTires/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
 		String words[] = word.split(" ");
 
 		if (words.length > 1) {
-			return service.findCountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
+			return service.findAmountBySearchProductsWithTwoSearchWords(words[0], words[1], min, max);
 		} else {
-			return service.findCountBySearchProductsWithOneSearchWord(word, min, max);
+			return service.findAmountBySearchProductsWithOneSearchWord(word, min, max);
 		}
 
 	}
@@ -77,5 +82,20 @@ public class TireController {
 	@RequestMapping(value = "/maxPriceTires", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
+	}
+	
+	@RequestMapping(value = "/photo/tire/{tireId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@ResponseBody
+	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("tireId") int tireId) throws IOException {
+
+		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\tires\\"
+				+ file.getOriginalFilename());
+
+		file.transferTo(filee);	
+
+		Tire tire = service.findById(tireId);
+		tire.setImageName(file.getOriginalFilename());
+		service.update(tire);
+
 	}
 }

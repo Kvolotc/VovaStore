@@ -1,4 +1,4 @@
-angular.module('myApp').controller('login', function(currentUser, $scope, $http, $location) {
+angular.module('myApp').controller('login', function(currentUser, $scope, $http, $location, toastr) {
 
 	$scope.loginParam = {
 		eMail : $scope.eMail,
@@ -21,14 +21,16 @@ angular.module('myApp').controller('login', function(currentUser, $scope, $http,
 	$scope.login = function() {
 
 			$http({
-				method : 'POST',
+				method : 'PUT',
 				url : '/login',
 				contentType : 'application/json',
 				dataType : 'json',
-				async : true,
+				async : false,
 				data : $scope.loginParam
 
 			}).then(function(response) {
+				
+				toastr.success('Welcome '+response.data.firstName+' '+response.data.lastName);
 
 				console.log(response.data)
 				currentUser.isLogged = response.data.logged;

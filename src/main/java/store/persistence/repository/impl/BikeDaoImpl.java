@@ -85,7 +85,7 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 	}
 
 	@Override
-	public int findCountPageMountainBikes() {
+	public int findAmountPageMountainBikes() {
 
 		BigInteger bigInteger = (BigInteger) entityManager.createNativeQuery("SELECT COUNT(*) FROM bikes JOIN frames ON"
 				+ " bikes.frame_id = frames.id WHERE frames.type = 'MOUNTAIN'").getSingleResult();
@@ -102,7 +102,7 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 	}
 
 	@Override
-	public int findCountPageAllMountainBikes() {
+	public int findAmountPageAllMountainBikes() {
 
 		BigInteger bigInteger = (BigInteger) entityManager.createNativeQuery("SELECT COUNT(*) FROM bikes JOIN frames ON"
 				+ " bikes.frame_id = frames.id WHERE frames.type = 'ALL_MOUNTAIN'").getSingleResult();
@@ -119,7 +119,7 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 	}
 
 	@Override
-	public int findCountPageRacingBikes() {
+	public int findAmountPageRacingBikes() {
 		BigInteger bigInteger = (BigInteger) entityManager.createNativeQuery("SELECT COUNT(*) FROM bikes JOIN frames ON"
 				+ " bikes.frame_id = frames.id WHERE frames.type = 'RACING'").getSingleResult();
 
@@ -140,34 +140,41 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 		int from = (page - 1) * SIZE_PAGE;
 
 		return entityManager
-				.createNativeQuery("SELECT * FROM bikes JOIN frames ON"
-						+ " bikes.frame_id = frames.id WHERE bikes.price BETWEEN :min and :max and frames.brand LIKE :searchWord"
-						+ " or  bikes.price BETWEEN :min and :max and frames.model LIKE :searchWord", Bike.class)
-				.setParameter("min", min).setParameter("max", max).setParameter("searchWord", searchWord+"%").setFirstResult(from)
-				.setMaxResults(SIZE_PAGE).getResultList();
+				.createNativeQuery(
+						"SELECT * FROM bikes JOIN frames ON"
+								+ " bikes.frame_id = frames.id WHERE bikes.price BETWEEN :min and :max and frames.brand LIKE :searchWord"
+								+ " or  bikes.price BETWEEN :min and :max and frames.model LIKE :searchWord",
+						Bike.class)
+				.setParameter("min", min).setParameter("max", max).setParameter("searchWord", searchWord + "%")
+				.setFirstResult(from).setMaxResults(SIZE_PAGE).getResultList();
 	}
 
 	@Override
-	public List<Bike> findBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max, int page) {
+	public List<Bike> findBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max,
+			int page) {
 
 		int from = (page - 1) * SIZE_PAGE;
 
 		return entityManager
-				.createNativeQuery("SELECT * FROM bikes JOIN frames ON"
-						+ " bikes.frame_id = frames.id WHERE bikes.price BETWEEN :min and :max and frames.brand LIKE :searchWord and frames.model LIKE :searchWord2"
-						+ " or  bikes.price BETWEEN :min and :max and frames.brand LIKE :searchWord2 and frames.model LIKE :searchWord", Bike.class)
-				.setParameter("min", min).setParameter("max", max).setParameter("searchWord", searchWord+"%")
-				.setParameter("searchWord2", searchWord2+"%").setFirstResult(from).setMaxResults(SIZE_PAGE).getResultList();
+				.createNativeQuery(
+						"SELECT * FROM bikes JOIN frames ON"
+								+ " bikes.frame_id = frames.id WHERE bikes.price BETWEEN :min and :max and frames.brand LIKE :searchWord and frames.model LIKE :searchWord2"
+								+ " or  bikes.price BETWEEN :min and :max and frames.brand LIKE :searchWord2 and frames.model LIKE :searchWord",
+						Bike.class)
+				.setParameter("min", min).setParameter("max", max).setParameter("searchWord", searchWord + "%")
+				.setParameter("searchWord2", searchWord2 + "%").setFirstResult(from).setMaxResults(SIZE_PAGE)
+				.getResultList();
 	}
 
 	@Override
-	public int findCountBySearchBikesWithOneSearchWord(String searchWord, int min, int max) {
+	public int findAmountBySearchBikesWithOneSearchWord(String searchWord, int min, int max) {
 
 		BigInteger bigInteger = (BigInteger) entityManager
 				.createNativeQuery("SELECT COUNT(*) FROM bikes JOIN frames ON"
 						+ " bikes.frame_id = frames.id WHERE bikes.price BETWEEN :min and :max and frames.brand LIKE :searchWord"
 						+ " or  bikes.price BETWEEN :min and :max and frames.model LIKE :searchWord")
-				.setParameter("min", min).setParameter("max", max).setParameter("searchWord", searchWord+"%").getSingleResult();
+				.setParameter("min", min).setParameter("max", max).setParameter("searchWord", searchWord + "%")
+				.getSingleResult();
 
 		int countPage = bigInteger.intValue();
 
@@ -181,14 +188,14 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 	}
 
 	@Override
-	public int findCountBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
+	public int findAmountBySearchBikesWithTwoSearchWords(String searchWord, String searchWord2, int min, int max) {
 
 		BigInteger bigInteger = (BigInteger) entityManager
 				.createNativeQuery("SELECT COUNT(*) FROM bikes JOIN frames ON"
 						+ " bikes.frame_id = frames.id WHERE bikes.price BETWEEN :min and :max and brand LIKE :searchWord and model LIKE :searchWord2"
 						+ " or  bikes.price BETWEEN :min and :max and brand LIKE :searchWord2 and model LIKE :searchWord")
-				.setParameter("min", min).setParameter("max", max).setParameter("searchWord", searchWord+"%")
-				.setParameter("searchWord2", searchWord2+"%").getSingleResult();
+				.setParameter("min", min).setParameter("max", max).setParameter("searchWord", searchWord + "%")
+				.setParameter("searchWord2", searchWord2 + "%").getSingleResult();
 
 		int countPage = bigInteger.intValue();
 
@@ -204,7 +211,14 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public int findMaxPrice() {
-		return  (int) entityManager.createNativeQuery("SELECT MAX(bikes.price) FROM bikes").getSingleResult();
+		return (int) entityManager.createNativeQuery("SELECT MAX(bikes.price) FROM bikes").getSingleResult();
+	}
+
+	@Override
+	public Bike findByImageName(String imageName) {
+		return (Bike) entityManager
+				.createNativeQuery("SELECT * FROM bikes WHERE bikes.image_name = :imageName", Bike.class)
+				.setParameter("imageName", imageName).getSingleResult();
 	}
 
 }
