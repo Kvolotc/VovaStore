@@ -166,10 +166,10 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 		redirectTo : '/'
 	})
 
-		$locationProvider.html5Mode({
-			enabled : true,
-			requireBase : true
-		});
-		$locationProvider.hashPrefix('!');
+//		$locationProvider.html5Mode({
+//			enabled : true,
+//			requireBase : true
+//		});
+		$locationProvider.hashPrefix('');
 
 });
