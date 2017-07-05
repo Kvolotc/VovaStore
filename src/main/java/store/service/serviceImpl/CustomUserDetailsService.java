@@ -1,3 +1,4 @@
+
 package store.service.serviceImpl;
 
 import java.util.ArrayList;
@@ -29,7 +30,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		System.out.println(username);
 		try {
 			user = repository.findByEmail(username);
-			System.out.println(user);
+			user.setLogged(true);
+			repository.update(user);
 		} catch (Exception e) {
 			user = null;
 		}
@@ -44,9 +46,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		private static final long serialVersionUID = 1L;
 
 		private UserRepositoryUserDetails(User user) {
-			super(user);
-			setActivated(user.isActivated());
-			
+			super(user);		
 		}
 
 		@Override

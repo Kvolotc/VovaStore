@@ -166,8 +166,13 @@ public class UserController {
 		System.out.println("User:");
 		System.out.println(user.getName());
 		
-
-		return new ResponseEntity<>(UserMapper.userToUserDTO(service.findByEmail(user.getName())),HttpStatus.OK);
+		try {
+			return new ResponseEntity<>(UserMapper.userToUserDTO(service.findByEmail(user.getName())),HttpStatus.OK);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)

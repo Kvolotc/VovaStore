@@ -1,35 +1,40 @@
-package store.web.securityConfiguration;
-
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.converter.ByteArrayHttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-@Configuration
-public class MvcConfiguration extends WebMvcConfigurerAdapter {
-
-
-    
-    @Bean
-    public HttpMessageConverters customConverters() {
-        ByteArrayHttpMessageConverter arrayHttpMessageConverter = new ByteArrayHttpMessageConverter();
-        return new HttpMessageConverters(arrayHttpMessageConverter);
-    }
-    
-    @Bean
-    WebMvcConfigurerAdapter mvcViewConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addViewControllers(ViewControllerRegistry registry) {
-                registry.addViewController("/getCurrentUser").setViewName("getCurrentUser");
-                // ...
-            }
-        };
-    }
-
-}
+//package store.web.securityConfiguration;
+//
+//import java.io.IOException;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.autoconfigure.web.ResourceProperties;
+//import org.springframework.boot.context.properties.EnableConfigurationProperties;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.core.io.Resource;
+//import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+//import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+//import org.springframework.web.servlet.resource.PathResourceResolver;
+//
+//@Configuration
+//public class MvcConfiguration extends WebMvcConfigurerAdapter {
+//
+//    @Autowired
+//    private ResourceProperties resourceProperties = new ResourceProperties();
+//
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        Integer cachePeriod = resourceProperties.getCachePeriod();
+//
+//        registry.addResourceHandler("/static/**")
+//                .addResourceLocations("classpath:/static/")
+//                .setCachePeriod(cachePeriod);
+//
+//        registry.addResourceHandler("/**")
+//                .addResourceLocations("classpath:/templates/home.html")
+//                .setCachePeriod(cachePeriod).resourceChain(true)
+//                .addResolver(new PathResourceResolver() {
+//                    @Override
+//                    protected Resource getResource(String resourcePath,
+//                            Resource location) throws IOException {
+//                        return location.exists() && location.isReadable() ? location
+//                                : null;
+//                    }
+//                });
+//    }
+//}
