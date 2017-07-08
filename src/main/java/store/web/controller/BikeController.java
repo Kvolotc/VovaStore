@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -59,20 +60,27 @@ public class BikeController {
 
 	@RequestMapping(value = "/getAmountPage/mountainBikes", method = RequestMethod.GET)
 	public int getAmountPageMountainBikes() {
-		System.out.println("SIZE PAGE === " + service.findAmountPageMountainBikes());
 		return service.findAmountPageMountainBikes();
 	}
 
 	@RequestMapping(value = "/getAmountPage/allMountainBikes", method = RequestMethod.GET)
 	public int getAmountPageAllMountainBikes() {
-		System.out.println("SIZE PAGE === " + service.findAmountPageAllMountainBikes());
 		return service.findAmountPageAllMountainBikes();
 	}
 
 	@RequestMapping(value = "/getAmountPage/racingBikes", method = RequestMethod.GET)
 	public int getAmountPageRacingBikes() {
-		System.out.println("SIZE PAGE === " + service.findAmountPageRacingBikes());
 		return service.findAmountPageRacingBikes();
+	}
+	
+	@RequestMapping(value = "/getAmountPage/AllBikes", method = RequestMethod.GET)
+	public int getAmountPageAllBikes() {
+		return service.findAmountAllBikes();
+	}
+	
+	@RequestMapping(value = "/getAllBikes/{page}", method = RequestMethod.GET)
+	public List<BikeDTO> getAllBikebyPage(@PathVariable("page") int page) {
+		return BikeMapper.bikeListToBikeDTOList(service.findAllBikesbyPage(page));
 	}
 
 	@RequestMapping(value = "/searchBikes/", method = RequestMethod.GET)
@@ -115,6 +123,9 @@ public class BikeController {
 
 		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\bikes\\"
 				+ file.getOriginalFilename());
+		
+		System.out.println(file.getName());
+		System.out.println(file.getOriginalFilename());
 
 		file.transferTo(filee);
 		

@@ -11,24 +11,6 @@ angular.module('myApp').controller(
 
 			$scope.url = "/tires/";
 			
-			$scope.currentTireId;		
-			
-			
-			$scope.filesChanged = function(elm) {
-	
-				document.getElementById('placeHolder '+$scope.currentTireId).placeholder =  elm.files[0].name;
-				document.getElementById('send '+$scope.currentTireId).disabled = false;
-				document.getElementById('formUpload '+$scope.currentTireId).action = /photo/+'tire/'+$scope.currentTireId;
-		
-				$scope.$apply();
-			}
-			
-			
-			$scope.changeTireId = function(tireId) {
-				
-				$scope.currentTireId = tireId;			
-			}
-			
 			
             $scope.addToBacket = function(product) {
             	

@@ -11,23 +11,6 @@ angular.module('myApp').controller(
 
 			$scope.url = "/forks/";
 			
-			$scope.currentForkId;		
-			
-			
-			$scope.filesChanged = function(elm) {
-	
-				document.getElementById('placeHolder '+$scope.currentForkId).placeholder =  elm.files[0].name;
-				document.getElementById('send '+$scope.currentForkId).disabled = false;
-				document.getElementById('formUpload '+$scope.currentForkId).action = /photo/+'fork/'+$scope.currentForkId;
-		
-				$scope.$apply();
-			}
-			
-			
-			$scope.changeForkId = function(forkId) {
-				
-				$scope.currentForkId = forkId;			
-			}
 			
 			$scope.addToBacket = function(product) {
 				

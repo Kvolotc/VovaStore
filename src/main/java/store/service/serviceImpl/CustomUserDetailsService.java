@@ -30,40 +30,45 @@ public class CustomUserDetailsService implements UserDetailsService {
 		System.out.println(username);
 		try {
 			user = repository.findByEmail(username);
-			user.setLogged(true);
-			repository.update(user);
 		} catch (Exception e) {
 			user = null;
 		}
 		if (user == null) {
 			throw new UsernameNotFoundException(String.format("User %s does not exist!", username));
 		}
+		
+		user.setLogged(true);
+		repository.update(user);
+		
 		return new UserRepositoryUserDetails(user);
 	}
 
-	 static class UserRepositoryUserDetails extends User implements UserDetails {
+	 static class UserRepositoryUserDetails implements UserDetails {
+		 
+		private User user;
 
 		private static final long serialVersionUID = 1L;
 
 		private UserRepositoryUserDetails(User user) {
-			super(user);		
+			this.user = user;
 		}
 
 		@Override
 		public Collection<? extends GrantedAuthority> getAuthorities() {
 			Collection<Role> roles = new ArrayList<Role>();
-			roles.add(getRole());
+			System.out.println("ROLE IS = "+user.getRole());
+			roles.add(user.getRole());
 			return roles;
 		}
 
 		@Override
 		public String getUsername() {
-			return getEmail();
+			return user.getEmail();
 		}
 
 		@Override
 		public String getPassword() {
-			return super.getPassword();
+			return user.getPassword();
 		}
 		@Override
 		public boolean isAccountNonExpired() {
@@ -82,7 +87,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		@Override
 		public boolean isEnabled() {
-			return isActivated();
+			return true;
 		}
 	}
 }

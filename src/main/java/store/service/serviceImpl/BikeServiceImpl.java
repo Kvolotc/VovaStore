@@ -116,5 +116,15 @@ public class BikeServiceImpl implements BikeService{
 	public Bike findByImageName(String imageName) {
 		return bikeDao.findByImageName(imageName);
 	}
+
+	@Override
+	public int findAmountAllBikes() {
+		return bikeDao.findAmountAllBikes();
+	}
+
+	@Override
+	public List<Bike> findAllBikesbyPage(int page) {
+		return bikeDao.findAllBikesbyPage(page);
+	}
 	
 }

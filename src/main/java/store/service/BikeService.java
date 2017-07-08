@@ -19,7 +19,9 @@ public interface BikeService extends GenericService<Bike, Integer> {
 	
 	public int findAmountPageAllMountainBikes();
 	
-	public int findAmountPageRacingBikes();	
+	public int findAmountPageRacingBikes();
+	
+	public int findAmountAllBikes();
 
 	public List<Bike> sortProductByToMinPrice();
 	
@@ -38,5 +40,7 @@ public interface BikeService extends GenericService<Bike, Integer> {
 	public int findMaxPrice();
 	
 	public Bike findByImageName(String imageName);
+	
+	public List<Bike> findAllBikesbyPage(int page);
 
 }

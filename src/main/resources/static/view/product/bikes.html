@@ -1,18 +1,3 @@
-<style>
-::-webkit-input-placeholder {
-	color: black !important;
-}
-
-::-moz-placeholder {
-	color: black !important;
-} /* Firefox 19+ */
-:-moz-placeholder {
-	color: black !important;
-} /* Firefox 18- */
-:-ms-input-placeholder {
-	color: black !important;
-}
-</style>
 
 <div ng-repeat="bike in bikes">
 
@@ -47,72 +32,11 @@
 					</div>
 
 
-					<!-- <form ng-show="currentUser.role == 'ADMIN' "
-						id="formUpload{{bike.imageName}}" action=""
-						enctype="multipart/form-data" method="post" accept-charset="UTF-8">
-						<div class="form-group">
-
-							<input   accept="image/*,image/jpeg" ng-click="changeUrlPhoto(bike.imageName)" type="file"
-								id="file {{bike.imageName}}" name="file" class="file">
-							
-       
-								
-							<div class="input-group col-xs-5">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-picture"></i></span> <input type="text"
-									class="form-control input-md" disabled
-									placeholder="Upload Image"> <span
-									class="input-group-btn">
-									<button ng-click="sendFile(bike.imageName)"
-										class="browse btn btn-primary input-md" type="button">
-										<i class="glyphicon glyphicon-search"></i> Browse
-									</button> <input disabled id="Send {{bike.imageName}}" type="submit"
-									class="btn btn-success input-md" value="Send">
-								</span>
-							</div>
-						</div>
-					</form>
-					
-				-->
-					<h1>currentBikeId = {{currentBikeId}}</h1>
-
-					<form ng-show="currentUser.role == 'ADMIN' "
-						id="formUpload {{bike.id}}" action=""
-						enctype="multipart/form-data" method="post" accept-charset="UTF-8">
-
-
-						<div class="col-sm-5 col-sm-offset-0 col-xs-5 col-xs-offset-0">
-							<div class="input-group image-preview">
-								<input id="placeHolder {{bike.id}}" type="text"
-									class="form-control image-preview-filename" disabled
-									placeholder="Upload Image"> <span
-									class="input-group-btn">
-
-									<div class="btn btn-default image-preview-input">
-										<span class="glyphicon glyphicon-folder-open"></span> <span
-											class="image-preview-input-title">Browse</span> <input
-											onchange="angular.element(this).scope().filesChanged(this)"
-											ng-click="changeBikeId(bike.id)" type="file"
-											accept="image/png, image/jpeg, image/gif" name="file"
-											class="file" />
-
-									</div> <input disabled id="send {{bike.id}}" type="submit"
-									class="btn btn-success input-md" value="Send">
-								</span>
-							</div>
-						</div>
-
-					</form>
-
-
-
-
-
 
 
 					<div class="buttons pull-right">
-						<a type="button" href="#!/purchaseProduct" class="btn btn-success"
-							ng-click="buyProduct(bike)" href="#!/purchaseProduct">Buy</a> <a
+						<a type="button" href="#/purchaseProduct" class="btn btn-success"
+							ng-click="buyProduct(bike)" href="#/purchaseProduct">Buy</a> <a
 							type="button" ng-click="addToBacket(bike)"
 							class="btn btn-success">Backet</a>
 					</div>

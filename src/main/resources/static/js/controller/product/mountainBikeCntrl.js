@@ -11,24 +11,6 @@ angular.module('myApp').controller(
 
 			$scope.url = "/mountainBikes/";
 			
-			$scope.currentBikeId;		
-			
-			
-			$scope.filesChanged = function(elm) {
-	
-				document.getElementById('placeHolder '+$scope.currentBikeId).placeholder =  elm.files[0].name;
-				document.getElementById('send '+$scope.currentBikeId).disabled = false;
-				document.getElementById('formUpload '+$scope.currentBikeId).action = /photo/+'bike/'+$scope.currentBikeId;
-		
-				$scope.$apply();
-			}
-			
-			
-			$scope.changeBikeId = function(bikeId) {
-				
-				$scope.currentBikeId = bikeId;			
-			}
-			
 	 		
 	        $scope.addToBacket = function(product) {
 	        	

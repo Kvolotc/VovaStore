@@ -161,6 +161,43 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 		templateUrl : 'view/profile.html',
 		controller : 'profile'
 	})
+	
+	
+	
+	.when('/changeImageBikes/:page', {
+		templateUrl : 'view/changeImage/changeImageBike.html',
+		controller : 'changeImageBike'
+	})
+
+	.when('/changeImageFrames/:page', {
+		templateUrl : 'view/changeImage/changeImageFrame.html',
+		controller : 'changeImageFrame'
+	})
+
+	.when('/changeImageForks/:page', {
+		templateUrl : 'view/changeImage/changeImageFork.html',
+		controller : 'changeImageFork'
+	})
+
+	.when('/changeImageRims/:page', {
+		templateUrl : 'view/changeImage/changeImageRim.html',
+		controller : 'changeImageRim'
+	})
+
+	.when('/changeImageTires/:page', {
+		templateUrl : 'view/changeImage/changeImageTire.html',
+		controller : 'changeImageTire'
+	})
+
+	.when('/changeImageBrakes/:page', {
+		templateUrl : 'view/changeImage/changeImageBrake.html',
+		controller : 'changeImageBrake'
+	})
+
+	.when('/profile', {
+		templateUrl : 'view/profile.html',
+		controller : 'profile'
+	})
 
 	.otherwise({
 		redirectTo : '/'

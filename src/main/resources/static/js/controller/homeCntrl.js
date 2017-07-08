@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp');
-myApp.controller('home', function(currentUser, basketFactory, purchaseProductFactory, toastr, $scope, $route, $location, $routeParams,
+myApp.controller('home', function(currentUser, basketFactory, purchaseProductFactory, toastr, $scope, $route, $location, $routeParams, $window,
 		$http) {
 
 	$scope.searchProducts = [ 'Bikes', 'Brakes', 'Forks', 'Frames', 'Rims',
@@ -125,28 +125,16 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 	
 	
 	$scope.logout = function() {
-
+		$location.path('/');
 		$http({
-			method : 'PUT',
+			method : 'GET',
 			url : '/logoutUser',
-			contentType : 'application/json;charset-UTF-8',
-			dataType : 'json',
-			async : false,
-			data : 	$scope.currentUser.email
 
 		}).then(function(response) {
+					
+			$window.location.reload();	
 			
-			toastr.success('Goodbye '+currentUser.firstName+' '+currentUser.lastName);
-			
-			$scope.currentUser.isLogged = false;
-			$scope.currentUser.firstName = null
-			$scope.currentUser.lastName = null
-			$scope.currentUser.email = null
-			$location.path("/");
-		
-
 		}, function errorCallback(response) {
-
 		
 
 		});

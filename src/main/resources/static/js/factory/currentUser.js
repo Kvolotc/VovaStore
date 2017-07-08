@@ -20,9 +20,6 @@ myApp.factory('currentUser', function($http) {
 		currentUser.email = response.data.email
 
 	}, function myError(response) {
-		
-		currentUser.role = 'USER';
-		currentUser.isLogged = false;
 
 	});
 

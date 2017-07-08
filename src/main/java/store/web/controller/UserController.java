@@ -6,15 +6,20 @@ import java.util.List;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +33,7 @@ import store.persistence.dto.UserDTO;
 import store.persistence.dto.mapper.UserMapper;
 import store.persistence.entity.User;
 import store.persistence.model.ForgotPasswordParam;
+import store.persistence.model.LoginParam;
 import store.persistence.model.UpdateUserParam;
 import store.service.UserService;
 
@@ -91,50 +97,51 @@ public class UserController {
 
 	}
 	
-	/*@RequestMapping(value = "/logoutUser", method = RequestMethod.PUT)
-	@ResponseBody
-	public ResponseEntity<UserDTO>  logoutUser(@RequestBody String email) {
-		
-		User user = service.findByEmail(email);
+	@RequestMapping(value = "/logoutUser", method = RequestMethod.GET)
+	public void logoutUser(HttpServletRequest request, HttpServletResponse response) {
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null){
+	    	User user = service.findByEmail(auth.getName());
+	    	user.setLogged(false);
+	    	service.update(user);
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+	}
 
-		user.setLogged(false);
-		service.update(user);
-		
-		return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.OK);
-	}*/
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	@ResponseBody
+//	public ResponseEntity<UserDTO> loginUser(@RequestBody LoginParam loginParam) {
+//
+//		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//
+//		User user = null;
+//
+//		if (loginParam.geteMail() == null || loginParam.getPassword() == null) {
+//			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//		}
+//
+//		try {
+//
+//			user = service.findByEmail(loginParam.geteMail());
+//
+//		} catch (Exception e) {
+//
+//			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//		}
+//
+//		if (passwordEncoder.matches(loginParam.getPassword(), user.getPassword()) && user.isActivated() == true) {
+//			user.setLogged(true);
+//			service.update(user);
+//			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.OK);
+//		} else if (passwordEncoder.matches(loginParam.getPassword(), user.getPassword())
+//				&& user.isActivated() == false) {
+//			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.CONFLICT);
+//		} else {
+//			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.BAD_REQUEST);
+//		}
+//	}
+	
 
-	/*@RequestMapping(value = "/login", method = RequestMethod.PUT)
-	@ResponseBody
-	public ResponseEntity<UserDTO> loginUser(@RequestBody LoginParam loginParam) {
-
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-		User user = null;
-
-		if (loginParam.geteMail() == null || loginParam.getPassword() == null) {
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-		}
-
-		try {
-
-			user = service.findByEmail(loginParam.geteMail());
-
-		} catch (Exception e) {
-
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-		}
-
-		if (passwordEncoder.matches(loginParam.getPassword(), user.getPassword()) && user.isActivated() == true) {
-			user.setLogged(true);
-			service.update(user);
-			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.OK);
-		} else if (passwordEncoder.matches(loginParam.getPassword(), user.getPassword())
-				&& user.isActivated() == false) {
-			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.CONFLICT);
-		} else {
-			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.BAD_REQUEST);
-		}
-	}*/
 
 	@RequestMapping(value = "/forgotPassword", method = RequestMethod.PUT)
 	@ResponseBody
@@ -163,10 +170,11 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<UserDTO> getCurrent(@AuthenticationPrincipal Principal user) {
 		
-		System.out.println("User:");
-		System.out.println(user.getName());
+
 		
 		try {
+			System.out.println("User:");
+			System.out.println(user.getName());
 			return new ResponseEntity<>(UserMapper.userToUserDTO(service.findByEmail(user.getName())),HttpStatus.OK);
 			
 		} catch (Exception e) {

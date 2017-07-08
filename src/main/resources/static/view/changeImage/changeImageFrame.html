@@ -1,0 +1,87 @@
+<style>
+::-webkit-input-placeholder {
+	color: black !important;
+}
+
+::-moz-placeholder {
+	color: black !important;
+} /* Firefox 19+ */
+:-moz-placeholder {
+	color: black !important;
+} /* Firefox 18- */
+:-ms-input-placeholder {
+	color: black !important;
+}
+</style>
+
+<div class="container">
+
+
+	<div class="row">
+		<div class="col-sm-4  col-xs-6" ng-repeat="frame in frames">
+
+			<div class="thumbnail product">
+
+				<strong><p style="text-align: center;">{{frame.brand}}
+						{{frame.model}}</p> </strong> <img ng-src="images/frames/{{frame.imageName}}" />
+
+				<div class="media-body"">
+
+					<br>
+
+					<form id="formUpload {{frame.id}}" action=""
+						enctype="multipart/form-data" method="post" accept-charset="UTF-8">
+
+
+						<div class="col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+							<div class="input-group image-preview">
+								<input id="placeHolder {{frame.id}}" type="text"
+									class="form-control image-preview-filename" disabled
+									placeholder="Upload Image"> <span
+									class="input-group-btn">
+
+									<div class="btn btn-default image-preview-input">
+										<span class="glyphicon glyphicon-folder-open"></span> <span
+											class="image-preview-input-title">Browse</span> <input
+											onchange="angular.element(this).scope().filesChanged(this)"
+											ng-click="changeFrameId(frame.id)" type="file"
+											accept="image/png, image/jpeg, image/gif" name="file"
+											class="file" />
+
+									</div> <input disabled id="send {{frame.id}}" type="submit"
+									class="btn btn-success input-md" value="Send">
+								</span>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<nav aria-label="Page navigation example" style="text-align: center;"
+	ng-show="frames.length != 0">
+	<ul class="pagination" ng-show="paginationParam.isPrevious">
+		<li class="page-item"><a class="page-link"
+			style="cursor: pointer;"
+			ng-click="paginationService.previous(url, paginationParam.masPages[0]-1)">Previous</a></li>
+	</ul>
+	<ul class="pagination" ng-repeat="numPage in paginationParam.masPages">
+		<li class="page-item"><a class="page-link"
+			href="{{urlFrame}}{{numPage}}"">{{numPage}}</a></li>
+	</ul>
+	<ul class="pagination" ng-show="paginationParam.isNext">
+		<li class="page-item"><a style="cursor: pointer;"
+			class="page-link"
+			ng-click="paginationService.next(url, paginationParam.masPages[4]+1)">Next</a></li>
+	</ul>
+</nav>
+
+
+

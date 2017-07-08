@@ -21,7 +21,7 @@ angular.module('myApp').controller('login', function(currentUser, $scope, $http,
 	$scope.login = function() {
 
 			$http({
-				method : 'PUT',
+				method : 'POST',
 				url : '/login',
 				contentType : 'application/json',
 				dataType : 'json',

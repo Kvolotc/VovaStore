@@ -11,24 +11,6 @@ angular.module('myApp').controller(
 
 			$scope.url = "/frames/";
 			
-			$scope.currentFrameId;		
-			
-			
-			$scope.filesChanged = function(elm) {
-	
-				document.getElementById('placeHolder '+$scope.currentFrameId).placeholder =  elm.files[0].name;
-				document.getElementById('send '+$scope.currentFrameId).disabled = false;
-				document.getElementById('formUpload '+$scope.currentFrameId).action = /photo/+'frame/'+$scope.currentFrameId;
-		
-				$scope.$apply();
-			}
-			
-			
-			$scope.changeFrameId = function(frameId) {
-				
-				$scope.currentFrameId = frameId;			
-			}
-			
 			
 			$scope.addToBacket = function(product) {
 				

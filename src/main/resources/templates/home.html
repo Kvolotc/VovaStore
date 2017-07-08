@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns="http://www.w3.org/1999/xhtml">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
 <title>Insert title here</title>
@@ -77,6 +78,12 @@
 <script th:src="@{/js/controller/searchProduct/searchFrameCntrl.js}"></script>
 <script th:src="@{/js/controller/searchProduct/searchRimCntrl.js}"></script>
 <script th:src="@{/js/controller/searchProduct/searchTireCntrl.js}"></script>
+<script th:src="@{/js/controller/changeImage/changeImageBikeCntrl.js}"></script>
+<script th:src="@{/js/controller/changeImage/changeImageFrameCntrl.js}"></script>
+<script th:src="@{/js/controller/changeImage/changeImageBrakeCntrl.js}"></script>
+<script th:src="@{/js/controller/changeImage/changeImageForkCntrl.js}"></script>
+<script th:src="@{/js/controller/changeImage/changeImageRimCntrl.js}"></script>
+<script th:src="@{/js/controller/changeImage/changeImageTireCntrl.js}"></script>
 <script th:src="@{/js/controller/purchaseProductCntrl.js}"></script>
 <script th:src="@{/js/controller/usersCntrl.js}"></script>
 <script th:src="@{/js/factory/productFactory.js}"></script>
@@ -86,7 +93,7 @@
 <script th:src="@{/js/service/productService.js}"></script>
 <script th:src="@{/js/service/paginationService.js}"></script>
 <script th:src="@{/js/service/multiparFormService.js}"></script>
-<script th:src="@{/js/directives/fileModel.js}"></script>  
+<script th:src="@{/js/directives/fileModel.js}"></script>
 
 
 
@@ -111,41 +118,57 @@
 			</div>
 
 
-
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active-link "><a href="#/"><span
-							class="glyphicon glyphicon-home  "></span> головна</a></li>
+							class="glyphicon glyphicon-home  "></span> home</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">велосипеди <span class="caret"></span></a>
+						aria-expanded="false">bikes <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#/mountainBikes/1">горні</a></li>
+							<li><a href="#/mountainBikes/1">mountains</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/allMountainBikes/1">двохпідвіси</a></li>
+							<li><a href="#/allMountainBikes/1">all mountains</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/racingBikes/1">шосейні</a></li>
+							<li><a href="#/racingBikes/1">Road</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">запчастини<span class="caret"></span></a>
+						aria-expanded="false">spare parts<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#/frames/1">рами</a></li>
+							<li><a href="#/frames/1">frames</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/forks/1">вилки</a></li>
+							<li><a href="#/forks/1">forks</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/rims/1">обіда</a></li>
+							<li><a href="#/rims/1">rims</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/tires/1">шини</a></li>
+							<li><a href="#/tires/1">tires</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/brakes/1">тормоза</a></li>
+							<li><a href="#/brakes/1">brakes</a></li>
 						</ul></li>
-					<li><a href="#">контакти <span class="sr-only"></span></a></li>
 					<li><a style="cursor: pointer;" ng-click="changeSearchForm()"><span
 							class="glyphicon glyphicon-search"></span> Search<span
 							class="sr-only "></span></a></li>
-					<li ng-show="currentUser.role == 'ADMIN' "><a href="#/users/1">користувачі
+
+					<li sec:authorize="hasAuthority('ADMIN')" class="dropdown"><a
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">change images<span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#/changeImageBikes/1">bikes</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#/changeImageFrames/1">frames</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#/changeImageForks/1">forks</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#/changeImageRims/1">rims</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#/changeImageTires/1">tires</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#/changeImageBrakes/1">brakes</a></li>
+						</ul></li>
+					<li sec:authorize="hasAuthority('ADMIN')"><a href="#/users/1">users
 							<span class="sr-only"></span>
 					</a></li>
 
@@ -166,28 +189,30 @@
 				</ul>
 
 
+				<div sec:authorize="!hasAuthority('ADMIN') && !hasAuthority('USER')">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="login" href="#/login"> <span
+								class="glyphicon glyphicon-log-in"></span> login
+						</a></li>
+						<li><a class="registration" href="#/registration"> <span
+								class="glyphicon glyphicon-user"></span> registration
+						</a></li>
+					</ul>
+				</div>
 
-				<ul ng-show="currentUser.isLogged == false"
-					class="nav navbar-nav navbar-right">
-					<li><a class="login" href="#/login"> <span
-							class="glyphicon glyphicon-log-in"></span> логін
-					</a></li>
-					<li><a class="registration" href="#/registration"> <span
-							class="glyphicon glyphicon-user"></span> реєстрація
-					</a></li>
-				</ul>
+				<div sec:authorize="hasAuthority('ADMIN') || hasAuthority('USER')">
 
-				<ul ng-show="currentUser.isLogged == true"
-					class="nav navbar-nav navbar-right">
-					<li><a class="logout" ng-click="logout()" class="logout"
-						href=""> <span class="glyphicon glyphicon-log-out"></span>
-							вийти
-					</a></li>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="logout" ng-click="logout()" class="logout"
+							href=""> <span class="glyphicon glyphicon-log-out"></span>
+								logout
+						</a></li>
 
-					<li><a class="profile" href="#/profile"> <span
-							class="glyphicon glyphicon-cog"></span> профіль
-					</a></li>
-				</ul>
+						<li><a class="profile" href="#/profile"> <span
+								class="glyphicon glyphicon-cog"></span> profile
+						</a></li>
+					</ul>
+				</div>
 			</div>
 
 
@@ -195,7 +220,7 @@
 		</div>
 
 	</nav>
-	
+
 	<h1>CURENT USER - {{currentUser}}</h1>
 
 	<div class="search" ng-show="showSearchForm">
@@ -269,8 +294,7 @@
 
 						<div class="thumbnail product" style="border: 2px solid;">
 
-							<img
-								ng-src="images/{{product.product}}/{{product.imageName}}" />
+							<img ng-src="images/{{product.product}}/{{product.imageName}}" />
 
 							<div class="media-body" style="font-size: 15px; color: black;">
 

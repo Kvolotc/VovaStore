@@ -23,7 +23,7 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	private final static int SIZE_PAGE = 3;
+	private final static int SIZE_PAGE = 9;
 
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
@@ -135,6 +135,23 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 	}
 
 	@Override
+	public int findAmountAllBikes() {
+
+		BigInteger bigInteger = (BigInteger) entityManager.createNativeQuery("SELECT COUNT(bikes.id) FROM bikes")
+				.getSingleResult();
+
+		int countPage = bigInteger.intValue();
+
+		if (countPage % SIZE_PAGE >= 1) {
+			countPage = (countPage / SIZE_PAGE) + 1;
+		} else {
+			countPage /= SIZE_PAGE;
+		}
+
+		return countPage;
+	}
+
+	@Override
 	public List<Bike> findBySearchBikesWithOneSearchWord(String searchWord, int min, int max, int page) {
 
 		int from = (page - 1) * SIZE_PAGE;
@@ -221,4 +238,14 @@ public class BikeDaoImpl extends GenericDaoImpl<Bike, Integer> implements BikeDa
 				.setParameter("imageName", imageName).getSingleResult();
 	}
 
+	@Override
+	public List<Bike> findAllBikesbyPage(int page) {
+
+		int from = (page - 1) * SIZE_PAGE;
+
+		return entityManager.createNativeQuery("SELECT * FROM bikes", Bike.class)
+
+				.setFirstResult(from).setMaxResults(SIZE_PAGE).getResultList();
+
+	}
 }
