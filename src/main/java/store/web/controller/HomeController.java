@@ -16,6 +16,18 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/404", method = RequestMethod.GET)
+	public String notFound() {
+
+		return "404";
+	}
+	
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	public String accessDenied() {
+
+		return "403";
+	}
+	
 //	@RequestMapping(value = "/login", method = RequestMethod.GET)
 //	public String login() {
 //		return "login";

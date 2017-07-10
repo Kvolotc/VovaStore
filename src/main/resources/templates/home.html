@@ -108,7 +108,7 @@
 
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					data-toggle="collapse" data-target="bs-example-navbar-collapse-1"
 					aria-expanded="false">
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -121,31 +121,31 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active-link "><a href="#/"><span
+					<li class="active-link "><a href="/"><span
 							class="glyphicon glyphicon-home  "></span> home</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">bikes <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#/mountainBikes/1">mountains</a></li>
+							<li><a href="/mountainBikes/1">mountains</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/allMountainBikes/1">all mountains</a></li>
+							<li><a href="/allMountainBikes/1">all mountains</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/racingBikes/1">Road</a></li>
+							<li><a href="/racingBikes/1">Road</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">spare parts<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#/frames/1">frames</a></li>
+							<li><a href="/frames/1">frames</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/forks/1">forks</a></li>
+							<li><a href="/forks/1">forks</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/rims/1">rims</a></li>
+							<li><a href="/rims/1">rims</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/tires/1">tires</a></li>
+							<li><a href="/tires/1">tires</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/brakes/1">brakes</a></li>
+							<li><a href="/brakes/1">brakes</a></li>
 						</ul></li>
 					<li><a style="cursor: pointer;" ng-click="changeSearchForm()"><span
 							class="glyphicon glyphicon-search"></span> Search<span
@@ -156,19 +156,19 @@
 						aria-haspopup="true" aria-expanded="false">change images<span
 							class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#/changeImageBikes/1">bikes</a></li>
+							<li><a href="/changeImageBikes/1">bikes</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/changeImageFrames/1">frames</a></li>
+							<li><a href="/changeImageFrames/1">frames</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/changeImageForks/1">forks</a></li>
+							<li><a href="/changeImageForks/1">forks</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/changeImageRims/1">rims</a></li>
+							<li><a href="/changeImageRims/1">rims</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/changeImageTires/1">tires</a></li>
+							<li><a href="/changeImageTires/1">tires</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#/changeImageBrakes/1">brakes</a></li>
+							<li><a href="/changeImageBrakes/1">brakes</a></li>
 						</ul></li>
-					<li sec:authorize="hasAuthority('ADMIN')"><a href="#/users/1">users
+					<li sec:authorize="hasAuthority('ADMIN')"><a href="/users/1">users
 							<span class="sr-only"></span>
 					</a></li>
 
@@ -177,11 +177,11 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					<li><a ng-click="countPrice()"
-						ng-if="basketFactory.length > 0" data-target="#backetModal"
+						ng-if="basketFactory.length > 0" data-target="backetModal"
 						data-toggle="modal" style="cursor: pointer"><span
 							style="color: green;" id="basket"
 							class="glyphicon glyphicon-shopping-cart basket">{{basketFactory.length}}</span>
-					</a> <a ng-if="basketFactory.length == 0" data-target="#backetModal"
+					</a> <a ng-if="basketFactory.length == 0" data-target="backetModal"
 						data-toggle="modal" style="pointer-events: none; cursor: default;">
 							<span id="basket"
 							class="glyphicon glyphicon-shopping-cart basket">{{basketFactory.length}}</span>
@@ -191,10 +191,10 @@
 
 				<div sec:authorize="!hasAuthority('ADMIN') && !hasAuthority('USER')">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a class="login" href="#/login"> <span
+						<li><a class="login" href="/login"> <span
 								class="glyphicon glyphicon-log-in"></span> login
 						</a></li>
-						<li><a class="registration" href="#/registration"> <span
+						<li><a class="registration" href="/registration"> <span
 								class="glyphicon glyphicon-user"></span> registration
 						</a></li>
 					</ul>
@@ -208,7 +208,7 @@
 								logout
 						</a></li>
 
-						<li><a class="profile" href="#/profile"> <span
+						<li><a class="profile" href="/profile"> <span
 								class="glyphicon glyphicon-cog"></span> profile
 						</a></li>
 					</ul>

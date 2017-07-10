@@ -58,25 +58,25 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	     http.
 	     csrf().disable()
 	     .authorizeRequests()
-	     .antMatchers("/").permitAll()
-	     .antMatchers("/changeImageBikes/**").hasAuthority("ADMIN")
-	     .antMatchers("/changeImageFrames/**").hasAuthority("ADMIN")
-	     .antMatchers("/changeImageForks/**").hasAuthority("ADMIN")
-	     .antMatchers("/changeImageBrakes/**").hasAuthority("ADMIN")
-	     .antMatchers("/changeImageTires/**").hasAuthority("ADMIN")
-	     .antMatchers("/changeImageRims/**").hasAuthority("ADMIN")
-	     .antMatchers("/allMountainBikes/**").hasAuthority("ADMIN")
-	     .antMatchers("/frames/**").hasAuthority("ADMIN")
-	     .antMatchers("/#/purchaseProduct").hasAuthority("USER")
-	     .and().exceptionHandling().accessDeniedPage("/")
+	     .antMatchers("/changeImageBikes/*").hasAuthority("ADMIN")
+	     .antMatchers("/changeImageFrames/*").hasAuthority("ADMIN")
+	     .antMatchers("/changeImageForks/*").hasAuthority("ADMIN")
+	     .antMatchers("/changeImageBrakes/*").hasAuthority("ADMIN")
+	     .antMatchers("/changeImageTires/*").hasAuthority("ADMIN")
+	     .antMatchers("/changeImageRims/*").hasAuthority("ADMIN")
+	     .antMatchers("/allMountainBikes/*").hasAuthority("ADMIN")
+	     .antMatchers("/frames/*").hasAuthority("ADMIN")
+	     .antMatchers("/getAllBikes/*").hasAuthority("ADMIN")
+	     .antMatchers("/purchaseProduct").hasAuthority("USER")
+	     .and().exceptionHandling().accessDeniedPage("/403")
 	     .and()
          .formLogin()
              .loginPage("/login")       
              .defaultSuccessUrl("/")
              .passwordParameter("password")
-             .usernameParameter("username");
+             .usernameParameter("username")
+             .failureUrl("/login-error");
 	}
-
 
 
 	

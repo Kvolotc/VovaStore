@@ -161,9 +161,7 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 		templateUrl : 'view/profile.html',
 		controller : 'profile'
 	})
-	
-	
-	
+
 	.when('/changeImageBikes/:page', {
 		templateUrl : 'view/changeImage/changeImageBike.html',
 		controller : 'changeImageBike'
@@ -202,11 +200,12 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 	.otherwise({
 		redirectTo : '/'
 	})
-
-//		$locationProvider.html5Mode({
-//			enabled : true,
-//			requireBase : true
-//		});
-		$locationProvider.hashPrefix('');
+	
+	$locationProvider.html5Mode({
+		enabled : true,
+		requireBase : true
+	});
+	
+	$locationProvider.hashPrefix('');
 
 });

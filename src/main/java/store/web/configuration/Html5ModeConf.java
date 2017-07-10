@@ -1,27 +1,23 @@
 //package store.web.configuration;
-//import java.util.Collections;
-//import java.util.Map;
 //
-//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.ServletContext;
 //
-//import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.web.servlet.ModelAndView;
+//import org.ocpsoft.rewrite.annotation.RewriteConfiguration;
+//import org.ocpsoft.rewrite.config.Configuration;
+//import org.ocpsoft.rewrite.config.ConfigurationBuilder;
+//import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
+//import org.ocpsoft.rewrite.servlet.config.rule.Join;
 //
-//@Configuration
-//public class Html5ModeConf {
-//	
-//	@Bean
-//	ErrorViewResolver supportPathBasedLocationStrategyWithoutHashes() {
-//	    return new ErrorViewResolver() {
-//	        @Override
-//	        public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status, Map<String, Object> model) {
-//	            return status == HttpStatus.NOT_FOUND
-//	                    ? new ModelAndView("/", Collections.<String, Object>emptyMap(), HttpStatus.OK)
-//	                    : null;
-//	        }
-//	    };
-//	}
+//@RewriteConfiguration
+//public class Html5ModeConf extends HttpConfigurationProvider {
+//  @Override
+//  public Configuration getConfiguration(ServletContext servletContext) {
+//    return ConfigurationBuilder.begin()
+//        .addRule(Join.path("/registration").to("/home.html"))
+//  }
+//
+//  @Override
+//  public int priority() {
+//    return 10;
+//  }
 //}
