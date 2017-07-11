@@ -47,26 +47,39 @@ angular.module('myApp').controller(
 					brand:product.brand,
 					model:product.model,
 					productPrice:product.price,
-					price:product.price
+					sumPurchase:product.price
 				});
 			};
 			
 			
 
-			$scope.urlFork = "#!/searchForks/word=" + $routeParams.word
+			$scope.urlFork = "/searchForks/word=" + $routeParams.word
 					+ ";min=" + $routeParams.min + ";max=" + $routeParams.max
 					+ ";page=";
-
-			$scope.url = "/searchForks/word=" + $routeParams.word + ";min="
-					+ $routeParams.min + ";max=" + $routeParams.max + ";page=";
-
+			
 			$scope.router = $routeParams;
 			
 			$scope.buyProduct = function(product) {
+				if($scope.currentUser.role != 'USER' && $scope.currentUser.role != 'ADMIN') {
+					toastr.error('First , you have to login');
+					return;
+				}
+				
 				if(purchaseProductFactory.length >=1) {
 					purchaseProductFactory.splice(0, purchaseProductFactory.length)
 				}
-				purchaseProductFactory.push(product)
+				purchaseProductFactory.push(
+						{
+							amount:1,
+							product:'forks',
+							productId:product.id,
+							imageName: product.imageName,
+							brand:product.brand,
+							model:product.model,
+							productPrice:product.price,
+							sumPurchase:product.price
+						})
+				$location.path('/purchaseProduct')
 			}
 
 			$scope.hideProduct = true;

@@ -4,10 +4,8 @@ angular.module('myApp').controller('changeImageBrake',
 				       
 			$scope.brakes = [];
 			
-			$scope.urlBrake = "#/changeImageBrakes/";
-
-			$scope.url = "/changeImageBrakes/";
-			
+			$scope.urlBrake = "/changeImageBrakes/";
+		
 			$scope.currentBrakeId;
 			
 			$scope.paginationParam = {

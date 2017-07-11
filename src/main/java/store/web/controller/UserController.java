@@ -4,17 +4,21 @@ import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.List;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.descriptor.web.LoginConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -36,12 +40,17 @@ import store.persistence.model.ForgotPasswordParam;
 import store.persistence.model.LoginParam;
 import store.persistence.model.UpdateUserParam;
 import store.service.UserService;
+import store.service.serviceImpl.CustomUserDetailsService;
+import store.service.serviceImpl.UserRepositoryUserDetails;
 
 @Controller
 public class UserController {
 
 	@Autowired
 	private UserService service;
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	@RequestMapping(value = "/newUser", method = RequestMethod.POST, produces = MediaType.ALL_VALUE)
 	@ResponseBody
@@ -96,52 +105,66 @@ public class UserController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/logoutUser", method = RequestMethod.GET)
-	public void logoutUser(HttpServletRequest request, HttpServletResponse response) {
-	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    if (auth != null){
-	    	User user = service.findByEmail(auth.getName());
-	    	user.setLogged(false);
-	    	service.update(user);
-	        new SecurityContextLogoutHandler().logout(request, response, auth);
-	    }
+	public ResponseEntity<UserDTO> logoutUser(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		User user = null;
+		if (auth != null) {
+			user = service.findByEmail(auth.getName());
+			user.setLogged(false);
+			service.update(user);
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 	}
 
-//	@RequestMapping(value = "/login", method = RequestMethod.POST)
-//	@ResponseBody
-//	public ResponseEntity<UserDTO> loginUser(@RequestBody LoginParam loginParam) {
-//
-//		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//
-//		User user = null;
-//
-//		if (loginParam.geteMail() == null || loginParam.getPassword() == null) {
-//			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//		}
-//
-//		try {
-//
-//			user = service.findByEmail(loginParam.geteMail());
-//
-//		} catch (Exception e) {
-//
-//			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//		}
-//
-//		if (passwordEncoder.matches(loginParam.getPassword(), user.getPassword()) && user.isActivated() == true) {
-//			user.setLogged(true);
-//			service.update(user);
-//			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.OK);
-//		} else if (passwordEncoder.matches(loginParam.getPassword(), user.getPassword())
-//				&& user.isActivated() == false) {
-//			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.CONFLICT);
-//		} else {
-//			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.BAD_REQUEST);
-//		}
-//	}
-	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<UserDTO> loginUser(@RequestBody LoginParam loginParam) {
 
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+		User user = null;
+		System.out.println(loginParam.getUsername() + "  " + loginParam.getPassword());
+
+		if (loginParam.getUsername() == null || loginParam.getPassword() == null) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+
+		try {
+			user = service.findByEmail(loginParam.getUsername());
+
+		} catch (Exception e) {
+
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+
+		if (passwordEncoder.matches(loginParam.getPassword(), user.getPassword()) && user.isActivated() == true) {
+
+			UserRepositoryUserDetails details = new UserRepositoryUserDetails(user);
+
+			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+					details, loginParam.getPassword(), details.getAuthorities());
+
+			authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+			SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
+			user.setLogged(true);
+			service.update(user);
+
+			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.OK);
+		} else if (passwordEncoder.matches(loginParam.getPassword(), user.getPassword())
+				&& user.isActivated() == false) {
+			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.CONFLICT);
+		} else {
+			return new ResponseEntity<>(UserMapper.userToUserDTO(user), HttpStatus.BAD_REQUEST);
+		}
+	}
 
 	@RequestMapping(value = "/forgotPassword", method = RequestMethod.PUT)
 	@ResponseBody
@@ -169,18 +192,14 @@ public class UserController {
 	@RequestMapping(value = "/getCurrentUser", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<UserDTO> getCurrent(@AuthenticationPrincipal Principal user) {
-		
 
-		
 		try {
-			System.out.println("User:");
-			System.out.println(user.getName());
-			return new ResponseEntity<>(UserMapper.userToUserDTO(service.findByEmail(user.getName())),HttpStatus.OK);
-			
+			return new ResponseEntity<>(UserMapper.userToUserDTO(service.findByEmail(user.getName())), HttpStatus.OK);
+
 		} catch (Exception e) {
-			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-		
+
 	}
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)

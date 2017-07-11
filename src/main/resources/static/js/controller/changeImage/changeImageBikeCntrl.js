@@ -4,9 +4,7 @@ angular.module('myApp').controller('changeImageBike',
 				       
 			$scope.bikes = [];
 			
-			$scope.urlBike = "#/changeImageBikes/";
-
-			$scope.url = "/changeImageBikes/";
+			$scope.urlBike = "/changeImageBikes/";
 			
 			$scope.currentBikeId;				
 

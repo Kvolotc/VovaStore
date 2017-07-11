@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp');
 myApp.controller('home', function(currentUser, basketFactory, purchaseProductFactory, toastr, $scope, $route, $location, $routeParams, $window,
-		$http) {
+		$http, $timeout) {
 
 	$scope.searchProducts = [ 'Bikes', 'Brakes', 'Forks', 'Frames', 'Rims',
 			'Tires' ];
@@ -39,12 +39,17 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 		$scope.price = 0;
 		
 		for(var ind = 0; ind < basketFactory.length; ind++) {
-			$scope.price += basketFactory[ind].price;
+			$scope.price += basketFactory[ind].sumPurchase;
 		}
 	} 
 	
 	
 	$scope.buyProductInBasket = function() {
+		
+		if($scope.currentUser.role != 'USER' && $scope.currentUser.role != 'ADMIN') {
+			toastr.error('First , you have to login');
+			return;
+		}
 		
 		if(purchaseProductFactory.length >=1) {
 			purchaseProductFactory.splice(0, purchaseProductFactory.length)
@@ -53,6 +58,8 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 		for(var ind = 0; ind < basketFactory.length; ind++) {
 			purchaseProductFactory.push(basketFactory[ind]);
 		}
+		
+		$location.path('/purchaseProduct')
 	}
 	
 	
@@ -66,7 +73,7 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 	
 	$scope.changePriceProduct = function(product, amount) {
 		
-		product.price = product.productPrice * amount;
+		product.sumPurchase = product.productPrice * amount;
 		
 		$scope.countPrice();	
 	}
@@ -75,7 +82,7 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 	$scope.deleteProduct = function(product) {
 		var ind = $scope.basketFactory.map(function(e) { return e.imageName; }).indexOf(product.imageName);
 		
-		$scope.price = $scope.price - basketFactory[ind].price;
+		$scope.price = $scope.price - basketFactory[ind].sumPurchase;
 		
 		$scope.basketFactory.splice(ind, 1);
 		
@@ -123,7 +130,12 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 	});
 	
 	
-	
+//	$scope.login = function() {
+//		 $timeout(function() {
+//			 $window.location.reload();	
+//		    }, 100);	
+//	}
+//	
 	$scope.logout = function() {
 		$location.path('/');
 		$http({
@@ -131,8 +143,11 @@ myApp.controller('home', function(currentUser, basketFactory, purchaseProductFac
 			url : '/logoutUser',
 
 		}).then(function(response) {
-					
-			$window.location.reload();	
+
+			$timeout(function() {
+				$window.location.reload();	
+			}, 100);
+			toastr.success('Goodbye '+response.data.firstName +' '+response.data.lastName);
 			
 		}, function errorCallback(response) {
 		

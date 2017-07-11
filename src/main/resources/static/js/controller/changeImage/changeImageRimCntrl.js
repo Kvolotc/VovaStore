@@ -4,10 +4,8 @@ angular.module('myApp').controller('changeImageRim',
 				       
 			$scope.rims = [];
 			
-			$scope.urlRim = "#/changeImageRims/";
+			$scope.urlRim = "/changeImageRims/";
 
-			$scope.url = "/changeImageRims/";
-			
 			$scope.currentRimId;
 			
 			$scope.paginationParam = {

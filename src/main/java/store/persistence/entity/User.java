@@ -22,35 +22,6 @@ import store.persistence.entity.enums.Role;
 public class User {
 	
 	public User() {};
-	
-	public User(int id, String firstName, String lastName, Timestamp birthDate, Timestamp registrationDate,
-			Gender gender, String email, boolean isActivated, boolean isLogged, Role role, String password) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthDate = birthDate;
-		this.registrationDate = registrationDate;
-		this.gender = gender;
-		this.email = email;
-		this.isActivated = isActivated;
-		this.isLogged = isLogged;
-		this.role = role;
-		this.password = password;
-	}
-	
-	public User(User user) {
-		this.id = user.id;
-		this.firstName = user.firstName;
-		this.lastName = user.lastName;
-		this.birthDate = user.birthDate;
-		this.registrationDate = user.registrationDate;
-		this.gender = user.gender;
-		this.email = user.email;
-		this.isActivated = user.isActivated;
-		this.isLogged = user.isLogged;
-		this.role = user.role;
-		this.password = user.password;
-	}
 
 	@Id
 	@Column(name = "id")

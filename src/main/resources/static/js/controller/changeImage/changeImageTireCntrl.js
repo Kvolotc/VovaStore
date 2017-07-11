@@ -4,10 +4,8 @@ angular.module('myApp').controller('changeImageTire',
 				       
 			$scope.tires = [];
 			
-			$scope.urlTire = "#/changeImageTires/";
-
-			$scope.url = "/changeImageTires/";
-			
+			$scope.urlTire = "/changeImageTires/";
+		
 			$scope.currentTireId;	
 			
 			$scope.paginationParam = {

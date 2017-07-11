@@ -1,5 +1,6 @@
 myApp.factory('currentUser', function($http) {
 	var currentUser = {
+		id: null,	
 		role : null,
 		isLogged : null,
 		firstName: null,
@@ -13,6 +14,7 @@ myApp.factory('currentUser', function($http) {
 	}).then(function(response) {
 		console.log(response)
 
+		currentUser.id = response.data.id;
 		currentUser.role = response.data.role;
 		currentUser.isLogged = response.data.logged;
 		currentUser.firstName = response.data.firstName

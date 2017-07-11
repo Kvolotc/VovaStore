@@ -7,11 +7,8 @@ angular.module('myApp').controller(
 
 			$scope.paginationService = paginationService;
 
-			$scope.urlBrake = "#!/brakes/";
+			$scope.urlBrake = "/brakes/";
 
-			$scope.url = "/brakes/";
-
-			
 			$scope.addToBacket = function(product) {
 				
 				toastr.success('Brake '+product.brand +' '+ product.model+' was added in basket');
@@ -20,28 +17,46 @@ angular.module('myApp').controller(
 				
 				if(ind != -1) {
 					basketFactory[ind].amount++;
-					basketFactory[ind].price += product.price;
+					basketFactory[ind].sumPurchase += product.price;
 					return;
 				}
 				
 				basketFactory.push({
 					amount:1,
 					product:'brakes',
+					productId:product.id,
 					imageName: product.imageName,
 					brand:product.brand,
 					model:product.model,
 					productPrice:product.price,
-					price:product.price
+					sumPurchase:product.price
 				});
 			};
 			
 			
 			$scope.buyProduct = function(product) {
+				if($scope.currentUser.role != 'USER' && $scope.currentUser.role != 'ADMIN') {
+					toastr.error('First , you have to login');
+					return;
+				}
+				
 				if(purchaseProductFactory.length >=1) {
 					purchaseProductFactory.splice(0, purchaseProductFactory.length)
 				}
-				purchaseProductFactory.push(product)
-			}
+				purchaseProductFactory.push(
+						{
+							amount:1,
+							product:'BRAKES',
+							productId:product.id,
+							imageName: product.imageName,
+							brand:product.brand,
+							model:product.model,
+							productPrice:product.price,
+							sumPurchase:product.price
+						})
+						
+				$location.path('/purchaseProduct')
+			};
 
 			$scope.paginationParam = {
 				masPages : [],

@@ -1,3 +1,17 @@
+<html>
+
+<head>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
 <div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 container"
 	id="purchaseProduct">
 	<div class="panel panel-default">
@@ -10,22 +24,21 @@
 						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 
 						<label class="col-xs-6 ">Contry</label> <select name="city"
-							id="contry" ng-model="purchaseProduct.contry" class="form-control">
+							id="contry" ng-model="contry" class="form-control">
 							<option>Ukraine</option>
 						</select>
 
 
 					</div>
 				</div>
-				
 
 				<div class="form-group ">
 					<div
 						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 
 						<label " class="col-xs-6 ">City</label> <select
-							ng-disabled="purchaseProduct.contry == null" name="city" id="city"
-							ng-model="purchaseProduct.city" class="form-control">
+							ng-disabled="contry == null" name="city" id="city"
+							ng-model="city" class="form-control">
 							<option>Lviv</option>
 						</select>
 
@@ -38,8 +51,8 @@
 					<div
 						class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 						<label class="col-xs-6 ">New post</label> <select
-							ng-disabled="purchaseProduct.city == null" name="newPost" id="newPost"
-							ng-model="purchaseProduct.newPost" class="form-control">
+							ng-disabled="city == null" name="newPost" id="newPost"
+							ng-model="newPost" class="form-control">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -74,18 +87,18 @@
 				<div
 					class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
 					<div class="radio-inline">
-						<label><input ng-model="purchaseProduct.payment" type="radio"
+						<label><input ng-model="payment" type="radio"
 							name="optradio" value="credit">Credit</label>
 					</div>
 					<div class="radio-inline">
-						<label><input ng-model="purchaseProduct.payment" type="radio"
+						<label><input ng-model="payment" type="radio"
 							name="optradio" value="cash">Cash </label>
 					</div>
 				</div>
 
 				<div
 					class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-					<div ng-if="purchaseProduct.payment == 'cash' ">
+					<div ng-if="payment == 'cash' ">
 						<p style="font-size: 20px; text-align: center">Cash is = {{cash}} USD</p>
 
 					</div>
@@ -93,7 +106,7 @@
 				
 				<div
 					class="col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 input-group">
-					<div ng-if="purchaseProduct.payment == 'credit' ">
+					<div ng-if="payment == 'credit' ">
 						<p style="font-size: 20px; text-align: center">Credit on 12 months = {{credit}} USD payment on every month</p>
 
 					</div>
@@ -104,8 +117,8 @@
 
 				<div
 					class="col-sm-4 col-sm-offset-2 col-xs-2 col-xs-offset-2 input-group">
-					<button data-target="#purchaseModal" data-toggle="modal" ng-disabled="purchaseProduct.newPost == 0 || purchaseProduct.payment == null" type="submit"
-						id="buyProduct" class="change btn btn-success" ng-click="buyProduct()">Buy</button>
+					<button data-target="#purchaseModal" data-toggle="modal" ng-disabled="newPost == 0 || payment == null" type="submit"
+						id="buyProduct" class="change btn btn-success" ng-click="">Buy</button>
 				</div>
 
 			</form>
@@ -151,3 +164,28 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </body>
+
+</html>
+
+
+
+

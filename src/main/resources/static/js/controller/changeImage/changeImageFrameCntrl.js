@@ -4,10 +4,8 @@ angular.module('myApp').controller('changeImageFrame',
 				       
 			$scope.frames = [];
 			
-			$scope.urlFrame= "#/changeImageFrames/";
+			$scope.urlFrame= "/changeImageFrames/";
 
-			$scope.url = "/changeImageFrames/";
-			
 			$scope.currentFrameId;		
 			
 			$scope.paginationParam = {

@@ -69,7 +69,7 @@
 	<ul class="pagination" ng-show="paginationParam.isPrevious">
 		<li class="page-item"><a class="page-link"
 			style="cursor: pointer;"
-			ng-click="paginationService.previous(url, paginationParam.masPages[0]-1)">Previous</a></li>
+			ng-click="paginationService.previous(urlRim, paginationParam.masPages[0]-1)">Previous</a></li>
 	</ul>
 	<ul class="pagination" ng-repeat="numPage in paginationParam.masPages">
 		<li class="page-item"><a class="page-link"
@@ -78,6 +78,6 @@
 	<ul class="pagination" ng-show="paginationParam.isNext">
 		<li class="page-item"><a class="page-link"
 			style="cursor: pointer;"
-			ng-click="paginationService.next(url, paginationParam.masPages[4]+1)">Next</a></li>
+			ng-click="paginationService.next(urlRim, paginationParam.masPages[4]+1)">Next</a></li>
 	</ul>
 </nav>

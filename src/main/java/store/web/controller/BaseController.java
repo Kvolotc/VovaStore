@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomeController {
+public class BaseController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -28,8 +28,19 @@ public class HomeController {
 		return "403";
 	}
 	
+	
 //	@RequestMapping(value = "/login", method = RequestMethod.GET)
 //	public String login() {
+//		
+//		return "login";
+//	}
+//	
+//	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
+//	public String loginError(Model model) {
+//		
+//		System.out.println("EROOR LOGIN");
+//		
+//		model.addAttribute("error", "error");
 //		return "login";
 //	}
 	

@@ -20,8 +20,6 @@ public class BrakeDaoImpl extends GenericProductDaoImpl<Brake, Integer> implemen
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private final static int SIZE_PAGE = 1;
-	
 	protected BrakeDaoImpl() {
 		super(Brake.class);
 		

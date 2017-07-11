@@ -10,16 +10,31 @@ angular.module('myApp').controller('allMountainsBikes',
 			
 			$scope.photo;
 
-			$scope.urlBike = "#/allMountainBikes/";
-
-			$scope.url = "/allMountainBikes/";
+			$scope.urlBike = "/allMountainBikes/";
 			
 
-			$scope.buyProduct = function(product) {			
+			$scope.buyProduct = function(product) {
+				if($scope.currentUser.role != 'USER' && $scope.currentUser.role != 'ADMIN') {
+					toastr.error('First , you have to login');
+					return;
+				}
+						
 				if(purchaseProductFactory.length >=1) {
 					purchaseProductFactory.splice(0, purchaseProductFactory.length)
 				}			
-				purchaseProductFactory.push(product)			
+				purchaseProductFactory.push(
+						{
+							amount:1,
+							product:'bikes',
+							productId:product.id,
+							imageName: product.imageName,
+							brand:product.frame.brand,
+							model:product.frame.model,
+							productPrice:product.price,
+							sumPurchase:product.price
+						})
+						
+				$location.path('/purchaseProduct')
 			};
 			
 			
@@ -31,18 +46,19 @@ angular.module('myApp').controller('allMountainsBikes',
 				
 				if(ind != -1) {
 					basketFactory[ind].amount++;
-					basketFactory[ind].price += product.price;
+					basketFactory[ind].sumPurchase += product.price;
 					return;
 				}
 				
 				basketFactory.push({
 					amount:1,
 					product:'bikes',
+					productId:product.id,
 					imageName: product.imageName,
 					brand:product.frame.brand,
 					model:product.frame.model,
 					productPrice:product.price,
-					price:product.price
+					sumPurchase:product.price
 				});
 			};
 			
@@ -64,6 +80,7 @@ angular.module('myApp').controller('allMountainsBikes',
 				$scope.bikes = response.data;
 
 			}, function myError(response) {
+
 
 			});
 

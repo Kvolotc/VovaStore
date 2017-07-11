@@ -47,26 +47,39 @@ angular.module('myApp').controller(
 					brand:product.frame.brand,
 					model:product.frame.model,
 					productPrice:product.price,
-					price:product.price
+					sumPurchase:product.price
 				});
 			};
 			
 			
 
-			$scope.urlBike = "#!/searchBikes/word=" + $routeParams.word
+			$scope.urlBike = "/searchBikes/word=" + $routeParams.word
 					+ ";min=" + $routeParams.min + ";max=" + $routeParams.max
 					+ ";page=";
-
-			$scope.url = "/searchBikes/word=" + $routeParams.word + ";min="
-					+ $routeParams.min + ";max=" + $routeParams.max + ";page=";
 
 			$scope.router = $routeParams;
 			
 			$scope.buyProduct = function(product) {
+				if($scope.currentUser.role != 'USER' && $scope.currentUser.role != 'ADMIN') {
+					toastr.error('First , you have to login');
+					return;
+				}
+				
 				if(purchaseProductFactory.length >=1) {
 					purchaseProductFactory.splice(0, purchaseProductFactory.length)
 				}
-				purchaseProductFactory.push(product)
+				purchaseProductFactory.push(
+						{
+							amount:1,
+							product:'bikes',
+							productId:product.id,
+							imageName: product.imageName,
+							brand:product.frame.brand,
+							model:product.frame.model,
+							productPrice:product.price,
+							sumPurchase:product.price
+						})
+				$location.path('/purchaseProduct')
 			}
 
 			$scope.hideProduct = true;

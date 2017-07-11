@@ -2,14 +2,14 @@ package store.persistence.model;
 
 public class LoginParam {
 	
-	private String eMail;
+	private String username;
 	private String password;
 	
-	public String geteMail() {
-		return eMail;
+	public String getUsername() {
+		return username;
 	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;

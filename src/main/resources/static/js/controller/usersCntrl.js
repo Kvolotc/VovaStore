@@ -4,9 +4,7 @@ angular.module('myApp').controller('users', function($scope, $http, $routeParams
 	
 	$scope.paginationService = paginationService;
 	
-	$scope.urlUser = "#!/users/";
-
-	$scope.url = "/users/";
+	$scope.urlUser = "/users/";
 	
 	$scope.paginationParam = {
 		masPages : [],

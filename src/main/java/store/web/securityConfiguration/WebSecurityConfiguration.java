@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+
 
 import store.service.serviceImpl.CustomUserDetailsService;
 
@@ -35,23 +37,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //	}
 	
 	
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//	     http.
-//	     csrf().disable()
-//	     .authorizeRequests()
-//	     .antMatchers("/").permitAll()
-//	     .antMatchers("/allMountainBikes/**").hasAuthority("AMDIN")
-//	     .and()
-//         .formLogin()
-//             .loginPage("/login")       
-//             .defaultSuccessUrl("/")
-//             .passwordParameter("password")
-//             .usernameParameter("username")
-//	     .and()
-//
-//	    .logout().logoutUrl("/logout").logoutSuccessUrl("/");
-//	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -64,18 +49,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	     .antMatchers("/changeImageBrakes/*").hasAuthority("ADMIN")
 	     .antMatchers("/changeImageTires/*").hasAuthority("ADMIN")
 	     .antMatchers("/changeImageRims/*").hasAuthority("ADMIN")
-	     .antMatchers("/allMountainBikes/*").hasAuthority("ADMIN")
-	     .antMatchers("/frames/*").hasAuthority("ADMIN")
-	     .antMatchers("/getAllBikes/*").hasAuthority("ADMIN")
-	     .antMatchers("/purchaseProduct").hasAuthority("USER")
-	     .and().exceptionHandling().accessDeniedPage("/403")
-	     .and()
-         .formLogin()
-             .loginPage("/login")       
-             .defaultSuccessUrl("/")
-             .passwordParameter("password")
-             .usernameParameter("username")
-             .failureUrl("/login-error");
+	     .antMatchers("/registration").anonymous()
+	     .antMatchers("/login").anonymous()
+	     .antMatchers("/forgotPassword").anonymous()
+	     .antMatchers("/users").hasAuthority("ADMIN")
+	     .antMatchers("/purchaseProduct").hasAnyAuthority("USER", "ADMIN")
+	     .and().exceptionHandling().accessDeniedPage("/403");
+//	     .and()
+//         .formLogin()
+//             .loginPage("/login")       
+//             .defaultSuccessUrl("/")
+//             .passwordParameter("password")
+//             .usernameParameter("username");
+//             .successHandler(new AjaxAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()));
+//             .failureUrl("/loginError");
 	}
 
 

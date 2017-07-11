@@ -4,10 +4,8 @@ angular.module('myApp').controller('changeImageFork',
 				       
 			$scope.forks = [];
 			
-			$scope.urlFork = "#/changeImageForks/";
+			$scope.urlFork = "/changeImageForks/";
 
-			$scope.url = "/changeImageForks/";
-			
 			$scope.currentForkId;
 			
 			$scope.paginationParam = {

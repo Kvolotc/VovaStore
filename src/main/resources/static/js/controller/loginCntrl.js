@@ -1,7 +1,7 @@
-angular.module('myApp').controller('login', function(currentUser, $scope, $http, $location, toastr) {
+angular.module('myApp').controller('login', function(currentUser, $scope, $http, $location, $timeout, $window, toastr) {
 
 	$scope.loginParam = {
-		eMail : $scope.eMail,
+		username : $scope.username,
 		password : $scope.password
 	};
 
@@ -30,17 +30,12 @@ angular.module('myApp').controller('login', function(currentUser, $scope, $http,
 
 			}).then(function(response) {
 				
-				toastr.success('Welcome '+response.data.firstName+' '+response.data.lastName);
-
-				console.log(response.data)
-				currentUser.isLogged = response.data.logged;
-				currentUser.role = response.data.role;
-				currentUser.firstName = response.data.firstName
-				currentUser.lastName = response.data.lastName
-				currentUser.email = response.data.email
-				
 				$scope.isWarning = false;
 				$location.path("/");
+				$timeout(function() {
+					$window.location.reload();	
+				}, 100);
+				toastr.success('Hello '+response.data.firstName +' '+response.data.lastName);
 
 			}, function errorCallback(response) {
 

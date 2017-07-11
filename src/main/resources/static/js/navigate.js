@@ -37,6 +37,11 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 		controller : 'login'
 	})
 
+	.when('/loginError', {
+		templateUrl : 'view/loginError.html',
+		controller : 'login'
+	})
+
 	.when('/photo/bike/:bikeId', {
 		templateUrl : 'view/file/bikeFile.html',
 		controller : 'mountainBike',
@@ -198,14 +203,14 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 	})
 
 	.otherwise({
-		redirectTo : '/'
+		redirectTo : ''
 	})
-	
+
 	$locationProvider.html5Mode({
 		enabled : true,
 		requireBase : true
 	});
-	
+
 	$locationProvider.hashPrefix('');
 
 });
