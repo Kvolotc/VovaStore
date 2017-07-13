@@ -12,14 +12,18 @@ angular.module('myApp').controller('purchaseProduct',
 					productParams : purchaseProductFactory,
 			};
 			
+			$scope.mail = {
+					to : currentUser.email,
+					text : 'Expect your product to be viewed by the administrator. After confirmation we will contact you',
+					subject : 'Purchase product'
+			}
+			
 			$scope.cash = 0;
 			
 			$scope.credit = 0;
 			
 			$(document).ready(function() {
 				
-				console.log(currentUser.id)
-				console.log(purchaseProductFactory)
 				for(var ind = 0; ind < $scope.products.length; ind++) {
 					$scope.cash += $scope.products[ind].sumPurchase;
 				}
@@ -36,7 +40,6 @@ angular.module('myApp').controller('purchaseProduct',
 			
 			$scope.buyProduct = function() {
 				
-				console.log($scope.purchaseProduct)
 				
 				$http({
 					method : 'POST',
@@ -47,6 +50,14 @@ angular.module('myApp').controller('purchaseProduct',
 					data : $scope.purchaseProduct
 				}).then(function(response) {
 					
+					$http({
+						method : 'POST',
+						url : '/mailsender',
+						async : true,
+						contentType : 'application/json',
+						dataType : 'json',
+						data : $scope.mail
+					});
 	
 					
 				}, function errorCallback(response) {
@@ -54,8 +65,6 @@ angular.module('myApp').controller('purchaseProduct',
 					
 				});
 				
-			} 
-				
-			
+			} 		
 
 		})

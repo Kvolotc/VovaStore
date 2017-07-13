@@ -55,26 +55,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	     .antMatchers("/users").hasAuthority("ADMIN")
 	     .antMatchers("/purchaseProduct").hasAnyAuthority("USER", "ADMIN")
 	     .and().exceptionHandling().accessDeniedPage("/403");
-//	     .and()
-//         .formLogin()
-//             .loginPage("/login")       
-//             .defaultSuccessUrl("/")
-//             .passwordParameter("password")
-//             .usernameParameter("username");
-//             .successHandler(new AjaxAuthenticationSuccessHandler(new SavedRequestAwareAuthenticationSuccessHandler()));
-//             .failureUrl("/loginError");
+
 	}
-
-
-	
-    /*@Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .inMemoryAuthentication()
-                .withUser("admin").password("admin").roles("ADMIN");
-    }*/
-	
-	
 
 	@Override
 	@Autowired
