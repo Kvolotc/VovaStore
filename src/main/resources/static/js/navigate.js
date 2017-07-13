@@ -37,41 +37,6 @@ myApp.config(function($routeProvider, $locationProvider, toastrConfig) {
 		controller : 'login'
 	})
 
-	.when('/loginError', {
-		templateUrl : 'view/loginError.html',
-		controller : 'login'
-	})
-
-	.when('/photo/bike/:bikeId', {
-		templateUrl : 'view/file/bikeFile.html',
-		controller : 'mountainBike',
-	})
-
-	.when('/photo/frame/:photo', {
-		templateUrl : 'view/file/bikes.html',
-		controller : 'mountainBike',
-	})
-
-	.when('/photo/brake/:photo', {
-		templateUrl : 'view/file/bikes.html',
-		controller : 'mountainBike',
-	})
-
-	.when('/photo/fork/:photo', {
-		templateUrl : 'view/file/bikes.html',
-		controller : 'mountainBike',
-	})
-
-	.when('/photo/rim/:photo', {
-		templateUrl : 'view/file/bikes.html',
-		controller : 'mountainBike',
-	})
-
-	.when('/photo/tire/:photo', {
-		templateUrl : 'view/product/bikes.html',
-		controller : 'mountainBike',
-	})
-
 	.when('/mountainBikes/:page', {
 		templateUrl : 'view/product/bikes.html',
 		controller : 'mountainBike',

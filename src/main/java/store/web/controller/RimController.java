@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,23 +25,26 @@ import store.persistence.entity.Bike;
 import store.persistence.entity.Rim;
 import store.service.RimService;
 
-@RestController
+@Controller
 public class RimController {
 
 	@Autowired
 	private RimService service;
 	
+	@ResponseBody
 	@RequestMapping(value = "/rims", method = RequestMethod.GET)
 	public List<RimDTO> getAllRims() {
 		
 		return RimMapper.rimListToRimDTOList(service.findAll());
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPage/rims", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
 		return service.findAmountPages();
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/rims/{page}", method = RequestMethod.GET)
 	public List<RimDTO> getRacingBikes(@PathVariable("page") int page) {
 				System.out.println(service.findProducts(page));
@@ -48,6 +52,7 @@ public class RimController {
 		return RimMapper.rimListToRimDTOList(service.findProducts(page));
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/searchRims/", method = RequestMethod.GET)
 	public List<RimDTO> getSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max,
 			@RequestParam int page) {
@@ -63,6 +68,7 @@ public class RimController {
 
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPageSearchRims/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
@@ -76,14 +82,14 @@ public class RimController {
 
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/maxPriceRims", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
 	}
 	
 	@RequestMapping(value = "/photo/rim/{rimId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	@ResponseBody
-	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("rimId") int rimId) throws IOException {
+	public String changePhoto(@RequestBody MultipartFile file, @PathVariable("rimId") int rimId) throws IOException {
 
 		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\rims\\"
 				+ file.getOriginalFilename());
@@ -93,6 +99,8 @@ public class RimController {
 		Rim rim = service.findById(rimId);
 		rim.setImageName(file.getOriginalFilename());
 		service.update(rim);
+		
+		return "changeFile";
 
 	}
 }

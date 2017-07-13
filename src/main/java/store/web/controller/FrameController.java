@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,29 +25,33 @@ import store.persistence.entity.Bike;
 import store.persistence.entity.Frame;
 import store.service.FrameService;
 
-@RestController
+@Controller
 public class FrameController {
 
 	@Autowired
 	private FrameService service;
 	
+	@ResponseBody
 	@RequestMapping(value = "/frames", method = RequestMethod.GET)
 	public List<FrameDTO> getAllFrames() {
 		
 		return FrameMapper.frameListToFrameDTOList(service.findAll());
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPage/frames", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
 		return service.findAmountPages();
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/frames/{page}", method = RequestMethod.GET)
 	public List<FrameDTO> getRacingBikes(@PathVariable("page") int page) {
 				
 		return FrameMapper.frameListToFrameDTOList(service.findProducts(page));
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/searchFrames/", method = RequestMethod.GET)
 	public List<FrameDTO> getSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max,
 			@RequestParam int page) {
@@ -62,6 +67,7 @@ public class FrameController {
 
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPageSearchFrames/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
@@ -75,14 +81,14 @@ public class FrameController {
 
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/maxPriceFrames", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
 	}
 	
 	@RequestMapping(value = "/photo/frame/{frameId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	@ResponseBody
-	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("frameId") int frameId) throws IOException {
+	public String changePhoto(@RequestBody MultipartFile file, @PathVariable("frameId") int frameId) throws IOException {
 
 		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\frames\\"
 				+ file.getOriginalFilename());
@@ -92,6 +98,8 @@ public class FrameController {
 		Frame frame = service.findById(frameId);
 		frame.setImageName(file.getOriginalFilename());
 		service.update(frame);
+		
+		return "changeFile";
 
 	}
 }

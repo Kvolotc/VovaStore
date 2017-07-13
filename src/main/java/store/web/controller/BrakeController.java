@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,29 +23,33 @@ import store.persistence.dto.mapper.BrakeMapper;
 import store.persistence.entity.Brake;
 import store.service.BrakeService;
 
-@RestController
+@Controller
 public class BrakeController {
 	
 	@Autowired
 	private BrakeService service;
 	
+	@ResponseBody
 	@RequestMapping(value = "/brakes", method = RequestMethod.GET)
 	public List<BrakeDTO> getAllBrakes() {
 		
 		return BrakeMapper.brakeListToBrakeDTOList(service.findAll());
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPage/brakes", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
 		return service.findAmountPages();
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/brakes/{page}", method = RequestMethod.GET)
 	public List<BrakeDTO> getRacingBikes(@PathVariable("page") int page) {
 				
 		return BrakeMapper.brakeListToBrakeDTOList(service.findProducts(page));
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/searchBrakes/", method = RequestMethod.GET)
 	public List<BrakeDTO> getSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max,
 			@RequestParam int page) {
@@ -60,6 +65,7 @@ public class BrakeController {
 
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPageSearchBrakes/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
@@ -73,14 +79,14 @@ public class BrakeController {
 
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/maxPriceBrakes", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
 	}
 	
 	@RequestMapping(value = "/photo/brake/{brakeId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	@ResponseBody
-	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("brakeId") int brakeId) throws IOException {
+	public String changePhoto(@RequestBody MultipartFile file, @PathVariable("brakeId") int brakeId) throws IOException {
 
 		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\brakes\\"
 				+ file.getOriginalFilename());
@@ -90,6 +96,8 @@ public class BrakeController {
 		Brake brake = service.findById(brakeId);
 		brake.setImageName(file.getOriginalFilename());
 		service.update(brake);
+		
+		return "changeFile";
 
 	}
 }

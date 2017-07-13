@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ import store.service.TireService;
 
 
 
-@RestController
+@Controller
 public class TireController {
 	
 //	private static Logger logger = LoggerFactory.getLogger(TireControler.class);
@@ -32,7 +33,7 @@ public class TireController {
 	@Autowired
 	private TireService service;
 	
-	
+	@ResponseBody
 	@RequestMapping(value = "/tires", method = RequestMethod.GET)
 
 	public List<TireDTO> getAllTiries() {
@@ -40,17 +41,20 @@ public class TireController {
 		return TireMapper.tireListToTireDTOList(service.findAll());
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPage/tires", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
 		return service.findAmountPages();
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/tires/{page}", method = RequestMethod.GET)
 	public List<TireDTO> getRacingBikes(@PathVariable("page") int page) {
 				
 		return TireMapper.tireListToTireDTOList(service.findProducts(page));
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/searchTires/", method = RequestMethod.GET)
 	public List<TireDTO> getSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max,
 			@RequestParam int page) {
@@ -66,6 +70,7 @@ public class TireController {
 
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPageSearchTires/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
@@ -79,14 +84,14 @@ public class TireController {
 
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/maxPriceTires", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
 	}
 	
 	@RequestMapping(value = "/photo/tire/{tireId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	@ResponseBody
-	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("tireId") int tireId) throws IOException {
+	public String changePhoto(@RequestBody MultipartFile file, @PathVariable("tireId") int tireId) throws IOException {
 
 		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\tires\\"
 				+ file.getOriginalFilename());
@@ -97,5 +102,6 @@ public class TireController {
 		tire.setImageName(file.getOriginalFilename());
 		service.update(tire);
 
+		return "changeFile";
 	}
 }

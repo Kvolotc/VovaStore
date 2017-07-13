@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,27 +22,31 @@ import store.persistence.dto.mapper.ForkMapper;
 import store.persistence.entity.Fork;
 import store.service.ForkService;
 
-@RestController
+@Controller
 public class ForkController {
 	
 	@Autowired
 	private ForkService service;
 	
+	@ResponseBody
 	@RequestMapping(value = "/forks", method = RequestMethod.GET)
 	public List<ForkDTO> getllForks() {
 		return ForkMapper.forkListToForkDTOList(service.findAll());
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPage/forks", method = RequestMethod.GET)
 	public int getCountPageRacingBikes() {
 		return service.findAmountPages();
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/forks/{page}", method = RequestMethod.GET)
 	public List<ForkDTO> getRacingBikes(@PathVariable("page") int page) {
 		return ForkMapper.forkListToForkDTOList(service.findProducts(page));
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/searchForks/", method = RequestMethod.GET)
 	public List<ForkDTO> getSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max,
 			@RequestParam int page) {
@@ -57,6 +62,7 @@ public class ForkController {
 
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/getAmountPageSearchForks/", method = RequestMethod.GET)
 	public int getCountSearchBikes(@RequestParam String word, @RequestParam int min, @RequestParam int max) {
 
@@ -70,14 +76,14 @@ public class ForkController {
 
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/maxPriceForks", method = RequestMethod.GET)
 	public int findMaxPrice() {
 		return service.findMaxPriceProduct();
 	}
 	
 	@RequestMapping(value = "/photo/fork/{forkId}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	@ResponseBody
-	public void changePhoto(@RequestBody MultipartFile file, @PathVariable("forkId") int forkId) throws IOException {
+	public String changePhoto(@RequestBody MultipartFile file, @PathVariable("forkId") int forkId) throws IOException {
 
 		File filee = new File("C:\\VoVaStore\\VovaStore\\Store\\src\\main\\resources\\static\\images\\forks\\"
 				+ file.getOriginalFilename());
@@ -87,6 +93,8 @@ public class ForkController {
 		Fork fork = service.findById(forkId);
 		fork.setImageName(file.getOriginalFilename());
 		service.update(fork);
+		
+		return "changeFile";
 
 	}
 }

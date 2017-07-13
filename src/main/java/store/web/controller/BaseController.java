@@ -26,22 +26,5 @@ public class BaseController {
 	public String accessDenied() {
 
 		return "403";
-	}
-	
-	
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//	public String login() {
-//		
-//		return "login";
-//	}
-//	
-//	@RequestMapping(value = "/loginError", method = RequestMethod.GET)
-//	public String loginError(Model model) {
-//		
-//		System.out.println("EROOR LOGIN");
-//		
-//		model.addAttribute("error", "error");
-//		return "login";
-//	}
-	
+	}	
 }
